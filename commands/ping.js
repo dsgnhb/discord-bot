@@ -12,7 +12,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   
   exports.help = {
     name: "ping",
-    category: "Miscelaneous",
+    category: "Utility",
     description: "It... like... pings. Then Pongs. And it\"s not Ping Pong.",
     usage: "ping"
   };

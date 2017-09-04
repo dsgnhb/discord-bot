@@ -1,13 +1,24 @@
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
     const rank = args[0];
+    if(!rank) {
+      message.channel.send("Please provide a Group to join")
+      return
+    }
     role = message.guild.roles.find(r => r.name.toLowerCase() === rank.toLowerCase());
     if (role) {
       if(message.member.roles.has(role.id)) {
-        message.member.removeRole(role, "Requested via !join.")
-        message.channel.send("Succesfully removed role " + role.name)
+        message.member.removeRole(role, "Requested via !join.").then(() =>{
+          message.channel.send("Succesfully removed role " + role.name)
+        }).catch((error) => {
+          // No Perms
+        })
+        
       } else {
-        message.member.addRole(role, "Requested via !join.")
-        message.channel.send("Succesfully added role " + role.name)
+          message.member.addRole(role, "Requested via !join.").then(() =>{
+            message.channel.send("Succesfully added role " + role.name)
+          }).catch((error) => {
+            // No Perms
+          })
       }
     }
   };
@@ -21,7 +32,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   
   exports.help = {
     name: "join",
-    category: "Miscelaneous",
+    category: "No category",
     description: "Join/Leave Skill ranks.",
-    usage: "join PHP"
+    usage: "join <Group to join>"
   };

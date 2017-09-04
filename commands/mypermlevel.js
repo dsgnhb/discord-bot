@@ -11,7 +11,7 @@ exports.run = async (client, message, args, level) => {
   
   exports.help = {
     name: "mypermlevel",
-    category: "Miscelaneous",
+    category: "Utility",
     description: "Tells you your permission level for the current message location.",
     usage: "mypermlevel"
   };

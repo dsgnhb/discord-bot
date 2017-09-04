@@ -3,9 +3,9 @@ module.exports = (client) => {
     client.permlevel = message => {
       let permlvl = 0;
       // Bot Owner gets 10
-      if (client.config.ownerID.includes(message.author.id)) return permlvl = 10;
+      if (client.config.ownerID.includes(message.author.id)) return 10;
       // Guild Owner gets 10
-      if (message.author.id === message.guild.owner.id) return permlvl = 10;
+      if (message.author.id === message.guild.owner.id) return 9;
 
       const ranks = require("../configs/permlevel.json")
       for (var rank in ranks) {
@@ -21,7 +21,7 @@ module.exports = (client) => {
   
     client.log = (type, message, title) => {
       if (!title) title = 'Log';
-      //client.guilds.get(client.config.mainGuildID).channels.get(client.config.logChannel).send(`**[${type}]** *[${title}] ${message}*`)
+      client.guilds.get(client.config.mainGuildID).channels.get(client.config.logChannel).send("**["+type+"]** ["+title+"] `"+message+"`")
       console.log(`[${type}] [${title}] ${message}`);
     };
 

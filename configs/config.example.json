@@ -12,6 +12,7 @@
       "prefix": "!",
       "embedFooter": "designhub.party",
       "embedColor": "0x2eabbf",
+      "embedIcon": "https://dsgnhb.de/dl/avatar%20designhub2.jpg",
       "welcomeEnabled": "false",
       "welcomeChannel": "welcome",
       "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D"

@@ -33,5 +33,5 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     name: "clear",
     category: "Utility",
     description: "Clear messages.",
-    usage: "clear 10 (@user)"
+    usage: "clear <amount> (<@user>)"
   };

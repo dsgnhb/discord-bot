@@ -24,19 +24,19 @@ module.exports = (client, message) => {
     const { promisify } = require("util");
     const readdir = promisify(require("fs").readdir);
     const init = async () => {
-      try {
-        console.log(args)
-        const monFiles = await readdir(__dirname + "/../monitors/");
-        monFiles.forEach(file => {
+      const monFiles = await readdir(__dirname + "/../monitors/");
+      monFiles.forEach(file => {
+        try {
           if (file.split(".").slice(-1)[0] !== "js") return;
           const monitorName = file.split(".")[0];
           const monitor = require(`../monitors/${file}`);
           monitor.run(client, message, level);
           delete require.cache[require.resolve(`../monitors/${file}`)];
-        })
-      } catch (e) {
-        client.log("warn", e, "Monitors-Error")
-      }
+        } catch (e) {
+          console.log(`[warn] [Error] Unable to load monitor ${file}: ${e}`);
+          console.log(e)
+        }
+      })
     }
     init();
 
@@ -68,7 +68,7 @@ module.exports = (client, message) => {
   
     // If the command exists, **AND** the user has permission, run it.
     if (cmd && level >= cmd.conf.permLevel) {
-      client.log("log", `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args}`, "CMD");
+      client.log("log", `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(",")}`, "CMD");
       cmd.run(client, message, args, level);
     }
     // Best Practice: **do not** reply with a message if the command does
