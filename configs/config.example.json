@@ -1,0 +1,19 @@
+{
+    "ownerID": "ID OF BOT OWNER (YOU)",
+    "apiEndpoint": "URL TO DESIGNHUB API",
+    "logChannel": "ID OF CHANNEL FOR LOGGING",
+    "mainGuildID" : "ID OF BOT OWNER'S GUILD (USED FOR LOGGING)",
+    "tokens" : {
+      "discord": "DISCORD TOKEN",
+      "api":"DESIGNHUB API TOKEN",
+      "cleverbot": "CLEVERBOT API TOKEN"
+    },
+    "defaultSettings" : {
+      "prefix": "!",
+      "embedFooter": "designhub.party",
+      "embedColor": "0x2eabbf",
+      "welcomeEnabled": "false",
+      "welcomeChannel": "welcome",
+      "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D"
+    }
+  }
