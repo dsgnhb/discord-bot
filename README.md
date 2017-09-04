@@ -3,10 +3,9 @@ Discord Bot running designhub's Discord Server based on GuideBot from AnIdiotsGu
 
 ***
 
-## Installing
-### config.json
-Rename config.example.json to config.json and fill out the requested fields.
-
+## config.json
+Rename `config.example.json` to `config.json` and fill out the requested fields.
+```json
   {
       "ownerID": "ID OF BOT OWNER (YOU)",
       "apiEndpoint": "URL TO DESIGNHUB API",
@@ -26,8 +25,11 @@ Rename config.example.json to config.json and fill out the requested fields.
         "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D"
       }
     }
-### Installing packages
+```
+## Installing packages
+```
   npm install
+```
 
 ***
 Author: flo (https://flooo.me)
