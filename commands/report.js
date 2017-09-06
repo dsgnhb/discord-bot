@@ -1,4 +1,5 @@
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+    if(!args[0]) return;
     const errorcode = Math.floor((Math.random() * 100000) + 1);
     await message.channel.send("Vielen Dank! Dein Report wurde entgegengenommen. \nDie Gomme-Mods werden den Vorfall überprüfen! <:gomme:313418733861470210>")
     client.wait(10000)

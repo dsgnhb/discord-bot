@@ -10,16 +10,17 @@ exports.run = (client, message, level) => {
         var avatar = message.author.displayAvatarURL
         var size = avatar.indexOf("?size");
         avatar = avatar.slice(0, size);
-        var url = client.config.apiEndpoint+"/add";
-        var postData = { "image": image, "content": content, "username": username, "userid": userid, "key": client.config.tokens.api, "avatar": avatar};
-        postData = JSON.stringify(postData);
+        var url = client.config.apiEndpoint+"/posts";
+        var postData = { "image": image, "content": content, "username": username, "userid": userid, "avatar": avatar};
+        message.channel.startTyping()
         request.post({
            url: url,
            body: postData,
+           json: true
         }, function(error, response, body) {
-           var json = JSON.parse(body);
-           if(json == "DB Error") { message.channel.send("**TopDesign** | Datenbank Fehler"); return}
-           if(json.action == "add") { message.channel.send("**TopDesign** | Dein Post wurde erfolgreich bei Top Design eingereicht. Er kann mit `!vote #" + json.postid +"` bewertet werden."); return}
+            message.channel.stopTyping(true)
+            if(!body) return message.channel.send("**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕");
+            if(body.action == "add") return message.channel.send("**TopDesign** | Dein Post wurde erfolgreich bei Top Design eingereicht. Er kann mit `!vote #" + body.postid +"` bewertet werden.");
         });
     }
 }
