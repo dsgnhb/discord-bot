@@ -4,7 +4,6 @@ exports.run = (client, message, args, level) => {
   if (!args[0]) {
     const myCommands = message.guild ? client.commands.filter(cmd => cmd.conf.permLevel <= level) : client.commands.filter(cmd => cmd.conf.permLevel <= level &&  cmd.conf.guildOnly !== true);
     const commandNames = myCommands.keyArray();
-    const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
     let currentCategory = "";
     let msg = {embed : {
       color: 3058623,
@@ -29,7 +28,7 @@ exports.run = (client, message, args, level) => {
         currentCategory = cat;
         i++;
       }
-      msg.embed.fields[i].value += `${settings.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} - ${c.help.description}\n`;
+      msg.embed.fields[i].value += `${settings.prefix}${c.help.name} - ${c.help.description}\n`;
     });
     message.channel.send(msg);
     } else {
