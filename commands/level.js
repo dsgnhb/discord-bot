@@ -13,7 +13,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     })[0];
     if(!result) return message.channel.send("Dich gibt's hier noch ned.")
     const embed = new RichEmbed()
-      .setAuthor("Command List", message.guild.iconURL)
+      .setAuthor("Levels | "+message.author.username, message.guild.iconURL)
       .setColor(settings.embedColor)
       .addField("Rank",result.rank+"/"+client.users.size, true)
       .addField("Level", XPs.xpToLevel(result.xp)+" ("+result.xp+" XP)", true)
