@@ -11,6 +11,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     var result = body.filter(function( obj ) {
       return obj.userid == message.author.id;
     })[0];
+    if(!result) return message.channel.send("Dich gibt's hier noch ned.")
     const embed = new RichEmbed()
       .setAuthor("Command List", message.guild.iconURL)
       .setColor(settings.embedColor)
