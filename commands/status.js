@@ -26,6 +26,6 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   exports.help = {
     name: "status",
     category: "Top Design",
-    description: "Change Status of Post.",
+    description: "Deaktivieren, nicht löschen, Lukas.",
     usage: "status #<postid>"
   };

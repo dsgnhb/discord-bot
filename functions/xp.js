@@ -24,7 +24,7 @@ class XPs {
         avatar = avatar.slice(0, size);
 
         var url = client.config.apiEndpoint+"/levels/xp/"+member.id;
-        var postData = { "xp": number, "username": member.username, "avatar": avatar};
+        var postData = { "xp": number, "username": member.username, "discriminator": member.discriminator, "avatar": avatar};
         request.post({
             url: url,
             body: postData,
@@ -53,7 +53,7 @@ class XPs {
         avatar = avatar.slice(0, size);
 
         var url = client.config.apiEndpoint+"/levels/xp/"+member.id;
-        var postData = { "xp": number, "username": member.username, "avatar": avatar};
+        var postData = { "xp": number, "username": member.username, "discriminator": member.discriminator, "avatar": avatar};
         request.delete({
             url: url,
             body: postData,

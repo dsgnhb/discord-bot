@@ -34,6 +34,6 @@ exports.run = async (client, message, args, level) => {// eslint-disable-line no
   exports.help = {
     name: "reload",
     category: "System",
-    description: "Reloads a command that\"s been modified.",
+    description: "Bot neustarten? Nö. - Ich hab !reload (Daumen hoch)",
     usage: "reload <command>"
   };

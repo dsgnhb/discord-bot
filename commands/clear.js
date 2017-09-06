@@ -32,6 +32,6 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   exports.help = {
     name: "clear",
     category: "Utility",
-    description: "Clear messages.",
+    description: "Auch Channel muüssen aufgeräumt werden.",
     usage: "clear <amount> (<@user>)"
   };

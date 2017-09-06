@@ -14,11 +14,11 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     if(!result) return message.channel.send("Dich gibt's hier noch ned.")
     const embed = new RichEmbed()
       .setAuthor("Levels | "+message.author.username, message.guild.iconURL)
+      .setURL("https://dsgnhb.de/levels/")
       .setColor(settings.embedColor)
       .addField("Rank",result.rank+"/"+client.users.size, true)
       .addField("Level", XPs.xpToLevel(result.xp)+" ("+result.xp+" XP)", true)
       .addField("Chests",result.chests, true)
-      
       .setTimestamp()
       .setFooter(settings.embedFooter, settings.embedIcon);
     message.channel.send(embed)
@@ -29,13 +29,13 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ["rank"],
     permLevel: 0
   };
   
   exports.help = {
     name: "level",
-    category: "Level",
-    description: "Get your Level.",
+    category: "Levels",
+    description: "Und.. Bin ich noch Erster? WAS?! APORED WIRD DEIN DORF VERBRENNEN!",
     usage: "level"
   };

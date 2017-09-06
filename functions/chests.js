@@ -7,7 +7,7 @@ class Chests {
         avatar = avatar.slice(0, size);
 
         var url = client.config.apiEndpoint+"/levels/chests/"+member.id;
-        var postData = { "chests": number, "username": member.username, "avatar": avatar};
+        var postData = { "chests": number, "username": member.username, "discriminator": member.discriminator, "avatar": avatar};
         request.post({
             url: url,
             body: postData,
@@ -23,7 +23,7 @@ class Chests {
         avatar = avatar.slice(0, size);
 
         var url = client.config.apiEndpoint+"/levels/chests/"+member.id;
-        var postData = { "chests": number, "username": member.username, "avatar": avatar};
+        var postData = { "chests": number, "username": member.username, "discriminator": member.discriminator, "avatar": avatar};
         request.delete({
             url: url,
             body: postData,

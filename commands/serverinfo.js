@@ -23,6 +23,6 @@ exports.conf = {
 exports.help = {
 name: 'serverinfo',
 category: 'Info',
-description: 'Displays server information & statistics.',
+description: 'Ja, hier sieht man auch den die Anzahl der Member.',
 usage: 'serverinfo'
 };

@@ -22,6 +22,6 @@ exports.conf = {
   exports.help = {
     name: "channelinfo",
     category: "Info",
-    description: "Get infos about current channel.",
+    description: "Erfahre die Channel-Beschreibung ohne hochzuschauen (is unnötig lol)",
     usage: "channelinfo"
   };

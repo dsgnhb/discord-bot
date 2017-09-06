@@ -49,6 +49,6 @@ exports.conf = {
 exports.help = {
   name: "set",
   category: "System",
-  description: "View or change settings for your server.",
+  description: "Hier kann man den Prefix ändern und so.",
   usage: "set <view/get/edit> <key> <value>"
 };

@@ -30,7 +30,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   
   exports.help = {
     name: "join",
-    category: "No category",
-    description: "Join/Leave Skill ranks.",
+    category: "Utility",
+    description: "Bekomme nen Rang ohne nen Admin vollzuspamen. - voll schlau von mir",
     usage: "join <role>"
   };

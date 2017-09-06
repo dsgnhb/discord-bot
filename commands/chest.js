@@ -12,6 +12,6 @@ exports.conf = {
   exports.help = {
     name: "chest",
     category: "Levels",
-    description: "Open Chest.",
+    description: "Oaah. Magie.",
     usage: "chest"
   };

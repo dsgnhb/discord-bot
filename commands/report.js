@@ -15,6 +15,6 @@ exports.conf = {
   exports.help = {
     name: "report",
     category: "Fun",
-    description: "Die Gomme-Mods sind immer für dich da",
+    description: "Die Gomme-Mods sind immer für dich da.",
     usage: "report <@user> (<Grund>)"
   };

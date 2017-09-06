@@ -30,6 +30,6 @@ exports.conf = {
 exports.help = {
     name: "give",
     category: "Levels",
-    description: "Give user xp.",
+    description: "Manipuliere die Stats eines Users (und werde Erster im Leaderboard).",
     usage: "give xp/chests <@user> <amount>"
 };

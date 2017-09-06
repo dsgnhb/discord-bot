@@ -26,6 +26,6 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   exports.help = {
     name: "posts",
     category: "Top Design",
-    description: "List all Post of current month.",
+    description: "Alle Posts für die du Voten kannst.",
     usage: "posts"
   };

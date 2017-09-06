@@ -30,6 +30,6 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   exports.help = {
     name: "vote",
     category: "Top Design",
-    description: "Vote for Post.",
+    description: "LIIIIIKKEEEEESSSS",
     usage: "vote #<postid>"
   };
