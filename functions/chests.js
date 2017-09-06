@@ -1,27 +1,39 @@
-const PersistentCollection = require("djs-collection-persistent");
+const request = require("request");
 
 class Chests {
-    static addChest(client, userID) {
-        const data = Chests.getData(client, userID)
-        data.chests++;
-        Chests.saveData(client, userID, data);
+    static addChests(client, member, number) {
+        let avatar = member.displayAvatarURL
+        var size = avatar.indexOf("?size");
+        avatar = avatar.slice(0, size);
+
+        var url = client.config.apiEndpoint+"/levels/chests/"+member.id;
+        var postData = { "chests": number, "username": member.username, "avatar": avatar};
+        request.post({
+            url: url,
+            body: postData,
+            json: true
+        }, function(error, response, body) {
+            if(!body) return client.log("error", "db error while adding Chests");
+            if(body.error) client.log("error", body);
+        });
     }
-    static removeChest(client, userID) {
-        const data = Chests.getData(client, userID)
-        if(!data.chests == 0) {
-            data.chests--;
-            return true;
-        } else {
-           return false;
-        }
-        Chests.saveData(client, userID, data);
-    }
-    static getData(client, userID) {
-        const data = client.levels.get(userID) || { xp: 0, chests: 0 };
-        return data;
-    }
-    static saveData(client, userID, data) {
-        client.levels.set(userID, data)
+    static removeChests(client, member, number) {
+        let avatar = member.displayAvatarURL
+        var size = avatar.indexOf("?size");
+        avatar = avatar.slice(0, size);
+
+        var url = client.config.apiEndpoint+"/levels/chests/"+member.id;
+        var postData = { "chests": number, "username": member.username, "avatar": avatar};
+        request.delete({
+            url: url,
+            body: postData,
+            json: true
+        }, function(error, response, body) {
+            if(!body) return client.log("error", "db error while adding chests");
+            if(body.error) client.log("error", body);
+            if(body.error = "user has not enough chests") return false;
+            return true
+        });
     }
     static getRandomChest() {
         const items = [

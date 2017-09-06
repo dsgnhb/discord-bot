@@ -29,8 +29,8 @@ class dsgnhb extends Discord.Client {
     // and makes things extremely easy for this purpose.
     this.settings = new PersistentCollection({name: "settings"});
 
-    // levels
-    this.levels = new PersistentCollection({name: 'points'});
+    this.cooldown = new Set();
+
   }
 }
 

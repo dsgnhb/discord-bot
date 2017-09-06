@@ -1,7 +1,7 @@
 const request = require("request");
 const topdesign = require("../functions/topdesign.js");
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
-    var url = client.config.apiEndpoint+"/voted/"+message.author.id;
+    var url = client.config.apiEndpoint+"/topdesign/voted/"+message.author.id;
     request.get({
        url: url,
        json: true

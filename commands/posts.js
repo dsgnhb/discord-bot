@@ -1,7 +1,7 @@
 const request = require("request");
 const topdesign = require("../functions/topdesign.js");
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
-    var url = client.config.apiEndpoint+"/posts/currentmonth";
+    var url = client.config.apiEndpoint+"/topdesign/posts/currentmonth";
     request.get({
        url: url,
        json: true

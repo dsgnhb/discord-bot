@@ -4,7 +4,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     let postid =  Number(args[0])
     if (!postid) return message.channel.send("**TopDesign** | Nutze `!vote #[Nr des Posts]` um für einen Post zu voten.");
     if (!Number.isInteger(postid)) return message.channel.send("**TopDesign** | Is "+postid+" ne Zahl? lol");
-    var url = client.config.apiEndpoint+"/vote/"+postid;
+    var url = client.config.apiEndpoint+"/topdesign/vote/"+postid;
     let body = {
         "userid" : message.author.id
     }

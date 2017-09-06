@@ -4,7 +4,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     let postid =  Number(args[0])
     if (!postid) return message.channel.send("**TopDesign** | Nutze `!status #[Nr des Posts]` um einen Post zu deaktivieren oder aktivieren.");
     if (!Number.isInteger(postid)) return message.channel.send("**TopDesign** | Is "+postid+" ne Zahl? lol");
-    var url = client.config.apiEndpoint+"/posts/"+postid;
+    var url = client.config.apiEndpoint+"/topdesign/posts/"+postid;
     request.put({
        url: url,
        json: true
