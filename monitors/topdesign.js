@@ -1,8 +1,8 @@
+const request = require("request");
 exports.run = (client, message, level) => {
     if(!message.attachments.first()) return;
     if(message.isMentioned(message.guild.channels.find("name", "topdesign")) || message.content.includes("#topdesign")) {
         client.log("log", `${message.author.username} (${message.author.id}) ran #topdesign`, "MONITOR");
-        const request = require("request");
         var image = message.attachments.first().proxyURL
         var content = message.content
         var username = message.author.username

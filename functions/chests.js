@@ -1,6 +1,9 @@
 const request = require("request");
 
 class Chests {
+    static randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
     static addChests(client, member, number) {
         let avatar = member.displayAvatarURL
         var size = avatar.indexOf("?size");
@@ -30,9 +33,12 @@ class Chests {
             json: true
         }, function(error, response, body) {
             if(!body) return client.log("error", "db error while adding chests");
-            if(body.error) client.log("error", body);
-            if(body.error = "user has not enough chests") return false;
-            return true
+            if(body.error) {
+                client.log("error", body.error);
+                return false;
+            } else { 
+                return true;
+            }
         });
     }
     static getRandomChest() {
@@ -40,19 +46,19 @@ class Chests {
             {
                 name: "item1",
                 freq: 1,
-                action: "message.channel.send('won item1!')"
+                run : function(message) { message.channel.send('won item1!') }
             },
             {
                 name: "item2",
                 freq: 5,
-                action: "message.channel.send('won item2!')"
+                run : function(message) { message.channel.send('won item2!') }
             }
         ]
         let sumFreq = 0;
         for(i=0; i<items.length; i++) {
             sumFreq =+ items[i].freq;
         }
-        randomFreq = randomNum(0, sumFreq)
+        let randomFreq = Chests.randomNum(0, sumFreq)
         var freq = 0
         for (var i = 0; i < items.length; i++) {
             freq =+ items[i].freq
