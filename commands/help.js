@@ -11,7 +11,7 @@ exports.run = (client, message, args, level) => {
         name: "Commands",
         icon_url: message.guild.iconURL
       },
-      description: `Mehr gibt's mit ${settings.prefix}help <command> `,
+      description: `Mehr gibt's mit **${settings.prefix}help <command>**`,
       fields : [],
       timestamp: new Date(),
       footer: {
@@ -28,7 +28,7 @@ exports.run = (client, message, args, level) => {
         currentCategory = cat;
         i++;
       }
-      msg.embed.fields[i].value += `${settings.prefix}${c.help.name} - ${c.help.description}\n`;
+      msg.embed.fields[i].value += `**${settings.prefix}${c.help.name}** - ${c.help.description}\n`;
     });
     message.channel.send(msg);
     } else {
