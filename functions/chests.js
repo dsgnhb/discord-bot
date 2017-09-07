@@ -64,11 +64,6 @@ exports.getRandomChest = async () => {
      */
     const items = [
         {
-            name: "ein Einhorn",
-            freq: 3,
-            run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn! 🦄') }
-        },
-        {
             name: "einen Lukas",
             freq: 1,
             run : function(client, message) { message.channel.send('*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥', new Attachment("./assets/imgs/lukas.jpg", "lukas.jpg")) }
@@ -85,6 +80,11 @@ exports.getRandomChest = async () => {
                 message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210> \n<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
                 message.channel.send(new Attachment("./assets/gifs/explosion.gif", "explosion.gif"))
             }
+        },
+        {
+            name: "ein Einhorn",
+            freq: 3,
+            run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn! 🦄') }
         }
 
     ];
