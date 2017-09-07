@@ -1,5 +1,4 @@
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
-    message.channel.send(`!mute`);
     const user = message.mentions.users.first();
 
     if(client.mutes.has(user.id)) {
