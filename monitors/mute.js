@@ -1,6 +1,6 @@
 exports.run = (client, message, level) => {
     if(client.mutes.has(message.author.id)) {
-        message.delete();
+        return message.delete();
     }
 }
 
