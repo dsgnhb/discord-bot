@@ -1,6 +1,6 @@
 module.exports = (client) => {
   
-    client.permlevel = message => {
+    client.permlevel = (message) => {
       let permlvl = 0;
       // Bot Owner gets 10
       if (client.config.ownerID.includes(message.author.id)) return 10;

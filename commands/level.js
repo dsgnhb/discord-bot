@@ -4,16 +4,17 @@ const { RichEmbed } = require('discord.js');
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
   const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings;
   let url = client.config.apiEndpoint+"/levels/";
+  const member = message.mentions.users.first() || message.author;
   request.get({
     url: url,
     json: true
   }, function(error, response, body) {
     let result = body.filter(function( obj ) {
-      return obj.userid == message.author.id;
+      return obj.userid = member.id;
     })[0];
     if(!result) return message.channel.send("Dich gibt's hier noch ned.")
     const embed = new RichEmbed()
-      .setAuthor("Levels | "+message.author.username, message.guild.iconURL)
+      .setAuthor("Levels | "+ member.username, member.avatarURL)
       .setURL("https://dsgnhb.de/levels/")
       .setColor(settings.embedColor)
       .addField("Rank",result.rank+"/"+client.users.size, true)

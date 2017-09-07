@@ -66,7 +66,7 @@ exports.getRandomChest = async () => {
         {
             name: "ein Einhorn",
             freq: 3,
-            run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn!') }
+            run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn! 🦄') }
         },
         {
             name: "einen Lukas",
