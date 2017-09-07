@@ -12,7 +12,7 @@ const { inspect } = require("util");
 // const action = args[0]; const key = args[1]; const value = args.slice(2);
 // OR the same as:
 // const [action, key, ...value] = args;
-exports.run = async (client, message, [action, key, ...value], level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, [action, key, ...value], level) => { // eslint-disable-line no-unused-lets
 
   // Retrieve current guild settings
   const settings = client.settings.get(message.guild.id);

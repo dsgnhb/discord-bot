@@ -1,14 +1,14 @@
 const request = require("request");
 const topdesign = require("../functions/topdesign.js");
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
-    var url = client.config.apiEndpoint+"/topdesign/posts/currentmonth";
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+    let url = client.config.apiEndpoint+"/topdesign/posts/currentmonth";
     request.get({
        url: url,
        json: true
     }, function(error, response, body) {
         if(!body) return message.channel.send("**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕");
         let posts = "";
-        for (var i = 0; i < body.length; i++) {
+        for (let i = 0; i < body.length; i++) {
             let entry = body[i];
             posts += "**#"+ entry.id +"** | "+ entry.username +"  -  **"+ entry.likes +"** "+ topdesign.voteOrVotes(entry.likes) + "\n"
         }

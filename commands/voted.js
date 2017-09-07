@@ -1,7 +1,7 @@
 const request = require("request");
 const topdesign = require("../functions/topdesign.js");
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
-    var url = client.config.apiEndpoint+"/topdesign/voted/"+message.author.id;
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+    let url = client.config.apiEndpoint+"/topdesign/voted/"+message.author.id;
     request.get({
        url: url,
        json: true
@@ -10,9 +10,9 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
         const timeshort = topdesign.timeshort(new Date());
         if(!body.hasOwnProperty(timeshort)) return message.channel.send("**TopDesign** | Du hast diesen Monat für noch keinen Post gevoted.")
         const month = body[timeshort]
-        var liked = "";
-        for (var i = 0; i < month.length; i++) {
-            var entry = month[i];
+        let liked = "";
+        for (let i = 0; i < month.length; i++) {
+            let entry = month[i];
             if(month.length > 1) {
                 if(i == month.length) {
                     //LAST ITEM

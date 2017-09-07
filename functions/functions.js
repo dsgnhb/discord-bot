@@ -8,7 +8,7 @@ module.exports = (client) => {
       if (message.author.id === message.guild.owner.id) return 9;
 
       const ranks = require("../configs/permlevel.json")
-      for (var rank in ranks) {
+      for (let rank in ranks) {
         if (ranks.hasOwnProperty(rank)) {
           const role = message.guild.roles.find(r => r.name.toLowerCase() === rank.toLowerCase());
           if (role && message.member.roles.has(role.id)) permlvl = ranks[rank];
@@ -26,7 +26,7 @@ module.exports = (client) => {
     };
 
     client.MStoTime = (time) => {
-      var d, h, m, s;
+      let d, h, m, s;
       s = time
       m = Math.floor(s / 60);
       s = s % 60;
@@ -88,7 +88,7 @@ module.exports = (client) => {
     };
   
     Array.prototype.remove = function() {
-      var value, a = arguments, L = a.length, ax;
+      let value, a = arguments, L = a.length, ax;
       while (L && this.length) {
         value = a[--L];
         while ((ax = this.indexOf(value)) !== -1) {
@@ -97,16 +97,20 @@ module.exports = (client) => {
       }
       return this;
     };
-  
+
+    // `await client.wait(1000);` to "pause" for 1 second.
+    client.wait = require("util").promisify(setTimeout);
+
+    /*
     // `client.wait(1000);` to "pause" for 1 second.
     client.wait = (ms) => {
-      var start = new Date().getTime();
-      var end = start;
+      let start = new Date().getTime();
+      let end = start;
       while(end < start + ms) {
         end = new Date().getTime();
      }
    }
-  
+  */
     process.on('uncaughtException', (err) => {
       const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
       console.error('Uncaught Exception: ', errorMsg);

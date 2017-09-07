@@ -3,15 +3,15 @@ exports.run = (client, message, level) => {
     if(!message.attachments.first()) return;
     if(message.isMentioned(message.guild.channels.find("name", "topdesign")) || message.content.includes("#topdesign")) {
         client.log("log", `${message.author.username} (${message.author.id}) ran #topdesign`, "MONITOR");
-        var image = message.attachments.first().proxyURL
-        var content = message.content
-        var username = message.author.username
-        var userid = message.author.id
-        var avatar = message.author.displayAvatarURL
-        var size = avatar.indexOf("?size");
+        let image = message.attachments.first().proxyURL
+        let content = message.content
+        let username = message.author.username
+        let userid = message.author.id
+        let avatar = message.author.displayAvatarURL
+        let size = avatar.indexOf("?size");
         avatar = avatar.slice(0, size);
-        var url = client.config.apiEndpoint+"/posts";
-        var postData = { "image": image, "content": content, "username": username, "userid": userid, "avatar": avatar};
+        let url = client.config.apiEndpoint+"/posts";
+        let postData = { "image": image, "content": content, "username": username, "userid": userid, "avatar": avatar};
         message.channel.startTyping()
         request.post({
            url: url,

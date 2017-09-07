@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
     const rank = args[0];
     if(!rank) return message.channel.send("Nutze `!join <role>` um eine Skill-Gruppe zu joinen.");
     const skillGroups = ["css", "html", "affinityphoto", "ruby", "sql", "c++", "c#", "swift", "phyton", "java", "php", "javascript", "blender", "cinema4d", "gimp", "photoshop"];

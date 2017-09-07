@@ -1,10 +1,10 @@
 const request = require("request");
 const topdesign = require("../functions/topdesign.js");
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
     let postid =  Number(args[0])
     if (!postid) return message.channel.send("**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.");
     if (!Number.isInteger(postid)) return message.channel.send("**TopDesign** | Is "+postid+" ne Zahl? lol");
-    var url = client.config.apiEndpoint+"/topdesign/posts/"+postid;
+    let url = client.config.apiEndpoint+"/topdesign/posts/"+postid;
     request.del({
        url: url,
        json: true

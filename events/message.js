@@ -49,7 +49,7 @@ module.exports = (client, message) => {
     // command = say
     // args = ["Is", "this", "the", "real", "life?"]
     const args = message.content.slice(settings.prefix.length).trim().match(/\w+|"[^"]+"/g);
-    for (var i = 0; i < args.length; i++) {
+    for (let i = 0; i < args.length; i++) {
       args[i] = args[i].replace(/['"]+/g, '')
     }
     const command = args.shift().toLowerCase();
@@ -58,7 +58,7 @@ module.exports = (client, message) => {
     // Check whether the command, or alias, exist in the collections defined
     // in app.js.
     const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
-    // using this const varName = thing OR otherthign; is a pretty efficient
+    // using this const letName = thing OR otherthign; is a pretty efficient
     // and clean way to grab one of 2 values!
   
     // Some commands may not be useable in DMs. This check prevents those commands from running

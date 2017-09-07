@@ -2,7 +2,7 @@ const { version } = require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
 const { RichEmbed } = require('discord.js');
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
   const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings;
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
   const embed = new RichEmbed()

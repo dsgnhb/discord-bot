@@ -1,5 +1,5 @@
 const { RichEmbed } = require('discord.js');
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
   const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings;
   const embed = new RichEmbed()
       .setAuthor(message.guild.name, message.guild.iconURL)
