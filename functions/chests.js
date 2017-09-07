@@ -78,7 +78,7 @@ exports.getRandomChest = async () => {
             freq: 3,
             run : function (client, message) {
                 message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210> \n<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
-                message.channel.send(new Attachment("./assets/gifs/explosion.gif", "explosion.gif"))
+                message.channel.send(new Attachment("./assets/gifs/gommplosion.gif", "gommplosion.gif"))
             }
         },
         {
