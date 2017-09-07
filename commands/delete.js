@@ -11,7 +11,8 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     }, function(error, response, body) {
         if(!body) return message.channel.send("**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕");
         if(body == "Not found") return message.channel.send("**TopDesign** | Das Design mit der Nummer **#"+postid +"** konnte nicht gefunden werden.");
-        if(body.action == "delete") return message.channel.send("**TopDesign** | Der Post von <@" + body.posted_by + "> mit der Nummer **#" + postid + "** wurde erfolgreich gelöscht. Er hatte **"+body.likes+"** "+topdesign.voteOrVotes(body.likes)+".");
+        console.log(body);
+        if(body.action == "delete") return message.channel.send("**TopDesign** | Der Post mit der Nummer **#" + postid + "** wurde erfolgreich gelöscht.");
     });
   };
   
