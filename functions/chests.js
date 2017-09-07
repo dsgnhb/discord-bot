@@ -66,7 +66,7 @@ exports.getRandomChest = async () => {
         {
             name: "einen Lukas",
             freq: 1,
-            run : function(client, message) { message.channel.send('*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥', new Attachment("./assets/imgs/lukas.jpg", "lukas.jpg")) }
+            run : function(client, message) { message.channel.send('*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥 /n http://lukaas.de/youtube', new Attachment("./assets/imgs/lukas.jpg", "lukas.jpg")) }
         },
         {
             name: "NICHTS",
