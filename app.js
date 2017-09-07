@@ -30,6 +30,7 @@ class dsgnhb extends Discord.Client {
     this.settings = new PersistentCollection({name: "settings"});
 
     this.cooldown = new Set();
+    this.mutes = new Set();
 
   }
 }
@@ -63,6 +64,7 @@ const init = async () => {
       });
     } catch (e) {
       console.log(`[warn] [Error] Unable to load command ${f}: ${e}`);
+      console.log(e)
     }
   });
 
