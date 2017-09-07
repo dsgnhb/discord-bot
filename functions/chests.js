@@ -90,7 +90,7 @@ exports.getRandomChest = async () => {
             name: "den Gommemode",
             freq: 10,
             run : function(client, message) {
-                const role = message.guild.roles.find(r => r.name.toLowerCase() === "gommemode");
+                const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
                 message.member.addRole(role, "Aus Kiste.")
                 message.channel.send('<:gomme:313418733861470210>')
             }
