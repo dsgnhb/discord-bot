@@ -1,7 +1,7 @@
 {
   "name": "designhub-discord-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Discord Bot running designhub's Discord Server written in discord.js based on GuideBot from AnIdiotsGuide",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.2.1",
-    "djs-collection-persistent": "^0.1.4",
+    "enmap": "^0.1.2",
     "moment": "^2.18.1",
     "moment-duration-format": "^1.3.0",
     "node-opus": "^0.2.6",

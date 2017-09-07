@@ -8,7 +8,7 @@ const Discord = require("discord.js");
 // We also load the rest of the things we need in this file:
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
-const PersistentCollection = require("djs-collection-persistent");
+const Enmap = require("enmap");
 
 class dsgnhb extends Discord.Client {
   constructor(options) {
@@ -21,13 +21,13 @@ class dsgnhb extends Discord.Client {
 
     // Aliases and commands are put in collections where they can be read from,
     // catalogued, listed, etc.
-    this.commands = new Discord.Collection();
-    this.aliases = new Discord.Collection();
+    this.commands = new Enmap();
+    this.aliases = new Enmap();
 
     // Now we integrate the use of Evie's awesome PersistentCollection module, which
     // essentially saves a collection to disk. This is great for per-server configs,
     // and makes things extremely easy for this purpose.
-    this.settings = new PersistentCollection({name: "settings"});
+    this.settings = new Enmap({name: "settings", persistent: true});
 
     this.cooldown = new Set();
     this.mutes = new Set();
