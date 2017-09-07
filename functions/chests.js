@@ -85,6 +85,15 @@ exports.getRandomChest = async () => {
             name: "ein Einhorn",
             freq: 3,
             run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn! 🦄') }
+        },
+        {
+            name: "den Gommemode",
+            freq: 10,
+            run : function(client, message) {
+                const role = message.guild.roles.find(r => r.name.toLowerCase() === "gommemode");
+                message.member.addRole(role, "Aus Kiste.")
+                message.channel.send('<:gomme:313418733861470210>')
+            }
         }
 
     ];
