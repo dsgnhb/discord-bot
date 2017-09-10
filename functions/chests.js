@@ -94,8 +94,36 @@ exports.getRandomChest = async () => {
                 message.member.addRole(role, "Aus Kiste.")
                 message.channel.send('<:gomme:313418733861470210>')
             }
-        }
+        },
+        {
+            name: "ein cooles Ding",
+            freq: 4,
+            run: function(client, message) {
+                message.channel.send({ embed: {
+                    color: 3447003,
+                    author: {
+                        name: "SGD3D",
+                        icon_url: "https://puu.sh/xvAug/ca9e572b18.png"
+                    },
+                    title: "Einen 3D-gedruckten dsgnhb-Schlusselanhänger!",
+                    url: "https://sgd3d.de/product/designhub%20-%20Schl%C3%BCsselanh%C3%A4nger",
+                    description: "Für nur 1€ pro Stück. So kannst du zeigen, dass du zur designhub-Community gehörst!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: "https://puu.sh/xvAug/ca9e572b18.png",
+                        text: "Ein cooler 3D-Druck-Onlineshop"
+                    }
+                }});
+                message.channel.send("Wie du noch zusätzlich einen 5%-Rabattcode erhälst, bekommst du per PN ;)");
+                message.channel.send(new Attachment("./assets/gifs/noice.gif", "noice.gif"));
 
+                message.member.send("Du musst dich nur bei https://sgd3d.de registrieren und dann diese Umfrage ausfüllen:");
+                message.member.send("https://goo.gl/BjSUKd");
+                message.member.send("Diese dauert nur ein paar Minuten und wenn du zum Schluss deine Email-Adresse angibst, erhälst du den 5%-Rabattcode :D");
+                message.member.send("Damit hilfst du, dass SGD3D sich weiterentwickeln und auf deine Wünsche eingehen kann :P");
+                message.member.send("~ CreepPlays (SGD3D Entwickler)");
+            }
+        }
     ];
     let sumFreq = 0;
     for(i=0; i<items.length; i++) {
