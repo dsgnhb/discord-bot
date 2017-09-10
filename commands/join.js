@@ -3,7 +3,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     if(args.length === 0) return message.channel.send("Nutze `!join <role>` um eine Skill-Gruppe zu joinen.");
     const skillGroups = ["css", "html", "affinityphoto", "ruby", "sql", "c++", "c#", "swift", "phyton", "java", "php", "javascript", "blender", "cinema4d", "gimp", "photoshop"];
     let addedRanks = [], removedRanks = [];
-    for(let rank in args) {
+    for(let rank of args) {
         console.log(rank);
         console.log("Rang-Schleife - Anfang");
         if (skillGroups.indexOf(rank.toLowerCase()) === -1) continue;
