@@ -9,7 +9,6 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
         if(message.member.roles.has(role.id)) {
             try {
                 await message.member.removeRole(role, "Requested via !join.");
-                client.log(`Log`,`Removed ${message.author.username} (${message.author.id}) from ${addedRanks.join(", ")}`);
                 removedRanks.push(role.name);
             } catch(ex) {
                 // No perms
@@ -17,7 +16,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
         } else {
             try {
                 await message.member.addRole(role, "Requested via !join.");
-                client.log(`Log`,`Added ${message.author.username} (${message.author.id}) to ${addedRanks.join(", ")}`);
+
                 addedRanks.push(role.name);
             } catch(ex) {
                 // No perms
@@ -27,9 +26,12 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 
     if(addedRanks.length > 0) {
         message.channel.send("Du wurdest zu den Gruppe(n) **" + addedRanks.join(", ") + "** hinzugefügt.");
+        client.log(`Log`,`Added ${message.author.username} (${message.author.id}) to ${addedRanks.join(", ")}`);
     }
     if(removedRanks.length > 0) {
         message.channel.send("Du wurdest aus den Gruppe(n) **" + removedRanks.join(", ") + "** entfernt.");
+        client.log(`Log`,`Removed ${message.author.username} (${message.author.id}) from ${removedRanks.join(", ")}`);
+
     }
   };
   
