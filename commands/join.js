@@ -4,6 +4,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     const skillGroups = ["css", "html", "affinityphoto", "ruby", "sql", "c++", "c#", "swift", "phyton", "java", "php", "javascript", "blender", "cinema4d", "gimp", "photoshop"];
     let addedRanks = [], removedRanks = [];
     for(let rank in args) {
+        console.log(rank);
         console.log("Rang-Schleife - Anfang");
         if (skillGroups.indexOf(rank.toLowerCase()) === -1) continue;
         console.log("Rang-Schleife - nach Skillgroupscheck")
