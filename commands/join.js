@@ -1,6 +1,6 @@
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
-    if(args.length === 0) return message.channel.send("Nutze `!join <role>` um eine Skill-Gruppe zu joinen.");
     const skillGroups = ["css", "html", "affinityphoto", "ruby", "sql", "c++", "c#", "swift", "phyton", "java", "php", "javascript", "blender", "cinema4d", "gimp", "photoshop"];
+    if(args.length === 0) return message.channel.send(`Nutze \`!join <role>\` um einer der folgenden Skill-Gruppe beizutreten: \`${skillGroups.join("`, `")}\`.`);
     let addedRanks = [], removedRanks = [];
     for(let rank of args) {
         if (skillGroups.indexOf(rank.toLowerCase()) === -1) continue;
@@ -9,14 +9,14 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
         if(message.member.roles.has(role.id)) {
             try {
                 await message.member.removeRole(role, "Requested via !join.");
-                removedRanks.push(role);
+                removedRanks.push(role.name);
             } catch(ex) {
                 // No perms
             }
         } else {
             try {
                 await message.member.addRole(role, "Requested via !join.");
-                addedRanks.push(role);
+                addedRanks.push(role.name);
             } catch(ex) {
                 // No perms
             }
