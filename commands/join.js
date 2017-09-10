@@ -6,19 +6,19 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     ];
 
     if (!rank) {
-        return message.channel.send(`Nutze \`!join <role>\` um einer Skill-Gruppe zu joinen.`);
+        return message.channel.send(`Nutze \`!join <role>\` um einer der folgenden Skill-Gruppe beizutreten: \`${skillGroups.join("`, `")}\`.`);
     }
-    
+
     if (skillGroups.indexOf(rank.toLowerCase()) === -1) {
         return;
     }
-    
+
     role = message.guild.roles.find(r => r.name.toLowerCase() === rank.toLowerCase());
-    
+
     if (!role) {
         return;
     }
-    
+
     if (message.member.roles.has(role.id)) {
         message.member.removeRole(role, `Requested via !join.`).then(() => {
             message.channel.send(`Du wurdest aus der **Gruppe ${role.name}** entfernt.`)
