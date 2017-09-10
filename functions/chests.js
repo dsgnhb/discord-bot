@@ -114,14 +114,15 @@ exports.getRandomChest = async () => {
                         text: "Ein cooler 3D-Druck-Onlineshop"
                     }
                 }});
-                message.channel.send("Wie du noch zusätzlich einen 5%-Rabattcode erhälst, bekommst du per PN ;)");
+                message.channel.send("Wie du noch zusätzlich einen 5%-Rabattcode erhälst, bekommst du per PN 😉");
                 message.channel.send(new Attachment("./assets/gifs/noice.gif", "noice.gif"));
 
-                message.member.send("Du musst dich nur bei https://sgd3d.de registrieren und dann diese Umfrage ausfüllen:");
-                message.member.send("https://goo.gl/BjSUKd");
-                message.member.send("Diese dauert nur ein paar Minuten und wenn du zum Schluss deine Email-Adresse angibst, erhälst du den 5%-Rabattcode :D");
-                message.member.send("Damit hilfst du, dass SGD3D sich weiterentwickeln und auf deine Wünsche eingehen kann :P");
-                message.member.send("~ CreepPlays (SGD3D Entwickler)");
+                let msg = "Du musst dich nur bei https://sgd3d.de **registrieren** und dann diese **Umfrage ausfüllen**: https://goo.gl/BjSUKd\n" +
+                              "Diese dauert nur **ein paar Minuten** und wenn du zum Schluss deine Email-Adresse angibst, erhälst du den **5%-Rabattcode** 😄\n" +
+                              "Damit hilfst du, dass sich SGD3D **weiterentwickeln** und auf deine Wünsche eingehen kann 😛\n" +
+                              "~ **CreepPlays** (SGD3D Entwickler)";
+
+                message.member.send(msg);
             }
         }
     ];
