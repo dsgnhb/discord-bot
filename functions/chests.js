@@ -133,7 +133,7 @@ exports.getRandomChest = async () => {
     let randomFreq = randomNum(0, sumFreq);
     let freq = 0;
     for (let i = 0; i < items.length; i++) {
-        freq =+ items[i].freq;
+        freq += items[i].freq;
         if(randomFreq <= freq) {
             return items[i]
         }
