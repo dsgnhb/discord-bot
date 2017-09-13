@@ -126,16 +126,17 @@ exports.getRandomChest = async () => {
             }
         }
     ];
-    let sumFreq = 0;
-    for(i=0; i<items.length; i++) {
-        sumFreq += items[i].freq;
+    let lastFreq = 0, freqs = [];
+    for(let item of items) {
+        freqs.push({ offset: lastFreq, item: item });
+        lastFreq += item.freq;
     }
-    let randomFreq = randomNum(0, sumFreq);
-    let freq = 0;
-    for (let i = 0; i < items.length; i++) {
-        freq += items[i].freq;
-        if(randomFreq <= freq) {
-            return items[i]
+    let random = randomNum(0, lastFreq - 1);
+    for(let freq of freqs) {
+        if(random >= freq.offset && random <= freq.offset + freq.item.freq) {
+            return freq.item;
         }
     }
+
+    return items[0];
 };
