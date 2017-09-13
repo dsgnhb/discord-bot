@@ -48,10 +48,7 @@ module.exports = (client, message) => {
     // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
     // command = say
     // args = ["Is", "this", "the", "real", "life?"]
-    const args = message.content.slice(settings.prefix.length).trim().match(/\w+|"[^"]+"/g);
-    for (let i = 0; i < args.length; i++) {
-      args[i] = args[i].replace(/['"]+/g, '')
-    }
+    const args = message.content.slice(settings.prefix.length).trim().match(/[^\s"']+|"([^"]*)"|'([^']*)'/g);
     const command = args.shift().toLowerCase();
   
   

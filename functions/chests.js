@@ -66,7 +66,7 @@ exports.getRandomChest = async () => {
         {
             name: "einen Lukas",
             freq: 1,
-            run : function(client, message) { message.channel.send('*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥', new Attachment("./assets/imgs/lukas.jpg", "lukas.jpg")) }
+            run : function(client, message) { message.channel.send('*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥 \nhttp://lukaas.de/youtube', new Attachment("./assets/imgs/lukas.jpg", "lukas.jpg")) }
         },
         {
             name: "NICHTS",
@@ -85,19 +85,58 @@ exports.getRandomChest = async () => {
             name: "ein Einhorn",
             freq: 3,
             run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn! 🦄') }
-        }
+        },
+        {
+            name: "den Gommemode",
+            freq: 10,
+            run : function(client, message) {
+                const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
+                message.member.addRole(role, "Aus Kiste.")
+                message.channel.send('<:gomme:313418733861470210>')
+            }
+        },
+        {
+            name: "ein cooles Ding",
+            freq: 4,
+            run: function(client, message) {
+                message.channel.send({ embed: {
+                    color: 3447003,
+                    author: {
+                        name: "SGD3D",
+                        icon_url: "https://puu.sh/xvAug/ca9e572b18.png"
+                    },
+                    title: "Einen 3D-gedruckten dsgnhb-Schlusselanhänger!",
+                    url: "https://sgd3d.de/product/designhub%20-%20Schl%C3%BCsselanh%C3%A4nger",
+                    description: "Für nur 1€ pro Stück. So kannst du zeigen, dass du zur designhub-Community gehörst!",
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: "https://puu.sh/xvAug/ca9e572b18.png",
+                        text: "Ein cooler 3D-Druck-Onlineshop"
+                    }
+                }});
+                message.channel.send("Wie du noch zusätzlich einen 5%-Rabattcode erhälst, bekommst du per PN 😉");
+                message.channel.send(new Attachment("./assets/gifs/noice.gif", "noice.gif"));
 
+                let msg = "Du musst dich nur bei https://sgd3d.de **registrieren** und dann diese **Umfrage ausfüllen**: https://goo.gl/BjSUKd\n" +
+                              "Diese dauert nur **ein paar Minuten** und wenn du zum Schluss deine Email-Adresse angibst, erhälst du den **5%-Rabattcode** 😄\n" +
+                              "Damit hilfst du, dass sich SGD3D **weiterentwickeln** und auf deine Wünsche eingehen kann 😛\n" +
+                              "~ **CreepPlays** (SGD3D Entwickler)";
+
+                message.member.send(msg);
+            }
+        }
     ];
-    let sumFreq = 0;
-    for(i=0; i<items.length; i++) {
-        sumFreq =+ items[i].freq;
+    let lastFreq = 0, freqs = [];
+    for(let item of items) {
+        freqs.push({ offset: lastFreq, item: item });
+        lastFreq += item.freq;
     }
-    let randomFreq = randomNum(0, sumFreq);
-    let freq = 0;
-    for (let i = 0; i < items.length; i++) {
-        freq =+ items[i].freq;
-        if(randomFreq <= freq) {
-            return items[i]
+    let random = randomNum(0, lastFreq - 1);
+    for(let freq of freqs) {
+        if(random >= freq.offset && random <= freq.offset + freq.item.freq) {
+            return freq.item;
         }
     }
+
+    return items[0];
 };

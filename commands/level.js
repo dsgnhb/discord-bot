@@ -5,12 +5,10 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings;
   let member = message.mentions.users.first() || message.author;
   let url = client.config.apiEndpoint+"/levels/"+member.id;
-  console.log(member.id);
   request.get({
     url: url,
     json: true
   }, function(error, response, body) {
-    console.log(body)
     if(!body) return message.channel.send("Dich gibt's hier noch ned.")
     const embed = new RichEmbed()
       .setAuthor("Levels | "+ member.username, member.avatarURL)
@@ -29,7 +27,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ["rank"],
+    aliases: ["rank", "levels"],
     permLevel: 0
   };
   
