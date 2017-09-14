@@ -65,17 +65,17 @@ exports.getRandomChest = async () => {
     const items = [
         {
             name: "einen Lukas",
-            freq: 1,
+            freq: 2,
             run : function(client, message) { message.channel.send('*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥 \nhttp://lukaas.de/youtube', new Attachment("./assets/imgs/lukas.jpg", "lukas.jpg")) }
         },
         {
             name: "NICHTS",
-            freq: 2,
+            freq: 1,
             run : function(client, message) { message.channel.send(new Attachment("./assets/gifs/loading.gif", "loading.gif")) }
         },
         {
             name: "eine Gomme-Explosion",
-            freq: 3,
+            freq: 4,
             run : function (client, message) {
                 message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210> \n<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
                 message.channel.send(new Attachment("./assets/gifs/gommplosion.gif", "gommplosion.gif"))
@@ -83,12 +83,12 @@ exports.getRandomChest = async () => {
         },
         {
             name: "ein Einhorn",
-            freq: 3,
+            freq: 4,
             run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn! 🦄') }
         },
         {
             name: "den Gommemode",
-            freq: 10,
+            freq: 1,
             run : function(client, message) {
                 const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
                 message.member.addRole(role, "Aus Kiste.")
@@ -97,7 +97,7 @@ exports.getRandomChest = async () => {
         },
         {
             name: "ein cooles Ding",
-            freq: 4,
+            freq: 2,
             run: function(client, message) {
                 message.channel.send({ embed: {
                     color: 3447003,
