@@ -100,8 +100,8 @@ exports.getRandomChest = async () => {
             name: "einen XP-Boost",
             freq: 2,
             run : function(client, message) {
-                message.channel.send('So much XP! Für deine Treue erhälst du 250XP auf lukas Nacken!');
-                XPs.addXP(client, message.author, 250);
+                message.channel.send('So much XP! Für deine Treue erhälst du 101 auf lukas Nacken!');
+                XPs.addXP(client, message.author, 101);
             }
         },
         {
