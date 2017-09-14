@@ -1,5 +1,6 @@
 const request = require("request");
 const { Attachment } = require('discord.js');
+const XPs = require(__dirname + "/../functions/xp.js");
 
 const randomNum = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -93,6 +94,14 @@ exports.getRandomChest = async () => {
                 const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
                 message.member.addRole(role, "Aus Kiste.")
                 message.channel.send('Endlich kannst du `/gommemode` nutzen! <:gomme:313418733861470210>')
+            }
+        },
+        {
+            name: "einen XP-Boost",
+            freq: 2,
+            run : function(client, message) {
+                message.channel.send('So much XP! Für deine Treue erhälst du 250XP auf lukas Nacken!');
+                XPs.addXP(client, message.author, 250);
             }
         },
         {
