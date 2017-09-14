@@ -88,16 +88,16 @@ exports.getRandomChest = async () => {
         },
         {
             name: "den Gommemode",
-            freq: 10,
+            freq: 3,
             run : function(client, message) {
                 const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
                 message.member.addRole(role, "Aus Kiste.")
-                message.channel.send('<:gomme:313418733861470210>')
+                message.channel.send('Endlich kannst du `/gommemode` nutzen! <:gomme:313418733861470210>')
             }
         },
         {
             name: "ein cooles Ding",
-            freq: 4,
+            freq: 1,
             run: function(client, message) {
                 message.channel.send({ embed: {
                     color: 3447003,

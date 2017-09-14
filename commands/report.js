@@ -3,7 +3,9 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     const errorcode = Math.floor((Math.random() * 100000) + 1);
     message.channel.send("Vielen Dank! Dein Report wurde entgegengenommen. \nDie Gomme-Mods werden den Vorfall überprüfen! <:gomme:313418733861470210>")
     await client.wait(10000)
-    message.channel.send("Puuh! Die Gomme-Mods sind am schwitzen und scheinen hier etwas überfordert. \nUnbekannter Error: x" +  + errorcode)
+    let messages = ["Puuh! Die Gomme-Mods sind am schwitzen und scheinen hier etwas überfordert."]
+    var msg = messages[Math.floor(Math.random()*messages.length)];
+    message.channel.send(msg+" \nUnbekannter Error: x" +  + errorcode)
 }
 exports.conf = {
     enabled: true,
