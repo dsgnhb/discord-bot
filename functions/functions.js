@@ -5,7 +5,7 @@ module.exports = (client) => {
       // Bot Owner gets 10
       if (client.config.ownerID.includes(message.author.id)) return 10;
       // Guild Owner gets 10
-      if (message.author.id === message.guild.owner.id) return 9;
+      if (message.author.id === message.guild.ownerID) return 9;
 
       const ranks = require("../configs/permlevel.json")
       for (let rank in ranks) {
