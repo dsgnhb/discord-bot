@@ -11,6 +11,7 @@ Rename `config.example.json` to `config.json` and fill out the requested fields.
       "apiEndpoint": "URL TO DESIGNHUB API",
       "logChannel": "ID OF CHANNEL FOR LOGGING",
       "mainGuildID" : "ID OF BOT OWNER'S GUILD (USED FOR LOGGING)",
+      "levelSystem" : false,
       "tokens" : {
         "discord": "DISCORD TOKEN",
         "api":"DESIGNHUB API TOKEN",
@@ -20,15 +21,17 @@ Rename `config.example.json` to `config.json` and fill out the requested fields.
         "prefix": "!",
         "embedFooter": "designhub.party",
         "embedColor": "0x2eabbf",
-        "welcomeEnabled": "false",
-        "welcomeChannel": "welcome",
-        "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D"
+        "embedIcon": "https://dsgnhb.de/dl/avatar%20designhub2.jpg"
       }
     }
 ```
 ## Installing packages
 ```
   npm install
+```
+## Start Discord-Bot
+```
+  node app.js
 ```
 
 ***
