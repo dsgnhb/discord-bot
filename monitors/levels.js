@@ -1,6 +1,6 @@
 const XPs = require(__dirname + "/../functions/xp.js");
 exports.run = (client, message, level) => {
-
+    if(client.config.levelSystem === false) return;
     if (!client.cooldown.has(message.author.id)) {
         const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings;
         if (message.content.startsWith(settings.prefix)) return;

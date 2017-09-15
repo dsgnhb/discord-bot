@@ -3,6 +3,7 @@
     "apiEndpoint": "URL TO DESIGNHUB API",
     "logChannel": "ID OF CHANNEL FOR LOGGING",
     "mainGuildID" : "ID OF BOT OWNER'S GUILD (USED FOR LOGGING)",
+    "levelSystem" : false,
     "tokens" : {
       "discord": "DISCORD TOKEN",
       "api":"DESIGNHUB API TOKEN",
@@ -12,9 +13,6 @@
       "prefix": "!",
       "embedFooter": "designhub.party",
       "embedColor": "0x2eabbf",
-      "embedIcon": "https://dsgnhb.de/dl/avatar%20designhub2.jpg",
-      "welcomeEnabled": "false",
-      "welcomeChannel": "welcome",
-      "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D"
+      "embedIcon": "https://dsgnhb.de/dl/avatar%20designhub2.jpg"
     }
   }

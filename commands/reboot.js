@@ -1,5 +1,6 @@
 exports.run = async (client, message, args, level) => {// eslint-disable-line no-unused-vars
     await message.channel.send(`Meddl! Ich starte jz mal neu!`);
+    client.log("log","Rebooting now.", "Reboot")
     process.exit(1);
 };
 
