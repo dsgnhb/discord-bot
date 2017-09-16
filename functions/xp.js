@@ -17,6 +17,9 @@ const xpToLevel = (xp) =>{
     }
     return level;
 };
+exports.xpForLevel = (n) =>{
+    return 5*(n^2)+50*n+100
+};
 exports.xpToLevel = (xp) =>{
     let remaining_xp = xp
     let level = 0;

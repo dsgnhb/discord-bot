@@ -9,4 +9,20 @@ module.exports = async client => {
   
     // We check for any guilds added while the bot was offline, if any were, they get a default configuration.
     client.guilds.filter(g => !client.settings.has(g.id)).forEach(g => client.settings.set(g.id, client.config.defaultSettings));
+
+/*
+    const msg = await client.guilds.get(client.config.mainGuildID).channels.get("352470165440430082").fetchMessage("358658232748867606");
+    // Create a reaction collector
+    const collector = msg.createReactionCollector((reaction,user) => reaction.emoji.name === '👍');
+    console.log("CREATED COLLECTOR")
+    collector.on('collect', r => {
+      //r.count
+      //console.log(r.users)
+
+    });
+
+    collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+
+
+*/
   };
