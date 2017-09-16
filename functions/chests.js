@@ -97,7 +97,7 @@ exports.getRandomChest = async () => {
             }
         },
         {
-            name: "ein cooles Ding",
+            name: "einen Schlüsselanhänger",
             freq: 1,
             run: function(client, message) {
                 message.channel.send({ embed: {
@@ -115,12 +115,11 @@ exports.getRandomChest = async () => {
                         text: "Ein cooler 3D-Druck-Onlineshop"
                     }
                 }});
-                message.channel.send("Wie du noch zusätzlich einen 5%-Rabattcode erhälst, bekommst du per PN 😉");
-                message.channel.send(new Attachment("./assets/gifs/noice.gif", "noice.gif"));
+                message.channel.send("Wie du noch zusätzlich einen 5%-Rabattcode erhälst, erfährst du per PN 😉", new Attachment("./assets/gifs/noice.gif", "noice.gif"));
 
-                let msg = "Du musst dich nur bei https://sgd3d.de **registrieren** und dann diese **Umfrage ausfüllen**: https://goo.gl/BjSUKd\n" +
-                              "Diese dauert nur **ein paar Minuten** und wenn du zum Schluss deine Email-Adresse angibst, erhälst du den **5%-Rabattcode** 😄\n" +
-                              "Damit hilfst du, dass sich SGD3D **weiterentwickeln** und auf deine Wünsche eingehen kann 😛\n" +
+                let msg = "**Registriere dich** auf https://sgd3d.de und **nimm an unserer Umfrage teil**: https://goo.gl/BjSUKd\n" +
+                              "Diese dauert nur **ein paar Minuten** und wenn du zum Schluss deine Email-Adresse angibst, erhälst du direkt den **5%-Rabattcode** 😄\n" +
+                              "Damit hilfst du bei der **Weiterentwicklung** von SGD3D 😛\n\n" +
                               "~ **CreepPlays** (SGD3D Entwickler)";
 
                 message.member.send(msg);
