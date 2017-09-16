@@ -54,15 +54,7 @@ exports.removeChests = async (client, member, number) => {
     });
 };
 exports.getRandomChest = async () => {
-    /*
-        {
-            name: "ein bisschen schöne Musik",
-            freq: 2,
-            run : function(client, message) {
-                message.channel.send(new Attachment("./assets/vids/apored-wapbap.mp4", "musik.mp4"))
-            }
-        },
-     */
+
     const items = [
         {
             name: "einen Lukas",
@@ -71,7 +63,7 @@ exports.getRandomChest = async () => {
         },
         {
             name: "NICHTS",
-            freq: 2,
+            freq: 1,
             run : function(client, message) { message.channel.send(new Attachment("./assets/gifs/loading.gif", "loading.gif")) }
         },
         {
@@ -84,12 +76,12 @@ exports.getRandomChest = async () => {
         },
         {
             name: "ein Einhorn",
-            freq: 3,
+            freq: 2,
             run : function(client, message) { message.channel.send('Meddl, ich bin ein Einhorn! 🦄') }
         },
         {
             name: "den Gommemode",
-            freq: 3,
+            freq: 2,
             run : function(client, message) {
                 const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
                 message.member.addRole(role, "Aus Kiste.")
@@ -98,7 +90,7 @@ exports.getRandomChest = async () => {
         },
         {
             name: "einen XP-Boost",
-            freq: 2,
+            freq: 1,
             run : function(client, message) {
                 message.channel.send('So much XP! Für deine Treue erhälst du 101 auf lukas Nacken!');
                 XPs.addXP(client, message.author, 101);
@@ -132,6 +124,28 @@ exports.getRandomChest = async () => {
                               "~ **CreepPlays** (SGD3D Entwickler)";
 
                 message.member.send(msg);
+            }
+        },
+        {
+            name: "einen Design-Gutschein",
+            freq: 1,
+            run : function(client, message) {
+                message.channel.send("Mehr gibt's per DM! 😉");
+                message.guild.channels.get("318849797664538637").send(message.author.username + " ("+message.author.id+") hat einen Design-Gutschein gewonnen!")
+                let shops = [
+                    {
+                        "name" : "RadeArtz",
+                        "discord" : "RadeArtz | мσтιση ∂єѕιgη#9091",
+                        "url" : "shop.radeartz.de",
+                        "rabatt" : "5%"
+                    }
+                ]
+                let list = ""
+                for(let i = 0; i < shops.length; i++) {
+                    let item = shops[i];
+                    list += "- **"+item.name+"** *("+ item.url + ")* - "+ item.rabatt;
+                }
+                message.author.send("**Yey!** Deinen Gutschein kannst du hier einlösen: 🎁 \n\n" + list + " \n\nUm ihn einzulösen, kontaktiere den Designer einfach per DM! 🖌")
             }
         }
     ];
