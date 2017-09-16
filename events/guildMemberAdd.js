@@ -1,3 +1,3 @@
 module.exports = (client, member) => {
-  client.log("Log", `${member} joined the Server!`, "+")
+  client.log("Log", `${member.username} (${member.id}) joined the Server!`, "+")
 };

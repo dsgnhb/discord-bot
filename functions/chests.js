@@ -70,7 +70,7 @@ exports.getRandomChest = async () => {
             name: "eine Gomme-Explosion",
             freq: 3,
             run : function (client, message) {
-                message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210> \n<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
+                message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
                 message.channel.send(new Attachment("./assets/gifs/gommplosion.gif", "gommplosion.gif"))
             }
         },
@@ -92,7 +92,7 @@ exports.getRandomChest = async () => {
             name: "einen XP-Boost",
             freq: 1,
             run : function(client, message) {
-                message.channel.send('So much XP! Für deine Treue erhälst du 101 auf lukas Nacken!');
+                message.channel.send('**So much XP!** Für deine Treue erhälst du **101 XP** auf lukas Nacken!');
                 XPs.addXP(client, message.author, 101);
             }
         },

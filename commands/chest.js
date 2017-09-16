@@ -12,6 +12,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     await client.wait(1500);
     await message.channel.send(`**WHOOH!!** Du hast *${item.name}* gewonnen! 🎉 🎉 \n`);
     item.run(client, message);
+    client.log("Log", `${message.author.username} (${message.author.id}) won "${item.name}"`)
 };
 
 exports.conf = {
