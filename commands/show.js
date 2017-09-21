@@ -1,6 +1,8 @@
 const request = require("request");
 const topdesign = require("../functions/topdesign.js");
-const { Attachment } = require('discord.js');
+const {
+    Attachment
+} = require('discord.js');
 exports.run = async(client, message, args, level) => { // eslint-disable-line no-unused-lets
     let postid = args[0];
     if (postid.startsWith("#")) postid = postid.substring(1, 20);
