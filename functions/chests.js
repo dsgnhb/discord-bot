@@ -114,6 +114,14 @@ exports.getRandomChest = async() => {
             }
         },
         {
+            name: "eine Kiste",
+            freq: 1,
+            run: function (client, message) {
+                message.channel.send("**Oha, wie cool!** Du erhälst einfach so **eine Kiste**...");
+                addChests(client, message.member, 1);
+            }
+        },
+        {
             name: "einen Schlüsselanhänger",
             freq: 1,
             run: function (client, message) {
