@@ -4,7 +4,8 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     let url = client.config.apiEndpoint+"/topdesign/posts/currentmonth";
     request.get({
        url: url,
-       json: true
+       json: true,
+       headers: { 'Token': client.config.tokens.api},
     }, function(error, response, body) {
         if(!body) return message.channel.send("**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕");
         let posts = "";

@@ -42,7 +42,8 @@ exports.addXP = async (client, member, number) => {
         request.post({
             url: url,
             body: postData,
-            json: true
+            json: true,
+            headers: { 'Token': client.config.tokens.api},
         }, function (error, response, body) {
             if (!body) return client.log("error", "db error while adding xp")
             if (body.error) {
@@ -78,7 +79,8 @@ exports.removeXP = async (client, member, number) => {
         request.delete({
             url: url,
             body: postData,
-            json: true
+            json: true,
+            headers: { 'Token': client.config.tokens.api},
         }, function(error, response, body) {
             if(!body) return client.log("error", "db error while removing xp");
             if(body.error) {

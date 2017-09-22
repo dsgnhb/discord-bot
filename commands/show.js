@@ -11,7 +11,8 @@ exports.run = async(client, message, args, level) => { // eslint-disable-line no
     let url = client.config.apiEndpoint + "/topdesign/posts/" + postid;
     request.get({
         url: url,
-        json: true
+        json: true,
+        headers: { 'Token': client.config.tokens.api},
     }, function (error, response, body) {
         if (!body) return message.channel.send("**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕");
         if (body.error) return message.channel.send("**TopDesign** | Das Design mit der Nummer **#" + postid + "** konnte nicht gefunden werden.");

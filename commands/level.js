@@ -7,7 +7,8 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   let url = client.config.apiEndpoint+"/levels/"+member.id;
   request.get({
     url: url,
-    json: true
+    json: true,
+    headers: { 'Token': client.config.tokens.api},
   }, function(error, response, body) {
     if(!body.xp) return message.channel.send("Dich gibt's hier noch ned.");
 
