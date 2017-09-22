@@ -16,7 +16,8 @@ exports.run = (client, message, level) => {
         request.post({
            url: url,
            body: postData,
-           json: true
+           json: true,
+           headers: { 'Token': client.config.tokens.api},
         }, function(error, response, body) {
             message.channel.stopTyping(true);
             if(!body || body.error) return message.channel.send("**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕");
