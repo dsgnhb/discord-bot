@@ -84,7 +84,7 @@ exports.getRandomChest = async() => {
             }
         },
         {
-            name: "eine Gomme-Explosion",
+            name: "eine Gommplosion",
             freq: 3,
             run: function (client, message) {
                 message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
