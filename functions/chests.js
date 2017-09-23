@@ -24,7 +24,8 @@ exports.addChests = async(client, member, number) => {
         request.post({
             url: url,
             body: postData,
-            json: true
+            json: true,
+            headers: { 'Token': client.config.tokens.api},
         }, function (error, response, body) {
             if (!body) return client.log("error", "db error while adding Chests");
             if (body.error) {
@@ -52,7 +53,8 @@ exports.removeChests = async(client, member, number) => {
         request.delete({
             url: url,
             body: postData,
-            json: true
+            json: true,
+            headers: { 'Token': client.config.tokens.api},
         }, function (error, response, body) {
             if (!body) return client.log("error", "db error while removing chests");
             if (body.error) {
