@@ -85,7 +85,7 @@ exports.getRandomChest = async() => {
         },
         {
             name: "eine Gommplosion",
-            freq: 3,
+            freq: 1,
             run: function (client, message) {
                 message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
                 message.channel.send(new Attachment("./assets/gifs/gommplosion.gif", "gommplosion.gif"))
@@ -93,14 +93,14 @@ exports.getRandomChest = async() => {
         },
         {
             name: "ein Einhorn",
-            freq: 2,
+            freq: 1,
             run: function (client, message) {
                 message.channel.send('Meddl, ich bin ein Einhorn! 🦄')
             }
         },
         {
             name: "den Gommemode",
-            freq: 2,
+            freq: 1,
             run: function (client, message) {
                 const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
                 message.member.addRole(role, "Aus Kiste.")
