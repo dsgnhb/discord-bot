@@ -4,10 +4,9 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     const hasChests = await Chests.removeChests(client, message.author, 1);
     await client.wait(2000);
     if(!hasChests) return message.channel.send("Hm.. Hier steht keine Kiste mit deinem Namen.. 😕 \nKeine Angst, Kisten mit tollen Überraschungen erhälst du automatisch durch aktives Schreiben im Chat!");
-    //await message.channel.send("Wo steht den deine Kiste?");
     await message.channel.send("Puuuh, ist das hier staubig.. 🌙💨");
     await client.wait(3000);
-    const item = await Chests.getRandomChest();
+    const item = Chests.getRandomChest();
     await message.channel.send("*knartz* 👥");
     await client.wait(1500);
     await message.channel.send(`**WHOOH!!** Du hast *${item.name}* gewonnen! 🎉 🎉 \n`);
