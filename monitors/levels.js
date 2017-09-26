@@ -1,10 +1,14 @@
 const XPs = require(__dirname + "/../functions/xp.js");
 exports.run = (client, message, level) => {
-    if(client.config.levelSystem === false) return;
+    
     if (!client.cooldown.has(message.author.id)) {
         const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings;
         if (message.content.startsWith(settings.prefix)) return;
-        XPs.addXP(client, message.author);
+        if(client.config.levelSystem === false) {
+            client.log("log", `Levels System disabled! Could not give XP to ${message.author.username} (${message.author.id})!`, "Levels")
+        } else {
+             XPs.addXP(client, message.author);
+        }
     } else {
         return;
     }
