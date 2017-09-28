@@ -2,8 +2,7 @@ const request = require("request");
 const {
     Attachment
 } = require('discord.js');
-const XPs = require(__dirname + "/../functions/xp.js");
-const Chests = require(__dirname + "/../functions/chests.js");
+
 
 const randomNum = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -71,112 +70,6 @@ exports.removeChests = async(client, member, number) => {
 
 /*
 exports.getRandomChest = async() => {
-    const items = [{
-            name: "einen Lukas",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send('*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥 \nhttp://lukaas.de/youtube', new Attachment("./assets/imgs/lukas.jpg", "lukas.jpg"))
-            }
-        },
-        {
-            name: "NICHTS",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send(new Attachment("./assets/gifs/loading.gif", "loading.gif"))
-            }
-        },
-        {
-            name: "eine Gommplosion",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send("<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>")
-                message.channel.send(new Attachment("./assets/gifs/gommplosion.gif", "gommplosion.gif"))
-            }
-        },
-        {
-            name: "ein Einhorn",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send('Meddl, ich bin ein Einhorn! 🦄')
-            }
-        },
-        {
-            name: "den Gommemode",
-            freq: 1,
-            run: function (client, message) {
-                const role = message.guild.roles.find(r => r.name.toLowerCase() === "/gommemode");
-                message.member.addRole(role, "Aus Kiste.")
-                message.channel.send('Endlich kannst du `/gommemode` nutzen! <:gomme:313418733861470210>')
-            }
-        },
-        {
-            name: "einen XP-Boost",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send("**So much XP!** Für deine Treue erhälst du **101 XP** auf Lukas' Nacken!");
-                XPs.addXP(client, message.author, 101);
-            }
-        },
-        {
-            name: "eine Kiste",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send("**Oha, wie cool!** Du erhälst einfach so **eine Kiste**...");
-                addChests(client, message.member, 1);
-            }
-        },
-        {
-            name: "einen Schlüsselanhänger",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send({
-                    embed: {
-                        color: 3447003,
-                        author: {
-                            name: "SGD3D",
-                            icon_url: "https://puu.sh/xvAug/ca9e572b18.png"
-                        },
-                        title: "Einen 3D-gedruckten dsgnhb-Schlusselanhänger!",
-                        url: "https://sgd3d.de/product/designhub%20-%20Schl%C3%BCsselanh%C3%A4nger",
-                        description: "Für nur 1€ pro Stück. So kannst du zeigen, dass du zur designhub-Community gehörst!",
-                        timestamp: new Date(),
-                        footer: {
-                            icon_url: "https://puu.sh/xvAug/ca9e572b18.png",
-                            text: "Ein cooler 3D-Druck-Onlineshop"
-                        }
-                    }
-                });
-                message.channel.send("Wie du noch zusätzlich einen 5%-Rabattcode erhälst, erfährst du per PN 😉", new Attachment("./assets/gifs/noice.gif", "noice.gif"));
-
-                let msg = "**Registriere dich** auf https://sgd3d.de und **nimm an unserer Umfrage teil**: https://goo.gl/BjSUKd\n" +
-                    "Diese dauert nur **ein paar Minuten** und wenn du zum Schluss deine Email-Adresse angibst, erhälst du direkt den **5%-Rabattcode** 😄\n" +
-                    "Damit hilfst du bei der **Weiterentwicklung** von SGD3D 😛\n\n" +
-                    "~ **CreepPlays** (SGD3D Entwickler)";
-
-                message.member.send(msg);
-            }
-        },
-        {
-            name: "einen Design-Gutschein",
-            freq: 1,
-            run: function (client, message) {
-                message.channel.send("Mehr gibt's per DM! 😉");
-                message.guild.channels.get("318849797664538637").send(message.author.username + " (" + message.author.id + ") hat einen Design-Gutschein gewonnen!")
-                let shops = [{
-                    "name": "RadeArtz",
-                    "discord": "RadeArtz | мσтιση ∂єѕιgη#9091",
-                    "url": "shop.radeartz.de",
-                    "rabatt": "5%"
-                }]
-                let list = ""
-                for (let i = 0; i < shops.length; i++) {
-                    let item = shops[i];
-                    list += "- **" + item.name + "** *(" + item.url + ")* - " + item.rabatt;
-                }
-                message.author.send("**Yey!** Deinen Gutschein kannst du hier einlösen: 🎁 \n\n" + list + " \n\nUm ihn einzulösen, kontaktiere den Designer einfach per DM! 🖌")
-            }
-        }
-    ];
     let lastFreq = 0,
         freqs = [];
     for (let item of items) {
@@ -234,15 +127,17 @@ exports.getRandomChest = () => {
         {
             name: "einen XP-Boost",
             run: function (client, message) {
-                message.channel.send("**So much XP!** Für deine Treue erhälst du **101 XP** auf Lukas' Nacken!");
+                const XPs = require(__dirname + "/../functions/xp.js");
+                message.channel.send("**So much XP!** Für deine Treue erhälst du **101 XP** auf Lukas' Nacken! 💰");
                 XPs.addXP(client, message.author, 101);
             }
         },
         {
             name: "eine Kiste",
             run: function (client, message) {
-                message.channel.send("**Wow! Das hat sich ja richtig gelohnt! Hier hast du noch **ne Kiste**... 👍");
-                Chests.addChests(client, message.member, 2);
+                const Chests = require(__dirname + "/../functions/chests.js");
+                message.channel.send("**Wow!** Das hat sich ja richtig gelohnt! Hier hast du noch **ne Kiste**... 👍 💎");
+                Chests.addChests(client, message.author, 2);
             }
         },
         {
