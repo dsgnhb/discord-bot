@@ -1,4 +1,4 @@
-# designhub-discord-bot
+# Discord Bot
 Discord Bot running designhub's Discord Server based on GuideBot from AnIdiotsGuide written in discord.js
 
 ***
@@ -35,4 +35,4 @@ Rename `config.example.json` to `config.json` and fill out the requested fields.
 ```
 
 ***
-Author: flo (https://flooo.me)
+Authors: flo (https://flooo.me), lukas (https://lukaas.de), 
