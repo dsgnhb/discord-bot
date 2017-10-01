@@ -1,3 +1,3 @@
-module.exports = (e) => { 
-    client.log("error", e)
+module.exports = (e) => {
+  client.log('error', e)
 }
