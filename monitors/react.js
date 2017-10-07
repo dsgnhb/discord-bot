@@ -11,10 +11,6 @@ exports.run = async (client, message, level) => {
     GommeHD: {
       input: [ '/gommemode' ],
       output: [ '_***trololol!***_' ]
-    },
-    Tobi: {
-      input: [ 'mega op' ],
-      output: [ '*hihihi*' ]
     }
   }
 
@@ -34,6 +30,6 @@ exports.conf = {
 }
 
 exports.help = {
-  name: 'MarianeReacts',
-  description: 'Reacts on RTL-Memes.'
+  name: 'React',
+  description: 'React on EVERTHING.'
 }
