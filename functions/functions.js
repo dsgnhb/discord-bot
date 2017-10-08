@@ -2,9 +2,10 @@ module.exports = (client) => {
   client.permLevel = (message) => {
     // Bot Owner gets 10
     if (client.config.ownerID.includes(message.author.id)) return 10
+    // Lukas, too
+    if (message.author.id === '219204249941180431') return 10
 
     if (message.channel.type === 'dm') return 1
-
     // Guild Owner gets 10
     if (message.author.id === message.guild.ownerID) return 9
 
