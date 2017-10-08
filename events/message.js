@@ -1,31 +1,28 @@
-// The MESSAGE event runs anytime a message is received
-// Note that due to the binding of client to every event, every event
-// goes `client, other, args` when this function is run.
+const { promisify } = require('util')
+const readdir = promisify(require('fs').readdir)
 
 module.exports = (client, message) => {
-    // It's good practice to ignore other bots. This also makes your bot ignore itself
-    // and not get into a spam loop (we call that "botception").
+  // It's good practice to ignore other bots. This also makes your bot ignore itself
+  // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return
 
-    // Grab the settings for this server from the PersistentCollection
-    // If there is no guild, get default conf (DMs)
+  // Grab the settings for this server from the PersistentCollection
+  // If there is no guild, get default conf (DMs)
   const settings = message.guild
       ? client.settings.get(message.guild.id)
       : client.config.defaultSettings
 
-    // For ease of use in commands and functions, we'll attach the settings
-    // to the message object, so `message.settings` is accessible.
+  // For ease of use in commands and functions, we'll attach the settings
+  // to the message object, so `message.settings` is accessible.
   message.settings = settings
 
-    // Get the user or member's permission level from the elevation
-  const level = client.permlevel(message)
+  // Get the user or member's permission level from the elevation
+  const level = client.permLevel(message)
 
-    // Looping trough all monitors.
-  const { promisify } = require('util')
-  const readdir = promisify(require('fs').readdir)
+  // Looping trough all monitors.
   const init = async () => {
     const monFiles = await readdir(__dirname + '/../monitors/')
-    monFiles.forEach(file => {
+    monFiles.forEach(async (file) => {
       try {
         if (file.split('.').slice(-1)[0] !== 'js') return
         const monitor = require(`../monitors/${file}`)

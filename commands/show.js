@@ -5,6 +5,7 @@ const {
 } = require('discord.js')
 exports.run = async(client, message, args, level) => { // eslint-disable-line no-unused-lets
   let postid = args[0]
+  if (!postid) return message.channel.send('**TopDesign** | Nutze `!show #[Nr des Posts]` um einen Post zu sehen.')
   if (postid.startsWith('#')) postid = postid.substring(1, 20)
   postid = Number(postid)
   if (!postid) return message.channel.send('**TopDesign** | Nutze `!show #[Nr des Posts]` um einen Post zu sehen.')

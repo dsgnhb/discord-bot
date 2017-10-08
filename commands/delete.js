@@ -2,6 +2,7 @@ const request = require('request')
 const topdesign = require('../functions/topdesign.js')
 exports.run = async(client, message, args, level) => { // eslint-disable-line no-unused-lets
   let postid = args[0]
+  if (!postid) return message.channel.send('**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.')
   if (postid.startsWith('#')) postid = postid.substring(1, 20)
   postid = Number(postid)
   if (!postid) return message.channel.send('**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.')

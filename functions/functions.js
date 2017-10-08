@@ -1,19 +1,19 @@
 module.exports = (client) => {
-  client.permlevel = (message) => {
-    let permlvl = 0
-      // Bot Owner gets 10
+  client.permLevel = (message) => {
+    // Bot Owner gets 10
     if (client.config.ownerID.includes(message.author.id)) return 10
 
-    if (message.channel.type = 'dm') return 1
-      // Guild Owner gets 10
+    if (message.channel.type === 'dm') return 1
+
+    // Guild Owner gets 10
     if (message.author.id === message.guild.ownerID) return 9
 
     const ranks = require('../configs/permlevel.json')
+    // console.log(ranks)
     for (let rank in ranks) {
       if (ranks.hasOwnProperty(rank)) {
         const role = message.guild.roles.find(r => r.name.toLowerCase() === rank.toLowerCase())
-        if (role && message.member.roles.has(role.id)) permlvl = ranks[rank]
-        return permlvl
+        if (role && message.member.roles.has(role.id)) return ranks[rank]
       }
     }
 
@@ -66,7 +66,7 @@ module.exports = (client) => {
     // };
 
   client.clean = async (client, text) => {
-    if (text && text.constructor.name == 'Promise') { text = await text }
+    if (text && text.constructor.name === 'Promise') { text = await text }
     if (typeof evaled !== 'string') { text = require('util').inspect(text, {depth: 0}) }
 
     text = text

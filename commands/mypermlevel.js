@@ -1,6 +1,6 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
-    message.channel.send(client.permLevel(message))
-}
+exports.run = (client, message, args, level) => { // eslint-disable-line no-unused-lets
+  message.reply(level)
+  }
   
   exports.conf = {
     enabled: true,

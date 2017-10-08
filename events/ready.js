@@ -9,6 +9,7 @@ module.exports = async client => {
 
     // We check for any guilds added while the bot was offline, if any were, they get a default configuration.
   client.guilds.filter(g => !client.settings.has(g.id)).forEach(g => client.settings.set(g.id, client.config.defaultSettings))
+  client.user.setPresence({ game: { name: 'dsgnhb.de', type: 0 } })
 
 /*
     const msg = await client.guilds.get(client.config.mainGuildID).channels.get("352470165440430082").fetchMessage("358658232748867606");

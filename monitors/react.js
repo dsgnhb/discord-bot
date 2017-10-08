@@ -21,7 +21,7 @@ exports.run = async (client, message, level) => {
     message.guild.members.get(client.user.id).setNickname(name)
     await message.channel.send(randomOutput)
     client.log('log', `${name} reacted on ${message.author.username}'s (${message.author.id}) message with answer "${randomOutput}"`, 'React')
-    message.guild.members.get(client.user.id).setNickname('dsgnhb')
+    message.guild.members.get(client.user.id).setNickname('designhub')
   }
 }
 exports.conf = {
