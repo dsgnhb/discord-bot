@@ -28,7 +28,6 @@ module.exports = (client, message) => {
     monFiles.forEach(file => {
       try {
         if (file.split('.').slice(-1)[0] !== 'js') return
-        const monitorName = file.split('.')[0]
         const monitor = require(`../monitors/${file}`)
         monitor.run(client, message, level)
         delete require.cache[require.resolve(`../monitors/${file}`)]
