@@ -1,5 +1,5 @@
-module.exports = (client) => {
-  client.permLevel = (message) => {
+module.exports = client => {
+  client.permLevel = message => {
     // Bot Owner gets 10
     if (client.config.ownerID.includes(message.author.id)) return 10
     // Lukas, too
@@ -13,7 +13,9 @@ module.exports = (client) => {
     // console.log(ranks)
     for (let rank in ranks) {
       if (ranks.hasOwnProperty(rank)) {
-        const role = message.guild.roles.find(r => r.name.toLowerCase() === rank.toLowerCase())
+        const role = message.guild.roles.find(
+          r => r.name.toLowerCase() === rank.toLowerCase()
+        )
         if (role && message.member.roles.has(role.id)) return ranks[rank]
       }
     }
@@ -23,11 +25,14 @@ module.exports = (client) => {
 
   client.log = (type, message, title) => {
     if (!title) title = 'Log'
-    client.guilds.get(client.config.mainGuildID).channels.get(client.config.logChannel).send('**[' + type + ']** [' + title + '] `' + message + '`')
+    client.guilds
+      .get(client.config.mainGuildID)
+      .channels.get(client.config.logChannel)
+      .send('**[' + type + ']** [' + title + '] `' + message + '`')
     console.log(`[${type}] [${title}] ${message}`)
   }
 
-  client.MStoTime = (time) => {
+  client.MStoTime = time => {
     let d, h, m, s
     s = time
     m = Math.floor(s / 60)
@@ -39,7 +44,7 @@ module.exports = (client) => {
     return { d: d, h: h, m: m, s: s }
   }
 
-    /*
+  /*
     SINGLE-LINE AWAITMESSAGE
     A simple way to grab a single reply, from the user that initiated
     the command. Useful to get 'precisions' on certain things...
@@ -48,46 +53,60 @@ module.exports = (client) => {
     message.reply(`Oh, I really love ${response} too!`);
     */
   client.awaitReply = async (message, question, limit = 60000) => {
-    const filter = m => m.author.id = message.author.id
+    const filter = m => (m.author.id = message.author.id)
     await message.channel.send(question)
     try {
-      const collected = await message.channel.awaitMessages(filter, { max: 1, time: limit, errors: ['time'] })
+      const collected = await message.channel.awaitMessages(filter, {
+        max: 1,
+        time: limit,
+        errors: ['time']
+      })
       return collected.first().content
     } catch (e) {
       return false
     }
   }
 
-    // client.answer = (message, contents, options = {}) => {
-    //   options.delay =  (options.delay || 2000);
-    //   if (message.flags.includes('delme')) options.deleteAfter = true;
-    //   options.deleteAfter = (options.deleteAfter || false);
-    //   message.edit(contents);
-    //   if (options.deleteAfter) message.delete({timeout: options.delay});
-    // };
+  // client.answer = (message, contents, options = {}) => {
+  //   options.delay =  (options.delay || 2000);
+  //   if (message.flags.includes('delme')) options.deleteAfter = true;
+  //   options.deleteAfter = (options.deleteAfter || false);
+  //   message.edit(contents);
+  //   if (options.deleteAfter) message.delete({timeout: options.delay});
+  // };
 
   client.clean = async (client, text) => {
-    if (text && text.constructor.name === 'Promise') { text = await text }
-    if (typeof evaled !== 'string') { text = require('util').inspect(text, {depth: 0}) }
+    if (text && text.constructor.name === 'Promise') {
+      text = await text
+    }
+    if (typeof evaled !== 'string') {
+      text = require('util').inspect(text, { depth: 0 })
+    }
 
     text = text
-        .replace(/`/g, '`' + String.fromCharCode(8203))
-        .replace(/@/g, '@' + String.fromCharCode(8203))
-        .replace(client.token, 'mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0')
+      .replace(/`/g, '`' + String.fromCharCode(8203))
+      .replace(/@/g, '@' + String.fromCharCode(8203))
+      .replace(
+        client.token,
+        'mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0'
+      )
 
     return text
   }
 
-    /* MISCELANEOUS NON-CRITICAL FUNCTIONS */
+  /* MISCELANEOUS NON-CRITICAL FUNCTIONS */
 
-  String.prototype.toProperCase = function () {
-    return this.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
+  String.prototype.toProperCase = function() {
+    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     })
   }
 
-  Array.prototype.remove = function () {
-    let value, a = arguments, L = a.length, ax
+  Array.prototype.remove = function() {
+    let value,
+      a = arguments,
+      L = a.length,
+      ax
     while (L && this.length) {
       value = a[--L]
       while ((ax = this.indexOf(value)) !== -1) {
@@ -97,10 +116,10 @@ module.exports = (client) => {
     return this
   }
 
-    // `await client.wait(1000);` to "pause" for 1 second.
+  // `await client.wait(1000);` to "pause" for 1 second.
   client.wait = require('util').promisify(setTimeout)
 
-    /*
+  /*
     // `client.wait(1000);` to "pause" for 1 second.
     client.wait = (ms) => {
       let start = new Date().getTime();
@@ -110,7 +129,7 @@ module.exports = (client) => {
      }
    }
   */
-  process.on('uncaughtException', (err) => {
+  process.on('uncaughtException', err => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './')
     console.error('Uncaught Exception: ', errorMsg)
   })

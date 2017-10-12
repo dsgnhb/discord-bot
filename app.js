@@ -4,6 +4,7 @@ const Discord = require('discord.js')
 const { promisify } = require('util')
 const readdir = promisify(require('fs').readdir)
 const Enmap = require('enmap')
+const EnmapLevel = require('enmap-level')
 
 const client = new Discord.Client()
 
@@ -12,7 +13,8 @@ require('./functions/functions.js')(client)
 
 client.commands = new Enmap()
 client.aliases = new Enmap()
-client.settings = new Enmap({name: 'settings', persistent: true})
+client.settings = new Enmap({ provider: new EnmapLevel({ name: 'settings' }) })
+client.stats = new Enmap({ provider: new EnmapLevel({ name: 'stats' }) })
 client.cooldown = new Set()
 client.mutes = new Set()
 
