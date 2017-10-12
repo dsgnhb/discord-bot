@@ -1,16 +1,29 @@
 exports.run = async (client, message, level) => {
   const reactions = {
     Marianne: {
-      input: [ 'sahnekönigin', 'halt stop', 'jetzt hälst du die schnauze', 'sonst gibt krieg', 'käsefreund', 'sag ich dir gleich', 'es ist obst im haus', 'das bleibt alles so', 'ob du hier bist', 'beschweren kann man sich da eher weniger', 'schokolade', 'dome' ],
-      output: [ 'Was den HIER los?!!', 'Was das den HIER??!', 'Was machst du DENN??!' ]
+      input: [
+        'sahnekönigin',
+        'halt stop',
+        'jetzt hälst du die schnauze',
+        'sonst gibt krieg',
+        'käsefreund',
+        'sag ich dir gleich',
+        'es ist obst im haus',
+        'das bleibt alles so',
+        'ob du hier bist',
+        'beschweren kann man sich da eher weniger',
+        'schokolade',
+        'dome'
+      ],
+      output: ['Was den HIER los?!!', 'Was das den HIER??!', 'Was machst du DENN??!']
     },
     Andreas: {
-      input: [ 'ich hab kein obst gefunden' ],
-      output: [ 'Das Kinderzimmer ist sauber!', 'Halt stop' ]
+      input: ['ich hab kein obst gefunden'],
+      output: ['Das Kinderzimmer ist sauber!', 'Halt stop']
     },
     GommeHD: {
-      input: [ '/gommemode' ],
-      output: [ '_***trololol!***_' ]
+      input: ['/gommemode'],
+      output: ['_***trololol!***_']
     }
   }
 

@@ -5,26 +5,28 @@ exports.run = (client, message, args, level) => {
     const myCommands = message.guild ? client.commands.filter(cmd => cmd.conf.permLevel <= level) : client.commands.filter(cmd => cmd.conf.permLevel <= level && cmd.conf.guildOnly !== true)
     const commandNames = myCommands.keyArray()
     let currentCategory = ''
-    let msg = {embed: {
-      color: 3058623,
-      author: {
-        name: 'Commands',
-        icon_url: message.guild.iconURL
-      },
-      description: `Mehr gibt's mit **${settings.prefix}help <command>**`,
-      fields: [],
-      timestamp: new Date(),
-      footer: {
-        icon_url: client.settings.get(message.guild.id).embedIcon,
-        text: client.settings.get(message.guild.id).embedFooter
+    let msg = {
+      embed: {
+        color: 3058623,
+        author: {
+          name: 'Commands',
+          icon_url: message.guild.iconURL
+        },
+        description: `Mehr gibt's mit **${settings.prefix}help <command>**`,
+        fields: [],
+        timestamp: new Date(),
+        footer: {
+          icon_url: client.settings.get(message.guild.id).embedIcon,
+          text: client.settings.get(message.guild.id).embedFooter
+        }
       }
-    }}
+    }
     let i = -1
-    const sorted = myCommands.sort((p, c) => p.help.category > c.help.category ? 1 : -1)
+    const sorted = myCommands.sort((p, c) => (p.help.category > c.help.category ? 1 : -1))
     sorted.forEach(c => {
       const cat = c.help.category.toProperCase()
       if (currentCategory !== cat) {
-        msg.embed.fields.push({ name: cat, value: ''})
+        msg.embed.fields.push({ name: cat, value: '' })
         currentCategory = cat
         i++
       }

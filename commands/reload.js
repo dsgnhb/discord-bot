@@ -1,4 +1,5 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
   if (!args[0]) return message.reply('Must provide a command to reload. Derp.')
 
   let command

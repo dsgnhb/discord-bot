@@ -13,9 +13,7 @@ module.exports = client => {
     // console.log(ranks)
     for (let rank in ranks) {
       if (ranks.hasOwnProperty(rank)) {
-        const role = message.guild.roles.find(
-          r => r.name.toLowerCase() === rank.toLowerCase()
-        )
+        const role = message.guild.roles.find(r => r.name.toLowerCase() === rank.toLowerCase())
         if (role && message.member.roles.has(role.id)) return ranks[rank]
       }
     }
@@ -86,10 +84,7 @@ module.exports = client => {
     text = text
       .replace(/`/g, '`' + String.fromCharCode(8203))
       .replace(/@/g, '@' + String.fromCharCode(8203))
-      .replace(
-        client.token,
-        'mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0'
-      )
+      .replace(client.token, 'mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0')
 
     return text
   }

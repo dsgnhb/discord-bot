@@ -1,5 +1,6 @@
 const { RichEmbed } = require('discord.js')
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
   const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings
   const channel = message.channel
   const embed = new RichEmbed()
@@ -9,7 +10,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     .addField('Position', `${channel.position}`, true)
     .setTimestamp()
     .setFooter(settings.embedFooter, settings.embedIcon)
-  message.channel.send({embed}).catch(e => console.error(e))
+  message.channel.send({ embed }).catch(e => console.error(e))
 }
 
 exports.conf = {

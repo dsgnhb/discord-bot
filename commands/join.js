@@ -1,7 +1,9 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
   const skillGroups = ['css', 'html', 'affinityphoto', 'ruby', 'sql', 'c++', 'c#', 'swift', 'python', 'java', 'php', 'javascript', 'blender', 'cinema4d', 'gimp', 'photoshop', 'paint']
   if (args.length === 0) return message.channel.send(`Nutze \`!join <role>\` um einer der folgenden Skill-Gruppe beizutreten: \`${skillGroups.join('`, `')}\`.`)
-  let addedRanks = [], removedRanks = []
+  let addedRanks = [],
+    removedRanks = []
   for (let rank of args) {
     if (skillGroups.indexOf(rank.toLowerCase()) === -1) continue
     role = message.guild.roles.find(r => r.name.toLowerCase() === rank.toLowerCase())
@@ -11,7 +13,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
         await message.member.removeRole(role, 'Requested via !join.')
         removedRanks.push(role.name)
       } catch (ex) {
-                // No perms
+        // No perms
       }
     } else {
       try {
@@ -19,7 +21,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 
         addedRanks.push(role.name)
       } catch (ex) {
-                // No perms
+        // No perms
       }
     }
   }

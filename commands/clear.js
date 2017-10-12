@@ -1,4 +1,5 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
   const user = message.mentions.users.first()
   let amount = Number(args[0])
   if (!amount) return message.reply('Must specify an amount to delete!')
@@ -9,7 +10,10 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     let messages = await message.channel.fetchMessages({ limit: amount })
     if (user) {
       const filterBy = user ? user.id : client.user.id
-      messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount)
+      messages = messages
+        .filter(m => m.author.id === filterBy)
+        .array()
+        .slice(0, amount)
     }
     await message.channel.bulkDelete(messages)
     amount--

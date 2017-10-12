@@ -1,4 +1,5 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
   const user = message.mentions.users.first()
   let time = args[1]
   if (!user) return message.channel.send('Nutze `!mute <@user> (<time>)` um einen User temorär aus dem Chat auszuschließen.')

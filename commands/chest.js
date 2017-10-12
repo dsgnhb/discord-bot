@@ -1,9 +1,11 @@
 const Chests = require('../functions/chests.js')
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
   message.channel.send('Dann such ich mal... 🤔')
   const hasChests = await Chests.removeChests(client, message.author, 1)
   await client.wait(2000)
-  if (!hasChests) return message.channel.send('Hm.. Hier steht keine Kiste mit deinem Namen.. 😕 \nKeine Angst, Kisten mit tollen Überraschungen erhälst du automatisch durch aktives Schreiben im Chat!')
+  if (!hasChests)
+    return message.channel.send('Hm.. Hier steht keine Kiste mit deinem Namen.. 😕 \nKeine Angst, Kisten mit tollen Überraschungen erhälst du automatisch durch aktives Schreiben im Chat!')
   await message.channel.send('Puuuh, ist das hier staubig.. 🌙💨')
   await client.wait(3000)
   const item = Chests.getRandomChest()

@@ -1,5 +1,5 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
-
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
 }
 
 exports.conf = {

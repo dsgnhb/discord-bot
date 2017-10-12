@@ -1,3 +1,3 @@
-module.exports = (e) => {
+module.exports = e => {
   client.log('warn', e)
 }

@@ -1,6 +1,7 @@
 const XPs = require('../functions/xp.js')
 const Chests = require('../functions/chests.js')
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-lets
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-lets
   const user = message.mentions.users.first()
   const amount = Number(args[2])
   const method = args[0]
