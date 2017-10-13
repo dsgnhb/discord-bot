@@ -1,6 +1,6 @@
 exports.run = async (client, message, args, level) => {
   // eslint-disable-line no-unused-lets
-  message.channel.send('https://discordapp.com/invite/PGv5TR3')
+  message.channel.send('https://dsgnhb.de/discord')
 }
 
 exports.conf = {
