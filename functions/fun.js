@@ -1,6 +1,5 @@
-const request = require('request')
-
 exports.gommeVideo = async () => {
+  const request = require('request')
   return new Promise((resolve, reject) => {
     request.get(
       {
