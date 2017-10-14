@@ -22,7 +22,7 @@ exports.run = (client, message, args, level) => {
       }
     }
     let i = -1
-    const sorted = myCommands.sort((p, c) => (p.help.category > c.help.category ? 1 : -1))
+    const sorted = myCommands.array().sort((p, c) => (p.help.category > c.help.category ? 1 : -1))
     sorted.forEach(c => {
       const cat = c.help.category.toProperCase()
       if (currentCategory !== cat) {

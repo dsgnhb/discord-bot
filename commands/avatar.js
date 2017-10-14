@@ -18,6 +18,6 @@ exports.conf = {
 exports.help = {
   name: 'avatar',
   category: 'Info',
-  description: 'Avtar ändern',
+  description: 'Neues Avatar',
   usage: 'avatar'
 }
