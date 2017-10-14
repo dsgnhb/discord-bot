@@ -1,11 +1,11 @@
 exports.run = async (client, message, args, level) => {
   let stats = client.stats.array()
-
+  console.log(stats)
   let totalMessages = 0
   for (let i = 0; i < stats.length; i++) {
     totalMessages += stats[i].messages
   }
-  let average = totalMessages / stats.length
+  let average = Math.round(totalMessages / stats.length)
   message.channel.send(`Ganz schön viel Spam: **${average} Nachrichten pro Tag**`)
 }
 
