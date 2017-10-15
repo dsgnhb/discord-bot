@@ -19,6 +19,6 @@ exports.conf = {
 exports.help = {
   name: 'messages',
   category: 'Info',
-  description: 'So viel Spma.',
+  description: 'So viel Spam.',
   usage: 'messages'
 }

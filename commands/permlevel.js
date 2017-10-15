@@ -11,8 +11,8 @@ exports.conf = {
 }
 
 exports.help = {
-  name: 'mypermlevel',
+  name: 'permlevel',
   category: 'Info',
   description: 'Deine Perms.',
-  usage: 'mypermlevel'
+  usage: 'permlevel'
 }
