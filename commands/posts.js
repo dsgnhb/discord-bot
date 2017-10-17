@@ -10,6 +10,7 @@ exports.run = async (client, message, args, level) => {
       headers: { Token: client.config.tokens.api }
     },
     function(error, response, body) {
+      if (error) console.log(error)
       if (!body) return message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
       let posts = ''
       for (let i = 0; i < body.length; i++) {

@@ -10,6 +10,7 @@ exports.run = async (client, message, args, level) => {
       headers: { Token: client.config.tokens.api }
     },
     function(error, response, body) {
+      if (error) console.log(error)
       if (!body) return message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
       const timeshort = topdesign.timeshort(new Date())
       if (!body.hasOwnProperty(timeshort)) return message.channel.send('**TopDesign** | Du hast diesen Monat für noch keinen Post gevoted.')

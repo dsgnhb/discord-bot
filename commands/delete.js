@@ -15,7 +15,9 @@ exports.run = async (client, message, args, level) => {
       json: true,
       headers: { Token: client.config.tokens.api }
     },
+
     function(error, response, body) {
+      if (error) console.log(error)
       if (!body) return message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
       if (body == 'Not found') return message.channel.send('**TopDesign** | Das Design mit der Nummer **#' + postid + '** konnte nicht gefunden werden.')
       console.log(body)

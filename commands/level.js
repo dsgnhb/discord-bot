@@ -13,6 +13,7 @@ exports.run = async (client, message, args, level) => {
       headers: { Token: client.config.tokens.api }
     },
     function(error, response, body) {
+      if (error) console.log(error)
       if (!body.xp) return message.channel.send("Dich gibt's hier noch ned.")
 
       let totalXP = body.xp
