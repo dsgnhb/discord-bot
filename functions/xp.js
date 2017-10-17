@@ -35,7 +35,7 @@ exports.addXP = async (client, member, number) => {
 
     let avatar = member.displayAvatarURL
     let size = avatar.indexOf('?size')
-    avatar = avatar.slice(0, size)
+    if (size !== -1) avatar = avatar.slice(0, size)
 
     let url = client.config.apiEndpoint + '/levels/xp/' + member.id
     let postData = { xp: number, username: member.username, discriminator: member.discriminator, avatar: avatar }
@@ -74,7 +74,7 @@ exports.removeXP = async (client, member, number) => {
   return new Promise((resolve, reject) => {
     let avatar = member.displayAvatarURL
     let size = avatar.indexOf('?size')
-    avatar = avatar.slice(0, size)
+    if (size !== -1) avatar = avatar.slice(0, size)
 
     let url = client.config.apiEndpoint + '/levels/xp/' + member.id
     let postData = { xp: number, username: member.username, discriminator: member.discriminator, avatar: avatar }

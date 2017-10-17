@@ -9,7 +9,7 @@ exports.addChests = async (client, member, number) => {
   return new Promise((resolve, reject) => {
     let avatar = member.displayAvatarURL
     let size = avatar.indexOf('?size')
-    avatar = avatar.slice(0, size)
+    if (size !== -1) avatar = avatar.slice(0, size)
 
     let url = client.config.apiEndpoint + '/levels/chests/' + member.id
     let postData = {
@@ -42,7 +42,7 @@ exports.removeChests = async (client, member, number) => {
   return new Promise((resolve, reject) => {
     let avatar = member.displayAvatarURL
     let size = avatar.indexOf('?size')
-    avatar = avatar.slice(0, size)
+    if (size !== -1) avatar = avatar.slice(0, size)
     let url = client.config.apiEndpoint + '/levels/chests/' + member.id
     let postData = {
       chests: number,

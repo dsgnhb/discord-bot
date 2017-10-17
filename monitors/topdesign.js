@@ -9,10 +9,9 @@ exports.run = (client, message, level) => {
     let userid = message.author.id
     let avatar = message.author.displayAvatarURL
     let size = avatar.indexOf('?size')
-    avatar = avatar.slice(0, size)
+    if (size !== -1) avatar = avatar.slice(0, size)
     let url = client.config.apiEndpoint + '/topdesign/posts'
     let postData = { image: image, content: content, username: username, userid: userid, avatar: avatar }
-    console.log(postData)
     message.channel.startTyping()
     request.post(
       {
@@ -21,11 +20,8 @@ exports.run = (client, message, level) => {
         json: true,
         headers: { Token: client.config.tokens.api }
       },
-
       function(error, response, body) {
         if (error) console.log(error)
-        if (response) console.log(error)
-        if (body) console.log(error)
         message.channel.stopTyping(true)
         if (!body || body.error) return message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
         client.log('log', `${message.author.username} (${message.author.id}) successfully submitted to #topdesign`, 'MONITOR')
