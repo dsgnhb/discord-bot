@@ -21,6 +21,7 @@ exports.run = (client, message, level) => {
         headers: { Token: client.config.tokens.api }
       },
       function(error, response, body) {
+        if (error) console.log(error)
         message.channel.stopTyping(true)
         if (!body || body.error) return message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
         client.log('log', `${message.author.username} (${message.author.id}) successfully submitted to #topdesign`, 'MONITOR')
