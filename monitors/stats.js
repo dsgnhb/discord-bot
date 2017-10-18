@@ -3,8 +3,9 @@ exports.run = (client, message, level) => {
   if (message.content.startsWith(settings.prefix)) return
   const now = new Date()
   const date = `${now.getDate()}.${now.getMonth() + 1}.${now.getFullYear()}`
-  const stats = client.stats.get(date) || { messages: 0 }
+  const stats = client.stats.get(date) || { messages: 0, member: 0 }
   stats.messages++
+  stats.member = message.guild.memberCount
   client.stats.set(date, stats)
 }
 exports.conf = {

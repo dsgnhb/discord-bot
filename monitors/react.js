@@ -31,10 +31,12 @@ exports.run = async (client, message, level) => {
   if (possibleKeys.length > 0) {
     let name = possibleKeys[0]
     const randomOutput = reactions[name].output[Math.floor(Math.random() * reactions[name].output.length)]
-    message.guild.members.get(client.user.id).setNickname(name)
+
+    const guild = message.guild
+    if (guild.available) guild.members.get(client.user.id).setNickname(name)
     await message.channel.send(randomOutput)
     client.log('log', `${name} reacted on ${message.author.username}'s (${message.author.id}) message with answer "${randomOutput}"`, 'React')
-    message.guild.members.get(client.user.id).setNickname('designhub')
+    if (guild.available) guild.members.get(client.user.id).setNickname('designhub')
   }
 }
 exports.conf = {

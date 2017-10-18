@@ -1,5 +1,5 @@
 exports.run = async (client, message, args, level) => {
-  let stats = client.stats.array()
+  let stats = client.stats
   console.log(stats)
   let totalMessages = 0
   for (let i = 0; i < stats.length; i++) {

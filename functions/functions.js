@@ -65,21 +65,16 @@ module.exports = client => {
     }
   }
 
-  // client.answer = (message, contents, options = {}) => {
-  //   options.delay =  (options.delay || 2000);
-  //   if (message.flags.includes('delme')) options.deleteAfter = true;
-  //   options.deleteAfter = (options.deleteAfter || false);
-  //   message.edit(contents);
-  //   if (options.deleteAfter) message.delete({timeout: options.delay});
-  // };
-
+  /*
+  MESSAGE CLEAN FUNCTION
+  "Clean" removes @everyone pings, as well as tokens, and makes code blocks
+  escaped so they're shown more easily. As a bonus it resolves promises
+  and stringifies objects!
+  This is mostly only used by the Eval and Exec commands.
+  */
   client.clean = async (client, text) => {
-    if (text && text.constructor.name === 'Promise') {
-      text = await text
-    }
-    if (typeof evaled !== 'string') {
-      text = require('util').inspect(text, { depth: 0 })
-    }
+    if (text && text.constructor.name == 'Promise') text = await text
+    if (typeof evaled !== 'string') text = require('util').inspect(text, { depth: 0 })
 
     text = text
       .replace(/`/g, '`' + String.fromCharCode(8203))
