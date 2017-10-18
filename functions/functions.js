@@ -74,7 +74,7 @@ module.exports = client => {
   */
   client.clean = async (client, text) => {
     if (text && text.constructor.name == 'Promise') text = await text
-    if (typeof evaled !== 'string') text = require('util').inspect(text, { depth: 0 })
+    if (typeof evaled !== 'string') text = require('util').inspect(text, { depth: 1 })
 
     text = text
       .replace(/`/g, '`' + String.fromCharCode(8203))
