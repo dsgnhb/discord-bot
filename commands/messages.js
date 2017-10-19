@@ -6,7 +6,7 @@ exports.run = async (client, message, args, level) => {
   }
   let average = Math.round(totalMessages / stats.length)
 
-  if(${average} <1000){
+  if(average <1000){
     message.channel.send(`Da geht noch was: **${average} Nachrichten pro Tag**`)
   }
   else{
