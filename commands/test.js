@@ -1,5 +1,13 @@
 exports.run = async (client, message, args, level) => {
-  // eslint-disable-line no-unused-lets
+  const members = message.guild.members.array()
+  for (var i = 0; i < members.length; i++) {
+    let member = members[i]
+    // console.log(member.displayName)
+    let avatar = member.user.displayAvatarURL
+    let size = avatar.indexOf('?size')
+    if (size !== -1) avatar = avatar.slice(0, size)
+    console.log(`<img src="${avatar}" class="item">`)
+  }
 }
 
 exports.conf = {

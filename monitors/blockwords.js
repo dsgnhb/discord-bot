@@ -14,7 +14,7 @@ exports.run = (client, message, level) => {
   // Forbidden Invites
   const forbiddenLinks = ['discord.gg', 'discord.io', 'discord.me', 'discord.li', 'discordapp.com/invite/']
   if (forbiddenLinks.some(word => message.content.includes(word))) {
-    message.delete().then(() => client.log('log', `${message.author.username} (${message.author.id}) sent an invite!`, 'AD'))
+    message.delete().then(() => client.log('log', `${message.author.username} (${message.author.id}) sent an invite (${message.content})!`, 'AD'))
   }
 }
 exports.conf = {
