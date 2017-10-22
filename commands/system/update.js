@@ -44,6 +44,7 @@ class Update extends Command {
       delete require.cache[require.resolve('../../changelog.json')]
       changelog = await require('../../changelog.json')
       changelogVersion = changelog[packageJSON.version]
+      console.log(changelog)
     }
 
     await message.channel.send(
