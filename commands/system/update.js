@@ -32,16 +32,24 @@ class Update extends Command {
 
     if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Already up-to-date.')
 
-    const changelog = await require('../../changelog.json')
+    let changelog = await require('../../changelog.json')
     let packageJSON = await require('../../package.json')
 
     console.log(changelog)
     console.log(packageJSON)
 
+    let changelogVersion = changelog[packageJSON.version]
+
+    while (!changelogVersion) {
+      delete require.cache[require.resolve('../../changelog.json')]
+      changelog = await require('../../changelog.json')
+      changelogVersion = changelog[packageJSON.version]
+    }
+
     await message.channel.send(
       new RichEmbed()
         .setAuthor(`Neue Version: Changelog v${packageJSON.version}`)
-        .setDescription(changelog[packageJSON.version].join('\n'))
+        .setDescription(changelogVersion.join('\n'))
         .setURL(packageJSON.repository.url.split('+')[1].slice(0, -4))
         .setColor(settings.embedColor)
         .setTimestamp()
