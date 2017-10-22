@@ -1,41 +1,31 @@
-const request = require('request')
-exports.run = (client, message, level) => {
-  if (!message.attachments.first()) return
-  if (message.isMentioned(message.guild.channels.find('name', 'topdesign')) || message.content.includes('#topdesign')) {
-    client.log('log', `${message.author.username} (${message.author.id}) ran #topdesign`, 'MONITOR')
-    let image = message.attachments.first().proxyURL
-    let content = message.content
-    let username = message.author.username
-    let userid = message.author.id
-    let avatar = message.author.displayAvatarURL
-    let size = avatar.indexOf('?size')
-    if (size !== -1) avatar = avatar.slice(0, size)
-    let url = client.config.apiEndpoint + '/topdesign/posts'
-    let postData = { image: image, content: content, username: username, userid: userid, avatar: avatar }
-    message.channel.startTyping()
-    request.post(
-      {
-        url: url,
-        body: postData,
-        json: true,
-        headers: { Token: client.config.tokens.api }
-      },
-      function(error, response, body) {
-        if (error) console.log(error)
-        message.channel.stopTyping(true)
-        if (!body || body.error) return message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
-        client.log('log', `${message.author.username} (${message.author.id}) successfully submitted to #topdesign`, 'MONITOR')
-        if (body.action === 'add') return message.channel.send('**TopDesign** | Dein Post wurde erfolgreich bei Top Design eingereicht. Er kann mit `!vote #' + body.postid + '` bewertet werden.')
-      }
-    )
+const TopDesignMonitor = require('../base/monitors/TopDesignMonitor.js')
+
+class TopDesign extends TopDesignMonitor {
+  constructor(client) {
+    super(client, {
+      name: 'Stats',
+      description: 'Tracket tägliche Nachrichten und Memberanzahl'
+    })
+  }
+
+  async run(message, args) {
+    if (!message.attachments.first()) return
+    if (!message.isMentioned(message.guild.channels.find('name', 'topdesign')) || !message.content.includes('#topdesign')) return
+    this.client.log('log', `${message.author.username} (${message.author.id}) ran #topdesign`, 'MONITOR')
+
+    try {
+      message.channel.startTyping()
+      let image = message.attachments.first().proxyURL
+      const request = await this.addPost(message.author, image)
+      message.channel.stopTyping(true)
+
+      client.log('log', `${message.author.username} (${message.author.id}) successfully submitted to #topdesign`, 'MONITOR')
+      if (request.action === 'add') return message.channel.send('**TopDesign** | Dein Post wurde erfolgreich bei Top Design eingereicht. Er kann mit `!vote #' + request.postid + '` bewertet werden.')
+    } catch (error) {
+      console.log(error)
+      message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+    }
   }
 }
-exports.conf = {
-  enabled: true,
-  guildOnly: true
-}
 
-exports.help = {
-  name: '#topdesign',
-  description: 'Submit posts to TopDesign.'
-}
+module.exports = TopDesign

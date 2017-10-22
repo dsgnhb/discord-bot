@@ -1,3 +1,9 @@
-module.exports = e => {
-  client.log('error', e)
+module.exports = class {
+  constructor(client) {
+    this.client = client
+  }
+
+  async run() {
+    client.log('error', e)
+  }
 }

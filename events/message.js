@@ -1,70 +1,58 @@
 const { promisify } = require('util')
 const readdir = promisify(require('fs').readdir)
 
-module.exports = (client, message) => {
-  // It's good practice to ignore other bots. This also makes your bot ignore itself
-  // and not get into a spam loop (we call that "botception").
-  if (message.author.bot) return
+module.exports = class {
+  constructor(client) {
+    this.client = client
+  }
+  async run(message) {
+    if (message.author.bot) return
 
-  // Grab the settings for this server from the PersistentCollection
-  // If there is no guild, get default conf (DMs)
-  const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings
+    const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings
+    message.settings = settings
 
-  // For ease of use in commands and functions, we'll attach the settings
-  // to the message object, so `message.settings` is accessible.
-  message.settings = settings
+    // User's PermLevel
+    const level = this.client.permlevel(message)
+    message.author.permLevel = level
 
-  // Get the user or member's permission level from the elevation
-  const level = client.permLevel(message)
-
-  // Looping trough all monitors.
-  const init = async () => {
-    const monFiles = await readdir(__dirname + '/../monitors/')
-    monFiles.forEach(async file => {
-      try {
-        if (file.split('.').slice(-1)[0] !== 'js') return
-        const monitor = require(`../monitors/${file}`)
-        monitor.run(client, message, level)
-        delete require.cache[require.resolve(`../monitors/${file}`)]
-      } catch (e) {
-        console.log(`[warn] [Error] Unable to load monitor ${file}: ${e}`)
-        console.log(e)
-      }
+    // Monitors
+    this.client.monitors.forEach(function(monitor, name, map) {
+      if (!message.guild && !monitor.conf.dm) return
+      if (message.guild && !monitor.conf.guild) return
+      if (level > monitor.conf.maxPermLevel) return
+      monitor.run(message)
     })
+
+    // Ignore messages without prefix
+    if (message.content.indexOf(settings.prefix) !== 0) return
+    // Getting Message Arguments
+    /*
+    GuideBot Version
+    */
+    const args = message.content
+      .slice(settings.prefix.length)
+      .trim()
+      .split(/ +/g)
+    /*
+    Flo Version
+    const args = message.content
+      .slice(settings.prefix.length)
+      .trim()
+      .match(/[^\s"']+|"([^"]*)"|'([^']*)'/g)
+    */
+    const command = args.shift().toLowerCase()
+    const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command))
+    if (!cmd) return
+    if (!message.guild && !cmd.conf.dm) return message.channel.send('This command is unavailable via private message.')
+    if (message.guild && !cmd.conf.guild) return message.channel.send('This command is unavailable via Guild.')
+
+    message.flags = []
+    while (args[0] && args[0][0] === '-') {
+      message.flags.push(args.shift().slice(1))
+    }
+
+    if (level < cmd.conf.permLevel) return
+    this.client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(',')}`, 'CMD')
+    cmd.run(message, args)
   }
-  init()
-
-  // Also good practice to ignore any message that does not start with our prefix,
-  // which is set in the configuration file.
-  if (message.content.indexOf(settings.prefix) !== 0) return
-
-  // Here we separate our "command" name, and our "arguments" for the command.
-  // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
-  // command = say
-  // args = ["Is", "this", "the", "real", "life?"]
-  const args = message.content
-    .slice(settings.prefix.length)
-    .trim()
-    .match(/[^\s"']+|"([^"]*)"|'([^']*)'/g)
-  const command = args.shift().toLowerCase()
-
-  // Check whether the command, or alias, exist in the collections defined
-  // in app.js.
-  const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command))
-  // using this const letName = thing OR otherthign; is a pretty efficient
-  // and clean way to grab one of 2 values!
-
-  // Some commands may not be useable in DMs. This check prevents those commands from running
-  // and return a friendly error message.
-  if (cmd && !message.guild && cmd.conf.guildOnly) {
-    return message.channel.send('This command is unavailable via private message. Please run this command in a guild.')
-  }
-
-  // If the command exists, **AND** the user has permission, run it.
-  if (cmd && level >= cmd.conf.permLevel) {
-    client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(',')}`, 'CMD')
-    cmd.run(client, message, args, level)
-  }
-  // Best Practice: **do not** reply with a message if the command does
-  // not exist, or permissions lack.
 }
