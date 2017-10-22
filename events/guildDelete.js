@@ -1,6 +1,11 @@
-// This event executes when a new guild (server) is left.
+const Event = require('../base/events/Event.js')
 
-module.exports = (client, guild) => {
-  // Well they're gone. Let's remove them from the settings!
-  client.settings.delete(guild.id)
+class GuildDelete extends Event {
+  constructor(client) {
+    super(client)
+  }
+  async run(guild) {
+    this.client.settings.delete(guild.id)
+  }
 }
+module.exports = GuildDelete

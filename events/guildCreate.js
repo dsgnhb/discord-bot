@@ -1,6 +1,11 @@
-// This event executes when a new guild (server) is joined.
+const Event = require('../base/events/Event.js')
 
-module.exports = (client, guild) => {
-  // We need to add this guild to our settings!
-  client.settings.set(guild.id, client.config.defaultSettings)
+class GuildCreate extends Event {
+  constructor(client) {
+    super(client)
+  }
+  async run(guild) {
+    this.client.settings.set(guild.id, this.client.config.defaultSettings)
+  }
 }
+module.exports = GuildCreate
