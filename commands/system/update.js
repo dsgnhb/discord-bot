@@ -22,6 +22,8 @@ class Update extends Command {
   async run(message, args) {
     const settings = message.settings
 
+    message.channel.send('Suche nach neuem Update...')
+
     let repository = await require('../../package.json').repository.url.split('+')[1]
     delete require.cache[require.resolve('../../package.json')]
 
@@ -32,6 +34,9 @@ class Update extends Command {
 
     const changelog = await require('../../changelog.json')
     let packageJSON = await require('../../package.json')
+
+    console.log(changelog)
+    console.log(packageJSON)
 
     await message.channel.send(
       new RichEmbed()
