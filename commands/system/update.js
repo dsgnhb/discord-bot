@@ -28,16 +28,16 @@ class Update extends Command {
     const { stdout, stderr, err } = await exec(`git pull ${repository}`, { cwd: path.join(__dirname, '../../') }).catch(err => ({ err }))
     if (err) return console.error(err)
 
-    if (stdout.toString().includes('Already up-to-date.')) return message.channnel.send('Already up-to-date.')
+    if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Already up-to-date.')
 
     const changelog = require('../../changelog.json')
     const newVersion = require('../../package.json').version
     await message.channel.send(
       new RichEmbed()
-        .setAuthor('Changelog')
+        .setAuthor(`Changelog v${NewVersion}`)
+        .setDescription(changelog[newVersion].join('\n'))
         .setURL(repository.slice(0, -4))
         .setColor(settings.embedColor)
-        .addField(`v${NewVersion}`, chnagelog[newVersion].join('\n'), false)
         .setTimestamp()
         .setFooter(settings.embedFooter, settings.embedIcon)
     )
