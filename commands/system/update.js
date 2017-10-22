@@ -31,10 +31,10 @@ class Update extends Command {
     if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Already up-to-date.')
 
     const changelog = require('../../changelog.json')
-    const newVersion = require('../../package.json').version
+    const newVersion = await require('../../package.json').version
     await message.channel.send(
       new RichEmbed()
-        .setAuthor(`Changelog v${NewVersion}`)
+        .setAuthor(`Changelog v${newVersion}`)
         .setDescription(changelog[newVersion].join('\n'))
         .setURL(repository.slice(0, -4))
         .setColor(settings.embedColor)
