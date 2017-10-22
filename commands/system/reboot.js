@@ -4,6 +4,7 @@ class Reboot extends Command {
   constructor(client) {
     super(client, {
       name: 'reboot',
+      aliases: ['restart'],
       category: 'System',
       description: 'Wenn alles nicht mehr klappt.. einfach neustart',
       usage: 'reboot',
