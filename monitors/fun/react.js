@@ -42,10 +42,10 @@ class React extends Monitor {
       const randomOutput = reactions[name].output[Math.floor(Math.random() * reactions[name].output.length)]
 
       const guild = message.guild
-      if (guild.available) guild.members.get(client.user.id).setNickname(name)
+      if (guild.available) guild.members.get(this.client.user.id).setNickname(name)
       await message.channel.send(randomOutput)
       this.client.log('log', `${name} reacted on ${message.author.username}'s (${message.author.id}) message with answer "${randomOutput}"`, 'React')
-      if (guild.available) guild.members.get(client.user.id).setNickname('designhub')
+      if (guild.available) guild.members.get(this.client.user.id).setNickname('designhub')
     }
   }
 }
