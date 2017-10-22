@@ -1,9 +1,11 @@
-module.exports = class {
-  constructor(client) {
-    this.client = client
-  }
+const Event = require('../base/events/Event.js')
 
-  async run() {
-    client.log('error', e)
+class Error extends Event {
+  constructor(client) {
+    super(client)
+  }
+  async run(e) {
+    this.client.log('error', e)
   }
 }
+module.exports = Error

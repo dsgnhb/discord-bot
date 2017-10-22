@@ -1,6 +1,8 @@
-module.exports = class {
+const Event = require('../base/events/Event.js')
+
+class Ready extends Event {
   constructor(client) {
-    this.client = client
+    super(client)
   }
 
   async run() {
@@ -14,3 +16,5 @@ module.exports = class {
     this.client.user.setPresence({ game: { name: 'dsgnhb.de', type: 0 } })
   }
 }
+
+module.exports = Ready

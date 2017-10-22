@@ -1,8 +1,11 @@
-module.exports = class {
+const Event = require('../base/events/Event.js')
+
+class GuildCreate extends Event {
   constructor(client) {
-    this.client = client
+    super(client)
   }
   async run(guild) {
     this.client.settings.set(guild.id, this.client.config.defaultSettings)
   }
 }
+module.exports = GuildCreate

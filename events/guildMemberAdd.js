@@ -1,6 +1,8 @@
-module.exports = class {
+const Event = require('../base/events/Event.js')
+
+class GuildMemberAdd extends Event {
   constructor(client) {
-    this.client = client
+    super(client)
   }
   async run(member) {
     this.client.log('Log', `${member.displayName} (${member.id}) joined the Server!`, '+')
@@ -9,3 +11,4 @@ module.exports = class {
     this.client.log('Log', `Given ${role.name} to ${member.displayName} (${member.id}).`, 'Role')
   }
 }
+module.exports = GuildMemberAdd

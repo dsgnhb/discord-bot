@@ -1,9 +1,11 @@
+const Event = require('../base/events/Event.js')
+
 const { promisify } = require('util')
 const readdir = promisify(require('fs').readdir)
 
-module.exports = class {
+class Message extends Event {
   constructor(client) {
-    this.client = client
+    super(client)
   }
   async run(message) {
     if (message.author.bot) return
@@ -56,3 +58,5 @@ module.exports = class {
     cmd.run(message, args)
   }
 }
+
+module.exports = Message
