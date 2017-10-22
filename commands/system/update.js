@@ -40,11 +40,14 @@ class Update extends Command {
 
     let changelogVersion = changelog[packageJSON.version]
 
+    let i = 0
     while (!changelogVersion) {
       delete require.cache[require.resolve('../../changelog.json')]
       changelog = await require('../../changelog.json')
-      changelogVersion = changelog[packageJSON.version]
       console.log(changelog)
+      changelogVersion = changelog[packageJSON.version]
+      i++
+      if (i === 20) changelogVersion = 'Unbekannter Fehler'
     }
 
     await message.channel.send(
