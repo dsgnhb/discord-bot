@@ -1,7 +1,6 @@
 # Discord Bot
 Discord Bot running designhub's Discord Server based on GuideBot from AnIdiotsGuide written in discord.js
-
-Fell free to contribute if any feature's missing
+**Fell free to contribute if any feature's missing**
 ***
 
 ## Requirements

@@ -43,6 +43,8 @@ class Update extends Command {
         .setFooter(settings.embedFooter, settings.embedIcon)
     )
 
+    message.channel.send('Update wird heruntergeladen...')
+    client.wait(2000)
     /*
     const out = []
     if (stdout) out.push(stdout)

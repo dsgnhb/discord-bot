@@ -4,7 +4,7 @@ class Sub extends Command {
   constructor(client) {
     super(client, {
       name: 'sub',
-      aliases: ['subscribe'],
+      aliases: ['subscribe', 'sup'],
       category: 'System',
       description: 'Du bist hyped auf designhub? Mit @subscriber bleibst du immer up-to-date!',
       usage: 'sub',
