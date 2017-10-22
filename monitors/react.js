@@ -10,7 +10,11 @@ exports.run = async (client, message, level) => {
         'schokolade',
         'dome'
       ],
-      output: ['Was denn HIER los?!!', 'Was das denn HIER??!', 'Was machst du DENN??!']
+      output: [
+        'Was denn HIER los?!!',
+        'Was das denn HIER??!', 
+        'Was machst du DENN??!'
+      ]
     },
     Andreas: {
       input: [
@@ -21,11 +25,21 @@ exports.run = async (client, message, level) => {
         'das bleibt alles so',
         'ob du hier bist'
       ],
-      output: ['Das Kinderzimmer ist sauber!', 'Halt stop']
+      output: [
+        'Das Kinderzimmer ist sauber!', 
+        'Halt stop',
+        'Es ist Obst im Haus!',
+        'Beruhigt habe ich mich jetzt nicht!',
+        'Ne, jetzt hälst Du mal die Schnauze!'
+      ]
     },
     GommeHD: {
-      input: ['/gommemode'],
-      output: ['_***trololol!***_']
+      input: [
+        '/gommemode'
+      ],
+      output: [
+        '_***trololol!***_'
+      ]
     }
   }
 
