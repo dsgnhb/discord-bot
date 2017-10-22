@@ -19,8 +19,8 @@ class Changelog extends Command {
   async run(message, args) {
     const settings = message.settings
 
-    const changelog = require('../../changelog.json')
-    const packageJSON = require('../../package.json')
+    const changelog = await require('../../changelog.json')
+    const packageJSON = await require('../../package.json')
 
     await message.channel.send(
       new RichEmbed()

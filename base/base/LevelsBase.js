@@ -31,7 +31,8 @@ class LevelsBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
-          if (error || !body) reject(error)
+          if (error) reject(error)
+          if (!body) reject('No Body!')
           if (body.error) reject(body.error)
           _this.client.log('log', `${member.username} (${member.id}) just earned ${number} Chests!`, 'Chests')
           resolve(true)
@@ -60,7 +61,8 @@ class LevelsBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
-          if (error || !body) reject(error)
+          if (error) reject(error)
+          if (!body) reject('No Body!')
           if (body.error) resolve(false)
 
           _this.client.log('log', `${member.username} (${member.id}) just lost ${number} Chests!`, 'Chests')
@@ -214,7 +216,8 @@ class LevelsBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
-          if (error || !body) reject(error)
+          if (error) reject(error)
+          if (!body) reject('No Body!')
           if (body.error) reject(body.error)
 
           _this.client.log('log', `${member.username} (${member.id}) just earned ${number} XP!`, 'XP')
@@ -253,7 +256,8 @@ class LevelsBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
-          if (error || !body) reject(error)
+          if (error) reject(error)
+          if (!body) reject('No Body!')
           if (body.error) resolve(false)
           _this.client.log('log', `${member.username} (${member.id}) just lost ${number} XP!`, 'XP')
           resolve(true)
@@ -272,32 +276,29 @@ class LevelsBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
-          if (error) console.log(error)
+          if (error) reject(error)
+          if (!body) reject('No Body!')
 
-          if (body.error) {
-            _this.client.log('error', body.error)
-            reject(error)
-          } else if (!body.xp) {
-            resolve(false)
-          } else {
-            let level = _this.xpToLevel(body.xp)
-            let remainingXP = 0
-            let x = 0
-            for (let i = 0; i < level; i++) {
-              x += _this.xpForLevel(i)
-              remainingXP = body.xp - x
-            }
+          if (body.error) reject(error)
+          if (!body.xp) resolve(false)
 
-            let data = {
-              rank: body.rank,
-              totalXP: body.xp,
-              level: _this.xpToLevel(body.xp),
-              levelXP: _this.xpForLevel(level),
-              remainingXP: remainingXP,
-              chests: body.chests
-            }
-            resolve(data)
+          let level = _this.xpToLevel(body.xp)
+          let remainingXP = 0
+          let x = 0
+          for (let i = 0; i < level; i++) {
+            x += _this.xpForLevel(i)
+            remainingXP = body.xp - x
           }
+
+          let data = {
+            rank: body.rank,
+            totalXP: body.xp,
+            level: _this.xpToLevel(body.xp),
+            levelXP: _this.xpForLevel(level),
+            remainingXP: remainingXP,
+            chests: body.chests
+          }
+          resolve(data)
         }
       )
     })

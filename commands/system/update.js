@@ -22,7 +22,7 @@ class Update extends Command {
   async run(message, args) {
     const settings = message.settings
 
-    let repository = require('../../package.json').repository.url.split('+')[1]
+    let repository = await require('../../package.json').repository.url.split('+')[1]
     delete require.cache[require.resolve('../../package.json')]
 
     const { stdout, stderr, err } = await exec(`git pull ${repository}`, { cwd: path.join(__dirname, '../../') }).catch(err => ({ err }))
@@ -30,8 +30,8 @@ class Update extends Command {
 
     if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Already up-to-date.')
 
-    const changelog = require('../../changelog.json')
-    let packageJSON = require('../../package.json')
+    const changelog = await require('../../changelog.json')
+    let packageJSON = await require('../../package.json')
 
     await message.channel.send(
       new RichEmbed()
