@@ -30,7 +30,7 @@ class Update extends Command {
     const { stdout, stderr, err } = await exec(`git pull ${repository}`, { cwd: path.join(__dirname, '../../') }).catch(err => ({ err }))
     if (err) return console.error(err)
 
-    if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Already up-to-date.')
+    if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Alles aktuell!')
 
     let changelog = await require('../../changelog.json')
     let packageJSON = await require('../../package.json')

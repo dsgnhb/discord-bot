@@ -128,7 +128,7 @@ class TopDesignBase extends Base {
   async addPost(member, image) {
     const _this = this
     return new Promise((resolve, reject) => {
-      let avatar = message.author.displayAvatarURL
+      let avatar = member.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
@@ -137,21 +137,12 @@ class TopDesignBase extends Base {
           url: this.client.config.apiEndpoint + '/topdesign/posts',
           body: { image: image, content: '#topdesign', username: member.username, userid: member.id, avatar: avatar },
           json: true,
-          headers: { Token: client.config.tokens.api }
+          headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
           if (error || !body || body.error) reject(error)
           if (body.action === 'add') resolve(body)
         }
-      )
-      request.post(
-        {
-          url: url,
-          body: postData,
-          json: true,
-          headers: { Token: this.client.config.tokens.api }
-        },
-        function(error, response, body) {}
       )
     })
   }

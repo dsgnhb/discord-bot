@@ -3,7 +3,7 @@ const Monitor = require('../../base/monitors/Monitor.js')
 class Updates extends Monitor {
   constructor(client) {
     super(client, {
-      name: 'Stats',
+      name: 'Updates',
       description: 'Reagiert auf Nachrichten in #updates',
       category: 'System',
       dm: false
