@@ -35,7 +35,7 @@ class Update extends Command {
 
     await message.channel.send(
       new RichEmbed()
-        .setAuthor(`Changelog v${packageJSON.version}`)
+        .setAuthor(`Neue Version: Changelog v${packageJSON.version}`)
         .setDescription(changelog[packageJSON.version].join('\n'))
         .setURL(packageJSON.repository.url.split('+')[1].slice(0, -4))
         .setColor(settings.embedColor)

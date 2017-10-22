@@ -19,7 +19,7 @@ class Mute extends Command {
     if (!toMute) return message.channel.send('Wen soll ich muten? Bin ja schon ganz aufgeregt ;)')
     if (toMute.id === message.author.id) return message.channel.send('Das bist doch du xd')
     const muteRole = message.guild.roles.find('name', 'Muted')
-    if (!muteRole) return messgae.channel.send('DREGGS SERVER! HIER GIBST NEDMAL NE MUTE ROLE!')
+    if (!muteRole) return message.channel.send('DREGGS SERVER! HIER GIBST NEDMAL NE MUTE ROLE!')
     const time = args[1] || 60 * 1000
 
     if (toMute.roles.has(muteRole.id)) {
