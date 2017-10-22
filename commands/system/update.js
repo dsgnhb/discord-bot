@@ -49,7 +49,7 @@ class Update extends Command {
     )
 
     message.channel.send('Update wird heruntergeladen...')
-    client.wait(2000)
+    this.client.wait(2000)
     /*
     const out = []
     if (stdout) out.push(stdout)
