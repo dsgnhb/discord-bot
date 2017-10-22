@@ -19,7 +19,7 @@ class Level extends LevelsCommand {
     try {
       const settings = message.settings
       let user = message.mentions.users.first() || message.author
-      const data = await this.getData(user)
+      const data = await this.f.getData(user)
       if (!data) return message.channel.send("Dich gibt's hier ned. Noch ned.")
       message.channel.send(
         new RichEmbed()

@@ -14,12 +14,12 @@ class Posts extends TopDesignCommand {
 
   async run(message, args) {
     try {
-      const request = await this.getPosts()
+      const request = await this.f.getPosts()
       if (!request) return message.channel.send('**TopDesign** | Es wurden für diesen Monat noch keine Designs eingeschickt.')
       let posts = ''
       for (let i = 0; i < request.length; i++) {
         let entry = request[i]
-        posts += '**#' + entry.id + '** | ' + entry.username + '  -  **' + entry.likes + '** ' + this.voteOrVotes(entry.likes) + '\n'
+        posts += '**#' + entry.id + '** | ' + entry.username + '  -  **' + entry.likes + '** ' + this.f.voteOrVotes(entry.likes) + '\n'
       }
       message.channel.send('**TopDesign** | Alle aktiven Posts findest du hier: https://dsgnhb.de/topdesign \n\n' + posts + '\nNutze `!vote #id` um für einen Post zu voten.')
     } catch (error) {

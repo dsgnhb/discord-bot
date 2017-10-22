@@ -13,15 +13,15 @@ class Vote extends TopDesignCommand {
   }
 
   async run(message, args) {
-    const postID = this.getPostID(args)
+    const postID = this.f.getPostID(args)
     if (!postID) return message.channel.send('**TopDesign** | Nutze `!vote #[Nr des Posts]` um für einen Post zu voten.')
     try {
-      const request = await this.votePost(postID, message.author.id)
+      const request = await this.f.votePost(postID, message.author.id)
       if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
       if (request.action == 'remove')
-        return message.channel.send(`**TopDesign** | Dein Vote wurde entfernt! Der Post von **${request.posted_by}** hat jetzt **${request.likes} ${this.voteOrVotes(request.likes)}**.`)
+        return message.channel.send(`**TopDesign** | Dein Vote wurde entfernt! Der Post von **${request.posted_by}** hat jetzt **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`)
       if (request.action == 'add')
-        return message.channel.send(`**TopDesign** | Dein Vote wurde hinzugefügt! Der Post von **${request.posted_by}** hat jetzt **${request.likes} ${this.voteOrVotes(request.likes)}**.`)
+        return message.channel.send(`**TopDesign** | Dein Vote wurde hinzugefügt! Der Post von **${request.posted_by}** hat jetzt **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`)
     } catch (error) {
       console.log(error)
       message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')

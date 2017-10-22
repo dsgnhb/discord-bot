@@ -21,11 +21,11 @@ class Give extends LevelsCommand {
     if (!Number.isInteger(amount)) return message.channel.send('Is ' + amount + ' ne Zahl? lol')
     switch (method) {
       case 'xp':
-        this.addXP(user, amount)
+        this.f.addXP(user, amount)
         message.channel.send(`Es wurden ${amount} XP an ${user} vergeben!`)
         break
       case 'chests':
-        this.addChests(user, amount)
+        this.f.addChests(user, amount)
         message.channel.send(`Es wurden ${amount} Chests an ${user} vergeben!`)
         break
       default:

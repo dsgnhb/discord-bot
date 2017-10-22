@@ -1,4 +1,4 @@
-const LevelsMonitor = require('../base/monitors/LevelsMonitor.js')
+const LevelsMonitor = require('../../base/monitors/LevelsMonitor.js')
 
 class Levels extends LevelsMonitor {
   constructor(client) {
@@ -15,7 +15,7 @@ class Levels extends LevelsMonitor {
       if (this.client.config.levelSystem === false) {
         this.client.log('log', `Levels System disabled! Could not give XP to ${message.author.username} (${message.author.id})!`, 'Levels')
       } else {
-        this.addXP(message.author)
+        this.f.addXP(message.author)
       }
     } else {
       return

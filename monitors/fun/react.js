@@ -1,4 +1,4 @@
-const Monitor = require('../base/monitors/Monitor.js')
+const Monitor = require('../../base/monitors/Monitor.js')
 
 class React extends Monitor {
   constructor(client) {

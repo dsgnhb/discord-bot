@@ -1,4 +1,4 @@
-const TopDesignMonitor = require('../base/monitors/TopDesignMonitor.js')
+const TopDesignMonitor = require('../../base/monitors/TopDesignMonitor.js')
 
 class TopDesign extends TopDesignMonitor {
   constructor(client) {
@@ -16,7 +16,7 @@ class TopDesign extends TopDesignMonitor {
     try {
       message.channel.startTyping()
       let image = message.attachments.first().proxyURL
-      const request = await this.addPost(message.author, image)
+      const request = await this.f.addPost(message.author, image)
       message.channel.stopTyping(true)
 
       client.log('log', `${message.author.username} (${message.author.id}) successfully submitted to #topdesign`, 'MONITOR')
