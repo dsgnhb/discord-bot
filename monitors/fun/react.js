@@ -35,8 +35,7 @@ class React extends Monitor {
         output: ['_***trololol!***_']
       }
     }
-
-    let possibleKeys = Object.keys(reactions).filter(k => reactions[k].input.some(word => message.content.toLowerCase().includes(word)))
+    let possibleKeys = Object.keys(reactions).filter(k => reactions[k].input.some(word => message.content.toLowerCase().includes(word.toLowerCase())))
     if (possibleKeys.length > 0) {
       let name = possibleKeys[0]
       const randomOutput = reactions[name].output[Math.floor(Math.random() * reactions[name].output.length)]

@@ -1,4 +1,5 @@
 {
+  "2.0.15": ["Updated !join-command's usage"],
   "2.0.14": ["Fixed TopDesign-Monitor"],
   "2.0.13": ["While-Loop in !update now limited to 20 repeats"],
   "2.0.12": ["New Alias for !chest: !c"],

@@ -6,7 +6,7 @@ class Join extends Command {
       name: 'join',
       category: 'System',
       description: 'Bekomme nen Rang ohne nen Admin vollzuspamen. - voll schlau von mir',
-      usage: 'join <role>',
+      usage: 'join role1 role2 ...',
       dm: false,
       guild: true,
       permLevel: 0
@@ -15,7 +15,7 @@ class Join extends Command {
 
   async run(message, args) {
     const skillGroups = ['css', 'html', 'affinityphoto', 'ruby', 'sql', 'c++', 'c#', 'swift', 'python', 'java', 'php', 'javascript', 'blender', 'cinema4d', 'gimp', 'photoshop', 'paint']
-    if (args.length === 0) return message.channel.send(`Nutze \`!join <role>\` um einer der folgenden Skill-Gruppe beizutreten: \`${skillGroups.join('`, `')}\`.`)
+    if (args.length === 0) return message.channel.send(`Nutze \`!join role1 role2 ...\` um einer der folgenden Skill-Gruppe beizutreten: \`${skillGroups.join('`, `')}\`.`)
     let addedRanks = [],
       removedRanks = []
     for (let rank of args) {
