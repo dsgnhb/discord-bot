@@ -1,4 +1,5 @@
 {
+  "2.0.17": ["Fixed Error Logging in TopDesignBase"],
   "2.0.16": ["Fixed !voted"],
   "2.0.15": ["Updated !join-command's usage"],
   "2.0.14": ["Fixed TopDesign-Monitor"],
