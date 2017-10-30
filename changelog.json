@@ -1,4 +1,5 @@
 {
+  "2.0.20": ["Fixed reactions on announcements"],
   "2.0.19": ["Online members in !serverinfo"],
   "2.0.18": ["Updated Permlevels"],
   "2.0.17": ["Fixed Error Logging in TopDesignBase"],

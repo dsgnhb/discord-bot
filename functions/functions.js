@@ -11,6 +11,10 @@ module.exports = client => {
     return { d: d, h: h, m: m, s: s }
   }
 
+  client.randomNum = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
   /*
       SINGLE-LINE AWAITMESSAGE
       A simple way to grab a single reply, from the user that initiated
