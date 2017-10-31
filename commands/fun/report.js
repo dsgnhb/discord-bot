@@ -6,7 +6,8 @@ class Report extends FunCommand {
       name: 'report',
       description: 'Die Gomme-Mods sind immer für dich da.',
       usage: 'report <@user> (<Grund>)',
-      permLevel: 0
+      permLevel: 0,
+      price: 5
     })
   }
 

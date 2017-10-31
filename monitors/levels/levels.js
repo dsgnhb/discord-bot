@@ -16,6 +16,7 @@ class Levels extends LevelsMonitor {
         this.client.log('log', `Levels System disabled! Could not give XP to ${message.author.username} (${message.author.id})!`, 'Levels')
       } else {
         this.f.addXP(message.author)
+        if (message.content.includes('<:gomme:313418733861470210>')) this.f.addCoins(message.author, 1)
       }
     } else {
       return

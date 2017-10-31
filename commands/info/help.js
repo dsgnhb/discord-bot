@@ -58,6 +58,7 @@ class Help extends Command {
           .setColor(settings.embedColor)
           .setDescription(command.help.description)
           .addField('Usage', `${settings.prefix}${command.help.usage}`, false)
+          .addField('Coins', command.help.price, true)
           .setTimestamp()
           .setFooter(settings.embedFooter, settings.embedIcon)
         message.channel.send(embed)

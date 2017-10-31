@@ -1,4 +1,5 @@
 const Event = require('../base/events/Event.js')
+const LevelsBase = require('../base/base/LevelsBase.js')
 
 const { promisify } = require('util')
 const readdir = promisify(require('fs').readdir)
@@ -6,6 +7,7 @@ const readdir = promisify(require('fs').readdir)
 class Message extends Event {
   constructor(client) {
     super(client)
+    this.levels = new LevelsBase(client)
   }
   async run(message) {
     if (message.author.bot) return
@@ -54,6 +56,10 @@ class Message extends Event {
     }
 
     if (level < cmd.conf.permLevel) return
+    if (cmd.help.price > 0) {
+      const coins = await this.levels.removeCoins(message.author, cmd.help.price)
+      if (!coins) return message.channel.send(`Du hast **nicht genug Coins** um diesen Command zu nutzen! Du brauchst mindestens **${cmd.help.price} Coins**.`)
+    }
     this.client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(',')}`, 'CMD')
     cmd.run(message, args)
   }

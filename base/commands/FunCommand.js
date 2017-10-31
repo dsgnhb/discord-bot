@@ -5,7 +5,8 @@ class FunCommand extends Command {
     super(
       client,
       Object.assign(options, {
-        category: 'Fun'
+        category: 'Fun',
+        price: 10
       })
     )
   }

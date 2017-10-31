@@ -28,6 +28,10 @@ class Give extends LevelsCommand {
         this.f.addChests(user, amount)
         message.channel.send(`Es wurden ${amount} Chests an ${user} vergeben!`)
         break
+      case 'coins':
+        this.f.addCoins(user, amount)
+        message.channel.send(`Es wurden ${amount} Coins an ${user} vergeben!`)
+        break
       default:
         break
     }
