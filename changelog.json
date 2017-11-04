@@ -1,4 +1,5 @@
 {
+  "2.1.1": ["Admins not charged for commands", "Same membercount in !rank and !serverinfo"],
   "2.1.0": ["COIN SYSTEM"],
   "2.0.21": ["Twitter module"],
   "2.0.20": ["Fixed reactions on announcements"],
