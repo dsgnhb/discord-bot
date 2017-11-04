@@ -3,8 +3,8 @@ const fs = require('fs');
 
 module.exports = (message, client) => {
     const stats = client.stats;
-    const keys = stats.keys();
-    const users = Object.values(stats).map(a => a.member);
+    const keys = stats.keyArray();
+    const users = stats.map((prop, key) => prop.member);
 
     const list = [];
     const pattern = /(\d{1,2})\.(\d{1,2})\.(\d{4})/;
