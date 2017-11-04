@@ -56,7 +56,7 @@ class Message extends Event {
     }
 
     if (level < cmd.conf.permLevel) return
-    if (cmd.help.price > 0) {
+    if (cmd.help.price > 0 && level < 9) {
       const coins = await this.levels.removeCoins(message.author, cmd.help.price)
       if (!coins) return message.channel.send(`Du hast **nicht genug Coins** um diesen Command zu nutzen! Du brauchst mindestens **${cmd.help.price} Coins**.`)
     }

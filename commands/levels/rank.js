@@ -26,7 +26,7 @@ class Level extends LevelsCommand {
           .setAuthor('Levels | ' + user.username, user.avatarURL)
           .setURL('https://dsgnhb.de/levels/')
           .setColor(settings.embedColor)
-          .addField('Rank', `**${data.rank}**/${this.client.users.size}`, true)
+          .addField('Rank', `**${data.rank}**/${message.guild.memberCount}`, true)
           .addField('Level', `**${data.level}** (${data.totalXP} XP)`, true)
           .addField('Coins', `**${data.coins}**`, true)
           .setTimestamp()
