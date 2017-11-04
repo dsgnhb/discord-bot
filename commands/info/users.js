@@ -1,4 +1,5 @@
-const Command = require('../../base/commands/Command.js')
+const Command = require('../../base/commands/Command.js');
+const sendMemberChart = require('../../functions/memberchart');
 
 class Messages extends Command {
   constructor(client) {
@@ -14,12 +15,8 @@ class Messages extends Command {
   }
 
   async run(message, args) {
-    const stats = this.client.stats
-    let msg = stats.map((prop, key) => {
-      return `*${key}* - **${prop.member}** Member`
-    })
-    message.channel.send(msg.join(`\n`))
+    sendMemberChart(message, this.client);
   }
 }
 
-module.exports = Messages
+module.exports = Messages;
