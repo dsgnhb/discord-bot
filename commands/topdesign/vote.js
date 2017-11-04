@@ -13,6 +13,7 @@ class Vote extends TopDesignCommand {
   }
 
   async run(message, args) {
+    if (args[0] === '<:gomme:313418733861470210>') return message.channel.send(`Vielen Dank für deine Stimme! ${this.client.emojis.get('313418733861470210')}`)
     const postID = this.f.getPostID(args)
     if (!postID) return message.channel.send('**TopDesign** | Nutze `!vote #[Nr des Posts]` um für einen Post zu voten.')
     try {

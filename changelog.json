@@ -1,4 +1,6 @@
 {
+  "2.2.2": ["!vote :gomme:"],
+  "2.2.1": ["!users Chart"],
   "2.2.0": ["STARBOARD - very useless"],
   "2.1.2": ["Gifs in !show"],
   "2.1.1": ["Admins not charged for commands", "Same membercount in !rank and !serverinfo"],
