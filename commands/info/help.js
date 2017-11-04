@@ -6,7 +6,7 @@ class Help extends Command {
   constructor(client) {
     super(client, {
       name: 'help',
-      category: 'System',
+      category: 'Help',
       description: 'Den Command hast du doch gerade ausgeführt..',
       usage: 'help (<command>)',
       permLevel: 0
