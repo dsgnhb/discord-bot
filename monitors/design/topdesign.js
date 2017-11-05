@@ -21,15 +21,16 @@ class TopDesign extends TopDesignMonitor {
         const request = await this.f.addPost(message.author, image)
         message.channel.stopTyping(true)
 
-        this.client.log('log', `${message.author.username} (${message.author.id}) successfully submitted to #topdesign`, 'MONITOR')
+        if (request.action === 'double') return message.reply('Du für diesen Monat schon ein Design eingeschickt!')
         if (request.action === 'add') {
           this.levels.addCoins(message.author, 10)
-          return message.channel.send('**TopDesign** | Dein Post wurde erfolgreich bei Top Design eingereicht. Er kann mit `!vote #' + request.postid + '` bewertet werden.')
+          this.client.log('log', `${message.author.username} (${message.author.id}) successfully submitted to #topdesign`, 'MONITOR')
+          return message.reply('Dein Post wurde erfolgreich bei Top Design eingereicht. Er kann mit `!vote #' + request.postid + '` bewertet werden.')
         }
       } catch (error) {
         console.log(error)
         message.channel.stopTyping(true)
-        message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+        message.reply('Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
       }
     }
   }

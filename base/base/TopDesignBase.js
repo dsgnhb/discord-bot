@@ -147,7 +147,9 @@ class TopDesignBase extends Base {
         function(error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body')
+          if (body.error === 'You already inserted the topdesign for this month.') resolve({ action: 'double' })
           if (body.error) reject(body.error)
+
           if (body.action === 'add') resolve(body)
         }
       )
