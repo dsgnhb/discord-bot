@@ -130,13 +130,12 @@ class Join extends Command {
     let addedRanks = [],
       removedRanks = []
 
-    for (let rankString of args) {
+    const joinRole = async (rankString, message) => {
       rankString = rankString.toLowerCase()
-
       if (rankString === 'designer') return message.reply('Kontaktiere einen Owner, um den Designer-Rang zu erhalten!')
 
       let rank = skillGroups.get(rankString)
-      if (!rank) return message.reply(usage)
+      if (!rank) return
 
       let role = message.guild.roles.get(rank.id)
       if (!role) return message.reply(`Rank ${rankString} nicht gefunden`)
@@ -157,6 +156,10 @@ class Join extends Command {
           console.log(ex)
         }
       }
+    }
+
+    for (let rankString of args) {
+      await joinRole(rankString, message)
     }
 
     if (addedRanks.length > 0) {
