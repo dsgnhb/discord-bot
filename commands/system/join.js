@@ -60,7 +60,7 @@ class Join extends Command {
         }
       ],
       [
-        'cineme4d',
+        'cinema4d',
         {
           name: 'Cinema4D',
           id: '342721168962486272'
@@ -138,7 +138,7 @@ class Join extends Command {
       if (!rank) return
 
       let role = message.guild.roles.get(rank.id)
-      if (!role) return message.reply(`Rank ${rankString} nicht gefunden`)
+      if (!role) return message.reply(`MEDDL! kann mal wer hier nen ${rank.name}-Rang erstellen?`)
 
       if (message.member.roles.has(role.id)) {
         try {
