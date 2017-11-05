@@ -1,4 +1,5 @@
 {
+  "2.2.3": ["!pay <@user> <amount>"],
   "2.2.2": ["!vote :gomme:"],
   "2.2.1": ["!users Chart"],
   "2.2.0": ["STARBOARD - very useless"],

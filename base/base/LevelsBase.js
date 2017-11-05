@@ -63,7 +63,7 @@ class LevelsBase extends Base {
         function(error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
-          if (body.error) resolve(false)
+          if (body.error) return resolve(false)
 
           _this.client.log('log', `${member.username} (${member.id}) just lost ${number} Chests!`, 'Chests')
           resolve(true)
@@ -260,7 +260,7 @@ class LevelsBase extends Base {
           if (error) reject(error)
           if (!body) reject('No Body!')
 
-          if (body.error) resolve(false)
+          if (body.error) return resolve(false)
           _this.client.log('log', `${member.username} (${member.id}) just lost ${number} XP!`, 'XP')
           resolve(true)
         }
@@ -312,7 +312,7 @@ class LevelsBase extends Base {
           if (error) reject(error)
           if (!body) reject('No Body!')
 
-          if (body.error) resolve(false)
+          if (body.error) return resolve(false)
           _this.client.log('log', `${member.username} (${member.id}) just lost ${number} Coins!`, 'Coins')
           resolve(true)
         }

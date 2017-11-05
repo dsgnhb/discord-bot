@@ -4,7 +4,7 @@ class Give extends LevelsCommand {
   constructor(client) {
     super(client, {
       name: 'give',
-      aliases: ['gebe', 'ichwill'],
+      aliases: ['ichwill'],
       description: 'Manipuliere die Stats eines Users (und werde Erster im Leaderboard).',
       usage: 'give xp/chests <@user> <amount>',
       dm: false,
