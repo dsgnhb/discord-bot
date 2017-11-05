@@ -18,7 +18,7 @@ class Pay extends LevelsCommand {
     const amount = Number(args[1])
     if (!user || !amount) return message.reply('Nutze `!pay <@user> <amount>` um endlich mal deine Schulden zu bezahlen.')
     if (user.id === message.author.id) return message.reply('Das macht ja mal garkeinen Sinn?!')
-    if (amount <= 0) return message.reply('He! Du wolltets mich wohl reinlegen. 😏')
+    if (amount <= 0) return message.reply('He! Du wolltest mich wohl reinlegen. 😏')
     try {
       if (!message.author.level >= 9) {
         const removeCoins = await this.f.removeCoins(message.author, amount)
