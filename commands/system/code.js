@@ -39,7 +39,7 @@ class Code extends Command {
     }
 
     if (!code) {
-      throw 'No JavaScript code  found.'
+      throw 'Da is kein JavaScript-Code zum formatieren.'
     }
 
     let beautifiedCode = beautify(code, { indent_size: 2, brace_style: 'none' })
