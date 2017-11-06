@@ -61,7 +61,11 @@ class Message extends Event {
       if (!coins) return message.channel.send(`Du hast **nicht genug Coins** um diesen Command zu nutzen! Du brauchst mindestens **${cmd.help.price} Coins**.`)
     }
     this.client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(',')}`, 'CMD')
-    cmd.run(message, args)
+    cmd.run(message, args).catch(error => {
+      if (error.length > 2000 || error === undefined || error.length < 1) return
+      this.client.log('log', error, `CMD | ${cmd.name}`)
+      message.channel.send(error)
+    })
   }
 }
 
