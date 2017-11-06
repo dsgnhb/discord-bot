@@ -204,7 +204,7 @@ class LevelsBase extends Base {
     return new Promise((resolve, reject) => {
       if (!number) number = this.randomNum(15, 20)
 
-      let avatar = member.avatarURL
+      let avatar = member.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
@@ -272,7 +272,7 @@ class LevelsBase extends Base {
     return new Promise((resolve, reject) => {
       if (!number) number = this.randomNum(15, 20)
 
-      let avatar = member.avatarURL
+      let avatar = member.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
