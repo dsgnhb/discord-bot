@@ -40,6 +40,7 @@ class Code extends Command {
     }
 
     if (!code) {
+      message.delete()
       throw 'Da is kein JavaScript-Code zum formatieren.'
     }
 
