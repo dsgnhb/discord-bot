@@ -6,7 +6,7 @@ class Level extends LevelsCommand {
   constructor(client) {
     super(client, {
       name: 'rank',
-      aliases: ['level', 'levels'],
+      aliases: ['level', 'levels', 'coins', 'chests'],
       description: 'Und.. Bin ich noch Erster? WAS?! APORED WIRD DEIN DORF VERBRENNEN!',
       usage: 'rank',
       dm: true,
@@ -29,6 +29,7 @@ class Level extends LevelsCommand {
           .addField('Rank', `**${data.rank}**/${message.guild.memberCount}`, true)
           .addField('Level', `**${data.level}** (${data.totalXP} XP)`, true)
           .addField('Coins', `**${data.coins}**`, true)
+          .addField('Chests', `**${data.chests}**`, true)
           .setTimestamp()
           .setFooter(settings.embedFooter, settings.embedIcon)
       )
