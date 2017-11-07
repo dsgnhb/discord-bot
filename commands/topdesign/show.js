@@ -19,9 +19,8 @@ class Show extends TopDesignCommand {
     try {
       const request = await this.f.getPost(postID)
       if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
-
-      if(!request.active) {
-        return message.channel.send("**TopDesign** | Du kannst dir dieses Design nicht ansehen, da es deaktiviert wurde.")
+      if (!request.active) {
+        return message.channel.send('**TopDesign** | Du kannst dir dieses Design nicht ansehen, da es deaktiviert wurde.')
       }
       const imageArray = request.image.split('.')
       const extention = imageArray[imageArray.length - 1]

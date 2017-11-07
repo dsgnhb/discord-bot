@@ -63,8 +63,8 @@ class Message extends Event {
     this.client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(',')}`, 'CMD')
     cmd.run(message, args).catch(error => {
       if (error.length > 2000 || error === undefined || error.length < 1) return
-      this.client.log('log', error, `CMD | ${cmd.name}`)
-      message.channel.send(error)
+      this.client.log('log', error, `CMD | ${cmd.help.name}`)
+      message.reply(error)
     })
   }
 }
