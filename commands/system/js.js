@@ -5,10 +5,11 @@ const { js_beautify: beautify } = require('js-beautify')
 class Code extends Command {
   constructor(client) {
     super(client, {
-      name: 'code',
+      name: 'js',
+      aliases: ['code'],
       category: 'System',
       description: 'Ganz ezy deinen Code nice posten.',
-      usage: 'code',
+      usage: 'js',
       dm: true,
       guild: true,
       permLevel: 0
@@ -45,6 +46,7 @@ class Code extends Command {
     let beautifiedCode = beautify(code, { indent_size: 2, brace_style: 'none' })
     beautifiedCode = this.reduceIndentation(beautifiedCode)
     message.channel.send(`${'```js'}\n${beautifiedCode}\n${'```'}`)
+    message.delete()
   }
   reduceIndentation(string) {
     let whitespace = string.match(/^(\s+)/)
