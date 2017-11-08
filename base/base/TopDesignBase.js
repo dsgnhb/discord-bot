@@ -34,8 +34,10 @@ class TopDesignBase extends Base {
         },
         function(error, response, body) {
           if (error) reject(error)
-          if (!body) reject('No Body')
-          if (body == 'Not found') resolve(false)
+          if (!body) reject('No Body!')
+
+          if (body.error) return resolve(false)
+          resolve(body)
           if (body.action == 'delete') resolve(true)
         }
       )
@@ -54,8 +56,9 @@ class TopDesignBase extends Base {
         },
         function(error, response, body) {
           if (error) reject(error)
-          if (!body) reject('No Body')
-          if (body == 'Not found') resolve(false)
+          if (!body) reject('No Body!')
+
+          if (body.error) return resolve(false)
           resolve(body)
         }
       )
@@ -74,7 +77,8 @@ class TopDesignBase extends Base {
         function(error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body')
-          if (body == 'Not found') resolve(false)
+
+          if (body.error == 'Not found') resolve(false)
           resolve(body)
         }
       )
@@ -89,7 +93,10 @@ class TopDesignBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
-          if (error || !body || body.error) reject(error)
+          if (error) reject(error)
+          if (!body) reject('No Body!')
+
+          if (body.error) return resolve(false)
           resolve(body)
         }
       )
@@ -104,8 +111,11 @@ class TopDesignBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         function(error, response, body) {
-          if (error || !body) reject(error)
-          if (body == []) reject(false)
+          if (error) reject(error)
+          if (!body) reject('No Body!')
+          if (body.error) return resolve(false)
+
+          if (body === []) resolve(false)
           resolve(body)
         }
       )
@@ -123,7 +133,7 @@ class TopDesignBase extends Base {
           if (error) reject(error)
           if (!body) reject('No Body')
           if (body.error) reject(body.error)
-          if (!body.hasOwnProperty(timeshort)) reject(false)
+          if (!body.hasOwnProperty(timeshort)) resolve(false)
           const month = body[timeshort]
           resolve(month)
         }

@@ -231,7 +231,7 @@ class LevelsBase extends Base {
                 _this.addCoins(member, coins)
                 _this.client.users.get(member.id).send(`Hey! Du bist jetzt **Level ${newLevel}** ! Viel Spaß mit **${coins} Coins!**`)
               } catch (error) {
-                console.log(error)
+                reject(error)
               }
             } else {
               _this.client.users.get(member.id).send(`Hey! Du bist jetzt **Level ${newLevel}** !`)
