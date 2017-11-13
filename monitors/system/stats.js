@@ -4,7 +4,7 @@ class Stats extends Monitor {
   constructor(client) {
     super(client, {
       name: 'Stats',
-      description: 'Tracket tägliche Nachrichten und Memberanzahl',
+      description: 'Trackt tägliche Nachrichten und Memberanzahl',
       category: 'System',
       dm: false
     })

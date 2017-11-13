@@ -18,11 +18,11 @@ class Status extends TopDesignCommand {
     try {
       const request = await this.f.statusPost(postID)
       if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
-      if (request.action == 'deactivate')
+      if (request.action === 'deactivate')
         return message.channel.send(
           `**TopDesign** | Der Post von **${request.posted_by}** mit der Nummer **#${postID}** wurde erfolgreich deaktiviert. Er hatte **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`
         )
-      if (request.action == 'activate')
+      if (request.action === 'activate')
         return message.channel.send(
           `**TopDesign** | Der Post von **${request.posted_by}** mit der Nummer **#${postID}** wurde erfolgreich aktiviert. Er hatte **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`
         )

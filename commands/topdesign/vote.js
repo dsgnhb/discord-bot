@@ -19,9 +19,9 @@ class Vote extends TopDesignCommand {
     try {
       const request = await this.f.votePost(postID, message.author.id)
       if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
-      if (request.action == 'remove')
+      if (request.action === 'remove')
         return message.channel.send(`**TopDesign** | Dein Vote wurde entfernt! Der Post von **${request.posted_by}** hat jetzt **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`)
-      if (request.action == 'add')
+      if (request.action === 'add')
         return message.channel.send(`**TopDesign** | Dein Vote wurde hinzugefügt! Der Post von **${request.posted_by}** hat jetzt **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`)
     } catch (error) {
       console.log(error)

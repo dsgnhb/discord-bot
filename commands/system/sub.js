@@ -27,3 +27,4 @@ class Sub extends Command {
 }
 
 module.exports = Sub
+
