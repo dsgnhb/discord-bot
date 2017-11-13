@@ -21,109 +21,133 @@ class Join extends Command {
         'developer',
         {
           name: 'Developer',
-          id: '342719412744224768'
+          id: '342719412744224768',
+          section: 'Development'
         }
       ],
       [
         'affinityphoto',
         {
           name: 'AffinityPhoto',
-          id: '342719412744224768'
+          id: '342719412744224768',
+          section: 'Design'
         }
       ],
       [
         'photoshop',
         {
           name: 'Photoshop',
-          id: '342721244610822155'
+          id: '342721244610822155',
+          section: 'Design'
         }
       ],
       [
         'aftereffects',
         {
           name: 'AfterEffects',
-          id: '376718659940384769'
+          id: '376718659940384769',
+          section: 'Design'
         }
       ],
       [
         'gimp',
         {
           name: 'Gimp',
-          id: '342722021542854666'
+          id: '342722021542854666',
+          section: 'Design'
         }
       ],
       [
         'paint',
         {
           name: 'Paint',
-          id: '357609251964846080'
+          id: '357609251964846080',
+          section: 'Design'
         }
       ],
       [
         'cinema4d',
         {
           name: 'Cinema4D',
-          id: '342721168962486272'
+          id: '342721168962486272',
+          section: 'Design'
         }
       ],
       [
         'blender',
         {
           name: 'Blender',
-          id: '342721614875721728'
+          id: '342721614875721728',
+          section: 'Design'
         }
       ],
       [
         'html/css',
         {
           name: 'HTML/CSS',
-          id: '342728054436528128'
+          id: '342728054436528128',
+          section: 'Development'
         }
       ],
       [
         'javascript',
         {
-          name: 'Javscript',
-          id: '342728624262217739'
+          name: 'Javascript',
+          id: '342728624262217739',
+          section: 'Development'
         }
       ],
       [
         'php',
         {
           name: 'PHP',
-          id: '342721563499560970'
+          id: '342721563499560970',
+          section: 'Development'
         }
       ],
       [
         'java',
         {
           name: 'Java',
-          id: '342721474777448459'
+          id: '342721474777448459',
+          section: 'Development'
         }
       ],
       [
         'c#',
         {
           name: 'C#',
-          id: '342723268983259137'
+          id: '342723268983259137',
+          section: 'Development'
         }
       ],
       [
         'c++',
         {
           name: 'C++',
-          id: '342976548552572929'
+          id: '342976548552572929',
+          section: 'Development'
         }
       ],
       [
         'sql',
         {
           name: 'SQL',
-          id: '342740582021464074'
+          id: '342740582021464074',
+          section: 'Development'
         }
       ]
     ])
-    const usage = `Nutze \`!join role1 role2 ...\` um einer der folgenden Skill-Gruppe beizutreten:\n \`${skillGroups.map(item => ` ${item.name}`)}\`.`
+
+    function sortBySkillSection(a,b) {
+      if (a.section === 'Development')
+        return -1;
+      if (b.section === 'Design')
+        return 1;
+      return 0;
+    }
+
+    const usage = `Nutze \`!join role1 role2 ...\` um einer der folgenden Skill-Gruppe beizutreten:\n \`${skillGroups.sort(sortBySkillSection).map(item => ` ${item.name}`)}\`.`
 
     if (args.length === 0) return message.reply(usage)
 
