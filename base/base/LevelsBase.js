@@ -63,7 +63,7 @@ class LevelsBase extends Base {
         function(error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
-          if (body.error) resolve(false)
+          if (body.error) return resolve(false)
 
           _this.client.log('log', `${member.username} (${member.id}) just lost ${number} Chests!`, 'Chests')
           resolve(true)
@@ -107,14 +107,6 @@ class LevelsBase extends Base {
         }
       },
       {
-        name: 'den Gommemode',
-        run: function(message) {
-          const role = message.guild.roles.find(r => r.name.toLowerCase() === '/gommemode')
-          message.member.addRole(role, 'Aus Kiste.')
-          message.channel.send('Endlich kannst du `/gommemode` nutzen! <:gomme:313418733861470210>')
-        }
-      },
-      {
         name: 'einen XP-Boost',
         run: function(message) {
           message.channel.send("**So much XP!** Für deine Treue erhälst du **101 XP** auf Lukas' Nacken! 💰")
@@ -126,6 +118,14 @@ class LevelsBase extends Base {
         run: function(message) {
           message.channel.send('**Wow!** Das hat sich ja richtig gelohnt! Hier hast du noch **ne Kiste**... 👍 💎')
           _this.addChests(message.author, 2)
+        }
+      },
+      {
+        name: 'ein paar Coins',
+        run: function(message) {
+          const coins = _this.randomNum(10, 40)
+          message.channel.send(`**Yeey!** Viel Spaß mit **${coins} Coins**! 👍 💎`)
+          _this.addCoins(message.author)
         }
       },
       {
@@ -204,7 +204,7 @@ class LevelsBase extends Base {
     return new Promise((resolve, reject) => {
       if (!number) number = this.randomNum(15, 20)
 
-      let avatar = member.avatarURL
+      let avatar = member.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
@@ -227,10 +227,11 @@ class LevelsBase extends Base {
           if (newLevel > oldLevel) {
             if (newLevel % 2 === 0) {
               try {
-                const success = _this.addChests(member, 1)
-                _this.client.users.get(member.id).send(`Hey! Du bist jetzt **Level ${newLevel}** ! Du hast eine neue Kiste.`)
+                const coins = 100 + newLevel * 2
+                _this.addCoins(member, coins)
+                _this.client.users.get(member.id).send(`Hey! Du bist jetzt **Level ${newLevel}** ! Viel Spaß mit **${coins} Coins!**`)
               } catch (error) {
-                console.log(error)
+                reject(error)
               }
             } else {
               _this.client.users.get(member.id).send(`Hey! Du bist jetzt **Level ${newLevel}** !`)
@@ -258,8 +259,61 @@ class LevelsBase extends Base {
         function(error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
-          if (body.error) resolve(false)
+
+          if (body.error) return resolve(false)
           _this.client.log('log', `${member.username} (${member.id}) just lost ${number} XP!`, 'XP')
+          resolve(true)
+        }
+      )
+    })
+  }
+  async addCoins(member, number) {
+    const _this = this
+    return new Promise((resolve, reject) => {
+      if (!number) number = this.randomNum(15, 20)
+
+      let avatar = member.displayAvatarURL
+      let size = avatar.indexOf('?size')
+      if (size !== -1) avatar = avatar.slice(0, size)
+
+      request.post(
+        {
+          url: this.client.config.apiEndpoint + '/levels/coins/' + member.id,
+          body: { coins: number, username: member.username, discriminator: member.discriminator, avatar: avatar },
+          json: true,
+          headers: { Token: this.client.config.tokens.api }
+        },
+        function(error, response, body) {
+          if (error) reject(error)
+          if (!body) reject('No Body!')
+          if (body.error) reject(body.error)
+
+          _this.client.log('log', `${member.username} (${member.id}) just earned ${number} Coins!`, 'Coins')
+          resolve(true)
+        }
+      )
+    })
+  }
+  async removeCoins(member, number) {
+    const _this = this
+    return new Promise((resolve, reject) => {
+      let avatar = member.displayAvatarURL
+      let size = avatar.indexOf('?size')
+      if (size !== -1) avatar = avatar.slice(0, size)
+
+      request.delete(
+        {
+          url: this.client.config.apiEndpoint + '/levels/coins/' + member.id,
+          body: { coins: number, username: member.username, discriminator: member.discriminator, avatar: avatar },
+          json: true,
+          headers: { Token: this.client.config.tokens.api }
+        },
+        function(error, response, body) {
+          if (error) reject(error)
+          if (!body) reject('No Body!')
+
+          if (body.error) return resolve(false)
+          _this.client.log('log', `${member.username} (${member.id}) just lost ${number} Coins!`, 'Coins')
           resolve(true)
         }
       )
@@ -278,7 +332,6 @@ class LevelsBase extends Base {
         function(error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
-
           if (body.error) reject(error)
           if (!body.xp) resolve(false)
 
@@ -289,14 +342,14 @@ class LevelsBase extends Base {
             x += _this.xpForLevel(i)
             remainingXP = body.xp - x
           }
-
           let data = {
             rank: body.rank,
             totalXP: body.xp,
             level: _this.xpToLevel(body.xp),
             levelXP: _this.xpForLevel(level),
             remainingXP: remainingXP,
-            chests: body.chests
+            chests: body.chests,
+            coins: body.coins
           }
           resolve(data)
         }

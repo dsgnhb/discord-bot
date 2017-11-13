@@ -5,10 +5,10 @@ const { RichEmbed } = require('discord.js')
 class Level extends LevelsCommand {
   constructor(client) {
     super(client, {
-      name: 'level',
-      aliases: ['rank', 'levels'],
+      name: 'rank',
+      aliases: ['level', 'levels', 'coins', 'chests'],
       description: 'Und.. Bin ich noch Erster? WAS?! APORED WIRD DEIN DORF VERBRENNEN!',
-      usage: 'level',
+      usage: 'rank',
       dm: true,
       guild: true,
       permLevel: 0
@@ -26,8 +26,9 @@ class Level extends LevelsCommand {
           .setAuthor('Levels | ' + user.username, user.avatarURL)
           .setURL('https://dsgnhb.de/levels/')
           .setColor(settings.embedColor)
-          .addField('Rank', `**${data.rank}**/${this.client.users.size}`, true)
+          .addField('Rank', `**${data.rank}**/${message.guild.memberCount}`, true)
           .addField('Level', `**${data.level}** (${data.totalXP} XP)`, true)
+          .addField('Coins', `**${data.coins}**`, true)
           .addField('Chests', `**${data.chests}**`, true)
           .setTimestamp()
           .setFooter(settings.embedFooter, settings.embedIcon)

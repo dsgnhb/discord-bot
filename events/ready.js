@@ -14,6 +14,8 @@ class Ready extends Event {
     this.client.guilds.filter(g => !this.client.settings.has(g.id)).forEach(g => this.client.settings.set(g.id, this.client.config.defaultSettings))
 
     this.client.user.setPresence({ game: { name: 'dsgnhb.de', type: 0 } })
+
+    require('../functions/twitter.js')(this.client)
   }
 }
 

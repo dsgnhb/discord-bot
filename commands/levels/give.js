@@ -4,7 +4,7 @@ class Give extends LevelsCommand {
   constructor(client) {
     super(client, {
       name: 'give',
-      aliases: ['gebe', 'ichwill'],
+      aliases: ['ichwill'],
       description: 'Manipuliere die Stats eines Users (und werde Erster im Leaderboard).',
       usage: 'give xp/chests <@user> <amount>',
       dm: false,
@@ -27,6 +27,10 @@ class Give extends LevelsCommand {
       case 'chests':
         this.f.addChests(user, amount)
         message.channel.send(`Es wurden ${amount} Chests an ${user} vergeben!`)
+        break
+      case 'coins':
+        this.f.addCoins(user, amount)
+        message.channel.send(`Es wurden ${amount} Coins an ${user} vergeben!`)
         break
       default:
         break

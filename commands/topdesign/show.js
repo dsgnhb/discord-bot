@@ -19,10 +19,15 @@ class Show extends TopDesignCommand {
     try {
       const request = await this.f.getPost(postID)
       if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
-      message.channel.send(`**TopDesign** | ${request.username} - **${request.likes}** ${this.f.voteOrVotes(request.likes)}`, new Attachment(request.image, 'design.jpg'))
+      if (!request.active && message.author.permLevel < 9) {
+        throw 'Du kannst dir dieses Design nicht ansehen, da es deaktiviert wurde'
+      }
+      const imageArray = request.image.split('.')
+      const extention = imageArray[imageArray.length - 1]
+      message.channel.send(`**TopDesign** | ${request.username} - **${request.likes}** ${this.f.voteOrVotes(request.likes)}`, new Attachment(request.image, 'design.' + extention))
     } catch (error) {
-      console.log(error)
-      message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+      throw error
+      //message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
     }
   }
 }

@@ -6,12 +6,12 @@ class Report extends FunCommand {
       name: 'report',
       description: 'Die Gomme-Mods sind immer für dich da.',
       usage: 'report <@user> (<Grund>)',
-      permLevel: 0
+      permLevel: 0,
+      price: 5
     })
   }
 
   async run(message, args) {
-    if (!args[0]) return
     const errorcode = Math.floor(Math.random() * 100000 + 1)
     message.channel.send('Vielen Dank! Dein Report wurde entgegengenommen. \nDie Gomme-Mods werden den Vorfall überprüfen! <:gomme:313418733861470210>')
     await this.client.wait(10000)
