@@ -1,4 +1,4 @@
-# Discord Bot
+# Discord Bot [![MegaOP](https://img.shields.io/badge/MEGA%20OP-%E2%9C%94-green.svg)](http://dsgnhb.de)
 Discord Bot running designhub's Discord Server based on GuideBot from AnIdiotsGuide written in discord.js
 **Fell free to contribute if any feature's missing**
 ***
