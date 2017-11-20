@@ -4,7 +4,7 @@ class Chest extends LevelsCommand {
   constructor(client) {
     super(client, {
       name: 'chest',
-      aliases: ['open', 'chest-open', 'c'],
+      aliases: ['chest-open', 'c'],
       description: 'Oaah. Magie.',
       usage: 'chest'
     })
