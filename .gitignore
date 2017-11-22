@@ -4,3 +4,4 @@ package-lock.json
 /configs/config.json
 /.idea/
 
+build/config.gypi
