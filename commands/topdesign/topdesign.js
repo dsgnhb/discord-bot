@@ -12,9 +12,7 @@ class Topdesign extends TopDesignCommand {
   }
 
   async run(message, args) {
-    message.channel.send(
-      '**TopDesign** | Füge den Hashtag `#topdesign` zu deinem Design hinzu, um es für die Bewertung freizugeben. \nNutze `!vote` um einen Post zu liken, `!delete` um ihn zu löschen oder `!posts` für eine Übersicht alles Posts.'
-    )
+    throw 'Füge den Hashtag `#topdesign` zu deinem Design hinzu, um es für die Bewertung freizugeben. \nNutze `!vote` um einen Post zu liken oder `!posts` für eine Übersicht alles Posts. \nhttps://youtu.be/Ei_QI8gbkss'
   }
 }
 
