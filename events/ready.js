@@ -16,6 +16,7 @@ class Ready extends Event {
     this.client.user.setPresence({ game: { name: 'dsgnhb.de', type: 0 } })
 
     require('../functions/twitter.js')(this.client)
+    require('../functions/dashboard.js')(this.client)
   }
 }
 

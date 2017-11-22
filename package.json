@@ -29,6 +29,7 @@
     "discord.js": "^11.2.1",
     "enmap": "^0.4.1",
     "enmap-level": "^1.0.0",
+    "express": "^4.16.2",
     "fs-nextra": "^0.3.2",
     "js-beautify": "^1.7.4",
     "klaw": "^2.1.0",
