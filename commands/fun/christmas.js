@@ -1,6 +1,6 @@
 const Command = require('../../base/commands/Command.js')
 
-class Advent extends Command {
+class Christmas extends Command {
   constructor(client) {
     super(client, {
       name: 'christmas',
@@ -14,24 +14,37 @@ class Advent extends Command {
   }
 
   async run(message, args) {
+    const gifts = require('../../configs/christmas.json')
+
+    const date = new Date()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+
+    /*
+    if (month === 11) throw 'Da wolltest du deinen Adventskalender wohl schon früher aufmachen! 😏'
+    if (month !== 12 || day > 24) throw 'Der Adevent is leider schon zuende 😥'
+
     // NICK USER IN MAINGUILD TO 🎄 + name
+    this.client.guilds
+      .get(this.client.config.mainGuildID)
+      .members.get(message.author.id)
+      .setNickname('🎄 ' + message.author.username)
+    */
+
     // GET OPEN ITEM FROM ARRAY WITH CURRENT DATE (DAY)
+    const gift = gifts[day]
+
     /*
-        array[day-1]
-        [
-            {
-                vidID : "dfsdfsdf",
-                vidName: "MEGA OP VID"
-            }
-        ]
+    // SAVE CURRENT DATE (DAY) TO PERSISTENT COLLECTION, christmas.get(message.author.id)
+    const data = this.client.christmas.get(message.author.id) || []
+    if (data.includes(day)) throw 'Du hast heute doch schon dein Türchen geöffnet! 🤶🎄'
+    data.push(day)
+    this.client.christmas.set(message.author.id, data)
     */
-    // SAVE CURRENT DATE (DAY) TO PERSISTENT COLLECTION, advent.get(message.author.id)
-    /*
-        [1,2,3,5,8]
-    */
-    // if(advent.get(message.author.id).lenght > 10) => GIVE COINS
-    // SEND SELECTED ITEM + COINS MESSAGE
+
+    // SEND SELECTED ITEM
+    message.channel.send(`**HoHoHo!** 🤶🎄\nHier das Türchen für den **${day}. Dezember**! ⭐\n${gift.title} \nhttps://youtu.be/${gift.vidID}`)
   }
 }
 
-module.exports = Advent
+module.exports = Christmas

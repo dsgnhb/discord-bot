@@ -16,6 +16,7 @@ class designhubBot extends Client {
     this.monitors = new Enmap()
     this.settings = new Enmap({ provider: new EnmapLevel({ name: 'settings' }) })
     this.stats = new Enmap({ provider: new EnmapLevel({ name: 'stats' }) })
+    this.christmas = new Enmap({ provider: new EnmapLevel({ name: 'christmas' }) })
     this.cooldown = new Set()
     this.mutes = new Set()
   }
