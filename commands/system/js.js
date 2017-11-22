@@ -46,7 +46,7 @@ class Code extends Command {
 
     let beautifiedCode = beautify(code, { indent_size: 2, brace_style: 'none' })
     beautifiedCode = this.reduceIndentation(beautifiedCode)
-    message.channel.send(`**${message.author.username}**}\n${'```js'}\n${beautifiedCode}\n${'```'}`)
+    message.channel.send(`**${message.author.username}**\n${'```js'}\n${beautifiedCode}\n${'```'}`)
     message.delete()
   }
   reduceIndentation(string) {
