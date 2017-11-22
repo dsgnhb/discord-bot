@@ -28,7 +28,10 @@ class Update extends Command {
     delete require.cache[require.resolve('../../package.json')]
 
     const { stdout, stderr, err } = await exec(`git pull ${repository}`, { cwd: path.join(__dirname, '../../') }).catch(err => ({ err }))
-    if (err) return console.error(err)
+    if (err) {
+      console.error(err)
+      throw 'Irgendwas ist hier falsch gelaufen!'
+    }
 
     if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Alles aktuell!')
 
