@@ -10,7 +10,11 @@ const path = require('path')
 class designhubBot extends Client {
   constructor(options) {
     super(options)
-    this.config = require('./configs/config.json')
+    try {
+      this.config = require('./configs/config.json')
+    } catch (error) {
+      throw new Error('Huch! Hier wurde was ned richtig eingerichtet..')
+    }
     this.commands = new Enmap()
     this.aliases = new Enmap()
     this.monitors = new Enmap()

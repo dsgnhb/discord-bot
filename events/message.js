@@ -47,8 +47,8 @@ class Message extends Event {
     const command = args.shift().toLowerCase()
     const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command))
     if (!cmd) return
-    if (!message.guild && !cmd.conf.dm) return message.channel.send('This command is unavailable via private message.')
-    if (message.guild && !cmd.conf.guild) return message.channel.send('This command is unavailable via Guild.')
+    if (!message.guild && !cmd.conf.dm) return message.reply("Dieser Command kann nur auf'm Discord genutzt werden!")
+    if (message.guild && !cmd.conf.guild) return
 
     message.flags = []
     while (args[0] && args[0][0] === '-') {
@@ -58,7 +58,7 @@ class Message extends Event {
     if (level < cmd.conf.permLevel) return
     if (cmd.help.price > 0 && level < 9) {
       const coins = await this.levels.removeCoins(message.author, cmd.help.price)
-      if (!coins) return message.channel.send(`Du hast **nicht genug Coins** um diesen Command zu nutzen! Du brauchst mindestens **${cmd.help.price} Coins**.`)
+      if (!coins) return message.reply(`Du hast **nicht genug Coins** um diesen Command zu nutzen! Du brauchst mindestens **${cmd.help.price} Coins**.`)
     }
     this.client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(',')}`, 'CMD')
     cmd.run(message, args).catch(error => {
