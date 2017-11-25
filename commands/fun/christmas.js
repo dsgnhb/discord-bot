@@ -19,15 +19,15 @@ class Christmas extends Command {
     try {
       const gifts = require('../../configs/christmas.json')
     } catch (error) {
-      throw 'Huch! Hier wurde was ned richtig eingerichtet..'
+      throw '**Huch!** Hier wurde was ned richtig eingerichtet.. 🚨🚨'
     }
 
     const date = new Date()
     const month = date.getMonth() + 1
     const day = date.getDate()
 
-    if (month === 11) throw 'Da wolltest du deinen Adventskalender wohl schon früher aufmachen! 😏'
-    if (month !== 12 || day > 24) throw 'Der Advent is leider schon zuende! 😥'
+    if (month === 11) throw 'Da wolltest du **deinen Adventskalender** wohl schon **früher aufmachen**! 😏'
+    if (month !== 12 || day > 24) throw 'Der **Advent** is leider **schon zuende**! 😥'
 
     this.client.guilds
       .get(this.client.config.mainGuildID)
@@ -39,7 +39,7 @@ class Christmas extends Command {
 
     const data = this.client.christmas.get(message.author.id) || []
     if (data.includes(day)) {
-      throw 'Du hast heute doch schon dein Türchen geöffnet! 🤶🎄'
+      throw 'Du hast **heute** doch schon **dein Türchen geöffnet**! 🤶🎄'
     } else {
       data.push(day)
       this.client.christmas.set(message.author.id, data)
