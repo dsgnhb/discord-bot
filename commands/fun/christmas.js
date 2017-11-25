@@ -8,12 +8,14 @@ class Christmas extends Command {
       description: 'WEIHNAHCTENENENENNEEE',
       usage: 'christmas',
       dm: true,
-      guild: false,
+      guild: true,
       permLevel: 0
     })
   }
 
   async run(message, args) {
+    if (message.guild) throw 'Öffne in der **Adventszeit** jeden Tag **ein neues Türchen**, in dem du den **Bot per DM** mit `!open` anschreibst! 🤶🎄'
+
     try {
       const gifts = require('../../configs/christmas.json')
     } catch (error) {
