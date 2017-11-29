@@ -29,7 +29,7 @@ class Join extends Command {
         'affinityphoto',
         {
           name: 'AffinityPhoto',
-          id: '342719412744224768',
+          id: '343782555624931328',
           section: 'Design'
         }
       ],
@@ -139,12 +139,10 @@ class Join extends Command {
       ]
     ])
 
-    function sortBySkillSection(a,b) {
-      if (a.section === 'Development')
-        return -1;
-      if (b.section === 'Design')
-        return 1;
-      return 0;
+    function sortBySkillSection(a, b) {
+      if (a.section === 'Development') return -1
+      if (b.section === 'Design') return 1
+      return 0
     }
 
     const usage = `Nutze \`!join role1 role2 ...\` um einer der folgenden Skill-Gruppe beizutreten:\n \`${skillGroups.sort(sortBySkillSection).map(item => ` ${item.name}`)}\`.`
