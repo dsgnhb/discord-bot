@@ -18,7 +18,7 @@ class Level extends LevelsCommand {
   async run(message, args) {
     try {
       const settings = message.settings
-      let user = message.mentions.users.first() || message.author
+      let user = message.guild.members.get(message.mentions.users.first().id) || message.member
       const data = await this.f.getData(user)
       if (!data) return message.channel.send("Dich gibt's hier ned. Noch ned.")
       message.channel.send(

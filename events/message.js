@@ -57,7 +57,7 @@ class Message extends Event {
 
     if (level < cmd.conf.permLevel) return
     if (cmd.help.price > 0 && level < 9) {
-      const coins = await this.levels.removeCoins(message.author, cmd.help.price)
+      const coins = await this.levels.removeCoins(message.member, cmd.help.price)
       if (!coins) return message.reply(`Du hast **nicht genug Coins** um diesen Command zu nutzen! Du brauchst mindestens **${cmd.help.price} Coins**.`)
     }
     this.client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${args.join(',')}`, 'CMD')

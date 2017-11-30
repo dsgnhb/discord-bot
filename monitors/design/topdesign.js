@@ -18,7 +18,7 @@ class TopDesign extends TopDesignMonitor {
       try {
         message.channel.startTyping()
         let image = message.attachments.first().proxyURL
-        const request = await this.f.addPost(message.author, image)
+        const request = await this.f.addPost(message.member, image)
         message.channel.stopTyping(true)
 
         if (request.action === 'double') return message.reply('Du für diesen Monat schon ein Design eingeschickt!')

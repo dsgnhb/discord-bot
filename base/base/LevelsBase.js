@@ -14,17 +14,17 @@ class LevelsBase extends Base {
   async addChests(member, number) {
     const _this = this
     return new Promise((resolve, reject) => {
-      let avatar = member.displayAvatarURL
+      let avatar = member.user.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
       request.post(
         {
-          url: this.client.config.apiEndpoint + '/levels/chests/' + member.id,
+          url: this.client.config.apiEndpoint + '/levels/chests/' + member.user.id,
           body: {
             chests: number,
-            username: member.username,
-            discriminator: member.discriminator,
+            username: member.user.username,
+            discriminator: member.user.discriminator,
             avatar: avatar
           },
           json: true,
@@ -34,7 +34,7 @@ class LevelsBase extends Base {
           if (error) reject(error)
           if (!body) reject('No Body!')
           if (body.error) reject(body.error)
-          _this.client.log('log', `${member.username} (${member.id}) just earned ${number} Chests!`, 'Chests')
+          _this.client.log('log', `${member.user.username} (${member.user.id}) just earned ${number} Chests!`, 'Chests')
           resolve(true)
         }
       )
@@ -43,7 +43,7 @@ class LevelsBase extends Base {
   async removeChests(member, number) {
     const _this = this
     return new Promise((resolve, reject) => {
-      let avatar = member.displayAvatarURL
+      let avatar = member.user.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
       let url = this.client.config.apiEndpoint + '/levels/chests/' + member.id
@@ -110,14 +110,14 @@ class LevelsBase extends Base {
         name: 'einen XP-Boost',
         run: function(message) {
           message.channel.send("**So much XP!** Für deine Treue erhälst du **101 XP** auf Lukas' Nacken! 💰")
-          _this.addXP(message.author, 101)
+          _this.addXP(message.member, 101)
         }
       },
       {
         name: 'eine Kiste',
         run: function(message) {
           message.channel.send('**Wow!** Das hat sich ja richtig gelohnt! Hier hast du noch **ne Kiste**... 👍 💎')
-          _this.addChests(message.author, 2)
+          _this.addChests(message.member, 2)
         }
       },
       {
@@ -125,7 +125,7 @@ class LevelsBase extends Base {
         run: function(message) {
           const coins = _this.randomNum(10, 40)
           message.channel.send(`**Yeey!** Viel Spaß mit **${coins} Coins**! 👍 💎`)
-          _this.addCoins(message.author)
+          _this.addCoins(message.member)
         }
       },
       {
@@ -204,40 +204,63 @@ class LevelsBase extends Base {
     return new Promise((resolve, reject) => {
       if (!number) number = this.randomNum(15, 20)
 
-      let avatar = member.displayAvatarURL
+      let avatar = member.user.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
       request.post(
         {
-          url: this.client.config.apiEndpoint + '/levels/xp/' + member.id,
-          body: { xp: number, username: member.username, discriminator: member.discriminator, avatar: avatar },
+          url: this.client.config.apiEndpoint + '/levels/xp/' + member.user.id,
+          body: { xp: number, username: member.user.username, discriminator: member.user.discriminator, avatar: avatar },
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
-        function(error, response, body) {
+        async (error, response, body) => {
           if (error) reject(error)
           if (!body) reject('No Body!')
           if (body.error) reject(body.error)
 
-          _this.client.log('log', `${member.username} (${member.id}) just earned ${number} XP!`, 'XP')
+          _this.client.log('log', `${member.user.username} (${member.user.id}) just earned ${number} XP!`, 'XP')
 
           let oldLevel = _this.xpToLevel(body.oldXP)
           let newLevel = _this.xpToLevel(body.newXP)
+
+          const rewards = require('../../configs/rewards.json')
+
+          for (let i = 0; i < rewards.length; i++) {
+            let reward = rewards[i]
+            if (!newLevel >= reward.lvl) break
+
+            let role = member.guild.roles.find(r => r.name === reward.name)
+            if (!role) {
+              try {
+                role = await member.guild.createRole({
+                  name: reward.name,
+                  color: reward.color
+                })
+                _this.client.log(`Created role ${role.name}`)
+
+                member.addRole(role, 'Earned cause of level ' + newLevel)
+              } catch (e) {
+                reject(e)
+              }
+            }
+          }
+
           if (newLevel > oldLevel) {
             if (newLevel % 2 === 0) {
               try {
                 const coins = 100 + newLevel * 2
                 _this.addCoins(member, coins)
-                _this.client.users.get(member.id).send(`Hey! Du bist jetzt **Level ${newLevel}** ! Viel Spaß mit **${coins} Coins!**`)
+                _this.client.users.get(member.user.id).send(`Hey! Du bist jetzt **Level ${newLevel}** ! Viel Spaß mit **${coins} Coins!**`)
               } catch (error) {
                 reject(error)
               }
             } else {
-              _this.client.users.get(member.id).send(`Hey! Du bist jetzt **Level ${newLevel}** !`)
+              _this.client.users.get(member.user.id).send(`Hey! Du bist jetzt **Level ${newLevel}** !`)
             }
           }
-          resolve(true)
+          return resolve(true)
         }
       )
     })
@@ -245,14 +268,14 @@ class LevelsBase extends Base {
   async removeXP(member, number) {
     const _this = this
     return new Promise((resolve, reject) => {
-      let avatar = member.displayAvatarURL
+      let avatar = member.user.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
       request.delete(
         {
-          url: this.client.config.apiEndpoint + '/levels/xp/' + member.id,
-          body: { xp: number, username: member.username, discriminator: member.discriminator, avatar: avatar },
+          url: this.client.config.apiEndpoint + '/levels/xp/' + member.user.id,
+          body: { xp: number, username: member.user.username, discriminator: member.user.discriminator, avatar: avatar },
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
@@ -261,7 +284,7 @@ class LevelsBase extends Base {
           if (!body) reject('No Body!')
 
           if (body.error) return resolve(false)
-          _this.client.log('log', `${member.username} (${member.id}) just lost ${number} XP!`, 'XP')
+          _this.client.log('log', `${member.user.username} (${member.user.id}) just lost ${number} XP!`, 'XP')
           resolve(true)
         }
       )
@@ -272,14 +295,14 @@ class LevelsBase extends Base {
     return new Promise((resolve, reject) => {
       if (!number) number = this.randomNum(15, 20)
 
-      let avatar = member.displayAvatarURL
+      let avatar = member.user.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
       request.post(
         {
-          url: this.client.config.apiEndpoint + '/levels/coins/' + member.id,
-          body: { coins: number, username: member.username, discriminator: member.discriminator, avatar: avatar },
+          url: this.client.config.apiEndpoint + '/levels/coins/' + member.user.id,
+          body: { coins: number, username: member.user.username, discriminator: member.user.discriminator, avatar: avatar },
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
@@ -288,7 +311,7 @@ class LevelsBase extends Base {
           if (!body) reject('No Body!')
           if (body.error) reject(body.error)
 
-          _this.client.log('log', `${member.username} (${member.id}) just earned ${number} Coins!`, 'Coins')
+          _this.client.log('log', `${member.user.username} (${member.user.id}) just earned ${number} Coins!`, 'Coins')
           resolve(true)
         }
       )
@@ -297,14 +320,14 @@ class LevelsBase extends Base {
   async removeCoins(member, number) {
     const _this = this
     return new Promise((resolve, reject) => {
-      let avatar = member.displayAvatarURL
+      let avatar = member.user.displayAvatarURL
       let size = avatar.indexOf('?size')
       if (size !== -1) avatar = avatar.slice(0, size)
 
       request.delete(
         {
-          url: this.client.config.apiEndpoint + '/levels/coins/' + member.id,
-          body: { coins: number, username: member.username, discriminator: member.discriminator, avatar: avatar },
+          url: this.client.config.apiEndpoint + '/levels/coins/' + member.user.id,
+          body: { coins: number, username: member.user.username, discriminator: member.user.discriminator, avatar: avatar },
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
@@ -313,7 +336,7 @@ class LevelsBase extends Base {
           if (!body) reject('No Body!')
 
           if (body.error) return resolve(false)
-          _this.client.log('log', `${member.username} (${member.id}) just lost ${number} Coins!`, 'Coins')
+          _this.client.log('log', `${member.user.username} (${member.user.id}) just lost ${number} Coins!`, 'Coins')
           resolve(true)
         }
       )
@@ -322,7 +345,7 @@ class LevelsBase extends Base {
   async getData(member) {
     const _this = this
     return new Promise((resolve, reject) => {
-      let url = this.client.config.apiEndpoint + '/levels/' + member.id
+      let url = this.client.config.apiEndpoint + '/levels/' + member.user.id
       request.get(
         {
           url: url,
