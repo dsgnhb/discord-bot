@@ -239,12 +239,11 @@ class LevelsBase extends Base {
                   color: reward.color
                 })
                 _this.client.log(`Created role ${role.name}`)
-
-                member.addRole(role, 'Earned cause of level ' + newLevel)
               } catch (e) {
                 reject(e)
               }
             }
+            member.addRole(role, 'Earned cause of level ' + newLevel)
           }
 
           if (newLevel > oldLevel) {
