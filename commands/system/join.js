@@ -1,6 +1,6 @@
 const Command = require('../../base/commands/Command.js')
 
-const { Collection } = require('discord.js')
+const { Collection, RichEmbed } = require('discord.js')
 
 class Join extends Command {
   constructor(client) {
@@ -26,9 +26,9 @@ class Join extends Command {
         }
       ],
       [
-        'affinityphoto',
+        'affinity',
         {
-          name: 'AffinityPhoto',
+          name: 'Affinity',
           id: '343782555624931328',
           section: 'Design'
         }
@@ -139,15 +139,23 @@ class Join extends Command {
       ]
     ])
 
-    function sortBySkillSection(a, b) {
-      if (a.section === 'Development') return -1
-      if (b.section === 'Design') return 1
-      return 0
-    }
+    const SectionSortedArray = skillGroups.reduce(function(r, a) {
+      r[a.section] = r[a.section] || []
+      r[a.section].push(a)
+      return r
+    }, Object.create(null))
 
-    const usage = `Nutze \`!join role1 role2 ...\` um einer der folgenden Skill-Gruppe beizutreten:\n \`${skillGroups.sort(sortBySkillSection).map(item => ` ${item.name}`)}\`.`
-
-    if (args.length === 0) return message.reply(usage)
+    if (args.length === 0)
+      return message.channel.send(
+        new RichEmbed()
+          .setAuthor(`Skills`)
+          .setDescription('`!join skill1 skill2`')
+          .addField('Development', SectionSortedArray['Development'].map(item => `${item.name}`), false)
+          .addField('Design', SectionSortedArray['Design'].map(item => `${item.name}`), false)
+          .setColor(message.settings.embedColor)
+          .setTimestamp()
+          .setFooter(message.settings.embedFooter, message.settings.embedIcon)
+      )
 
     let addedRanks = [],
       removedRanks = []
