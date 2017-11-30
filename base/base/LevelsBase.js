@@ -216,9 +216,9 @@ class LevelsBase extends Base {
           headers: { Token: this.client.config.tokens.api }
         },
         async (error, response, body) => {
-          if (error) reject(error)
-          if (!body) reject('No Body!')
-          if (body.error) reject(body.error)
+          if (error) return reject(error)
+          if (!body) return reject('No Body!')
+          if (body.error) return reject(body.error)
 
           _this.client.log('log', `${member.user.username} (${member.user.id}) just earned ${number} XP!`, 'XP')
 
@@ -229,7 +229,7 @@ class LevelsBase extends Base {
 
           for (let i = 0; i < rewards.length; i++) {
             let reward = rewards[i]
-            if (!newLevel >= reward.lvl) break
+            if (newLevel < reward.lvl) break
 
             let role = member.guild.roles.find(r => r.name === reward.name)
             if (!role) {
