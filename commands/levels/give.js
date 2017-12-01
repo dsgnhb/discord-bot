@@ -14,7 +14,7 @@ class Give extends LevelsCommand {
   }
 
   async run(message, args) {
-    const user = message.guild.members.get(message.mentions.users.first().id)
+    let user = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : undefined
     const amount = Number(args[2])
     const method = args[0]
     if (!user || !amount || !method) return message.channel.send('Nutze `!give xp/chests <@user> <amount>` um die Stats eines Users zu manipulieren. 😉')
