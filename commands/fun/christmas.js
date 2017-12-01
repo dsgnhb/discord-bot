@@ -16,12 +16,6 @@ class Christmas extends Command {
   async run(message, args) {
     if (message.guild) throw 'Öffne in der **Adventszeit** jeden Tag **ein neues Türchen**, in dem du den **Bot per DM** mit `!open` anschreibst! 🤶🎄'
 
-    try {
-      const gifts = require('../../configs/christmas.json')
-    } catch (error) {
-      throw '**Huch!** Hier wurde was ned richtig eingerichtet.. 🚨🚨'
-    }
-
     const date = new Date()
     const month = date.getMonth() + 1
     const day = date.getDate()
@@ -34,6 +28,8 @@ class Christmas extends Command {
       .members.get(message.author.id)
       .setNickname('🎄 ' + message.author.username)
 
+    const gifts = require('../../configs/christmas.json')
+
     const gift = gifts[day]
     if (!gift) throw 'MEGA DB ERROR 🚨🚨'
 
@@ -45,7 +41,7 @@ class Christmas extends Command {
       this.client.christmas.set(message.author.id, data)
     }
 
-    message.channel.send(`**HoHoHo!** 🤶🎄\nHier das Türchen für den **${day}. Dezember**! ⭐\n${gift.title} \nhttps://youtu.be/${gift.vidID}`)
+    message.channel.send(`**HoHoHo!** 🤶🎄\nHier das Türchen für den **${day}. Dezember**! ⭐\n\n${gift.title} \nhttps://youtu.be/${gift.vidID}`)
   }
 }
 
