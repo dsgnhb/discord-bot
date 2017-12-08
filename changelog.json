@@ -1,4 +1,5 @@
 {
+  "2.5.0": ["!shop"],
   "2.4.0": ["Reward roles for level system"],
   "2.3.2": ["Changed !join Usage"],
   "2.3.1": ["!avatarurl"],
