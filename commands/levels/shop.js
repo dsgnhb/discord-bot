@@ -18,15 +18,15 @@ class Shop extends LevelsCommand {
       chest: {
         name: 'eine Chest',
         price: 20,
-        run: function(message) {
-          this.f.addChests(message.member, 1)
+        run: function(_this, message) {
+          _this.f.addChests(message.member, 1)
         }
       },
       coins: {
         name: '10 Coins',
         price: 20,
-        run: function(message) {
-          this.f.addCoins(message.member, 10)
+        run: function(_this, message) {
+          _this.f.addCoins(message.member, 10)
         }
       }
     }
@@ -36,7 +36,7 @@ class Shop extends LevelsCommand {
       if (!shop[args[0]]) throw "Das gibt's ned zu kaufen"
       const item = shop[args[0]]
       this.f.removeCoins(message.member, item.price)
-      item.run(message)
+      item.run(this, message)
       message.channel.send(`WHOOH! Du hast dir **${item.name}** für **${item.price} Coins** gekauft!`)
     }
   }
