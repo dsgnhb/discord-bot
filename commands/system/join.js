@@ -42,6 +42,14 @@ class Join extends Command {
         }
       ],
       [
+        'lightroom',
+        {
+          name: 'Lightroom',
+          id: '392004013794656263',
+          section: 'Design'
+        }
+      ],
+      [
         'aftereffects',
         {
           name: 'AfterEffects',
