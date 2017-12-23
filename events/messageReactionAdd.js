@@ -15,10 +15,10 @@ class MessageReactionAdd extends Event {
 
     if (!message.guild) return
     if (message.author.bot) return
-    if (!message.guild.members.get(user.id).roles.find('name', 'owner')) return
+    // if (!message.guild.members.get(user.id).roles.find('name', 'owner')) return
 
     const channel = message.guild.channels.find('name', 'starboard')
-    if (!channel) return message.channel.send('DREGGS SERVER! HIER GIBST NEDMAL NEN STARBOARD CHANNEL!')
+    if (!channel) return message.reply('DREGGS SERVER! HIER GIBST NEDMAL NEN STARBOARD CHANNEL!')
     if (message.channel.id == channel.id) return
 
     const embed = new RichEmbed()
