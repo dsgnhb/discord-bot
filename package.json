@@ -1,5 +1,5 @@
 {
-  "name": "designhub-discord-bot",
+  "name": "discord-bot",
   "version": "2.5.0",
   "description": "Discord Bot running designhub's Discord Server written in discord.js based on GuideBot from AnIdiotsGuide",
   "main": "app.js",
@@ -14,7 +14,7 @@
     "singleQuote": true
   },
   "author": "flo",
-  "homepage": "https://github.com/dsgnhb/discord-discord#readme",
+  "homepage": "https://github.com/dsgnhb/discord-bot#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dsgnhb/discord-bot.git"
