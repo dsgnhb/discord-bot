@@ -1,6 +1,6 @@
 {
   "name": "discord-bot",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "Discord Bot running designhub's Discord Server written in discord.js based on GuideBot from AnIdiotsGuide",
   "main": "app.js",
   "scripts": {

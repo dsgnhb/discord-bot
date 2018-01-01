@@ -49,8 +49,8 @@ class LevelsBase extends Base {
       let url = this.client.config.apiEndpoint + '/levels/chests/' + member.id
       let postData = {
         chests: number,
-        username: member.username,
-        discriminator: member.discriminator,
+        username: member.user.username,
+        discriminator: member.user.discriminator,
         avatar: avatar
       }
       request.delete(
