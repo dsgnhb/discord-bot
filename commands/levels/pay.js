@@ -22,7 +22,7 @@ class Pay extends LevelsCommand {
     if (user.bot) throw 'Ein Bot keine deine Spende leider ned annehmen!'
     try {
       if (message.author.permLevel < 9) {
-        const removeCoins = await this.f.removeCoins(message.author, amount)
+        const removeCoins = await this.f.removeCoins(message.member, amount)
         if (!removeCoins) throw 'Du hast leider nicht genug Coins!'
       }
       this.f.addCoins(user, amount)

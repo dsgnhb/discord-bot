@@ -31,11 +31,14 @@ class Shop extends LevelsCommand {
       }
     }
     if (args.length < 1) {
-      message.reply('Hier muss ncoh ne liste hin')
+      message.reply('Hier muss noch ne Liste hin')
     } else {
       if (!shop[args[0]]) throw "Das gibt's ned zu kaufen"
       const item = shop[args[0]]
-      this.f.removeCoins(message.member, item.price)
+
+      const removeCoins = await this.f.removeCoins(message.member, item.price)
+      if (!removeCoins) throw 'Du hast leider nicht genug Coins!'
+
       item.run(this, message)
       message.channel.send(`WHOOH! Du hast dir **${item.name}** für **${item.price} Coins** gekauft!`)
     }
