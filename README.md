@@ -7,45 +7,35 @@ Discord Bot running designhub's Discord Server based on GuideBot from AnIdiotsGu
 
 - `git` command line ([Windows](https://git-scm.com/download/win)|[Linux](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)|[MacOS](https://git-scm.com/download/mac)) installed
 - `node` [Version 8.0.0 or higher](https://nodejs.org)
+- `Cario` York Dev uses [canvas](https://www.npmjs.com/package/canvas), you will need to install all prerequisites for your operating system.
 
 You also need your bot's token. This is obtained by creating an application in
 the Developer section of discordapp.com. Check the [first section of this page](https://anidiots.guide/getting-started/the-long-version.html)
 for more info.
 
+## Installing Canvas Dependencies
+
+OS | Command
+----- | -----
+OS X | `sudo brew install pkg-config cairo pango libpng jpeg giflib`
+Ubuntu | `sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++`
+Fedora | `sudo yum install cairo cairo-devel cairomm-devel libjpeg-turbo-devel pango pango-devel pangomm pangomm-devel giflib-devel`
+Solaris | `pkgin install cairo pango pkg-config xproto renderproto kbproto xextproto`
+Windows | [Instructions on their wiki](https://github.com/Automattic/node-canvas/wiki/Installation---Windows)
+
 ## Downloading
 
-In a command prompt in your projects folder (wherever that may be) run the following:
+In a command prompt in your project's folder (wherever that may be) run the following:
 
 `git clone https://github.com/dsgnhb/discord-bot.git`
 
 Once finished:
 
-- In the folder from where you ran the git command, run `cd discord-bot` and then run `npm install`
-- Change directory to 'configs/'
-- Rename `config.example.json` to `config.json`
-- Edit `config.json` and enter your token and other details as indicated. It should look like this afterwards:
+- In the folder from where you ran the git command, run `cd discord-bot` and then run `npm install`, this will install all required packages, then it will run the installer.
 
-```json
-  {
-      "ownerID": "170828613841715203",
-      "apiEndpoint": "https://api.dsgnhb.de/",
-      "logChannel": "353208744206663681",
-      "mainGuildID" : "202825877250244608",
-      "levelSystem" : true,
-      "tokens" : {
-        "discord": "yourdiscordbottoken",
-        "api":"secret:P",
-        "cleverbot": "somecleverbotapitoken"
-      },
-      "defaultSettings" : {
-        "prefix": "!",
-        "embedFooter": "designhub.party",
-        "embedColor": "0x2eabbf",
-        "embedIcon": "https://dsgnhb.de/dl/avatar%20designhub2.jpg"
-      }
-    }
-```
-> The token in the above example belongs to a deleted bot.
+- You will be prompted to supply a number of access tokens and keys for various platforms, please follow the on screen instructions to complete the installation.
+
+>***NOTE:*** A config file will be created for you.
 
 ## Starting the bot
 
