@@ -1,24 +1,18 @@
 {
-  "ownerID": "ID OF BOT OWNER (YOU)",
-  "apiEndpoint": "URL TO DESIGNHUB API",
-  "logChannel": "ID OF CHANNEL FOR LOGGING",
-  "mainGuildID": "ID OF BOT OWNER'S GUILD (USED FOR LOGGING)",
-  "levelSystem": false,
+  "ownerID": "{{ownerID}}",
+  "apiEndpoint": "{{apiEndpoint}}",
+  "mainGuildID": "{{mainGuildID}}",
+  "logChannel": "{{logChannel}}",
+  "levelSystem": {{levelSystem}},
   "tokens": {
-    "discord": "DISCORD TOKEN",
-    "api": "DESIGNHUB API TOKEN",
-    "cleverbot": "CLEVERBOT API TOKEN",
+    "discord": "{{tokenDiscord}}",
+    "api": "{{tokenAPI}}",
+    "cleverbot": "{{tokenCleverbot}}",
     "twitter": {
-      "consumer_key": "...",
-      "consumer_secret": "...",
-      "access_token": "...",
-      "access_token_secret": "..."
+      "consumer_key": "{{tokenTwitterConsumerKey}}",
+      "consumer_secret": "{{tokenTwitterConsumerSecret}}",
+      "access_token": "{{tokenTwitterAccessToken}}",
+      "access_token_secret": "{{tokenTwitterAccessTokenSecret}}"
     }
-  },
-  "defaultSettings": {
-    "prefix": "!",
-    "embedFooter": "designhub.party",
-    "embedColor": "0x2eabbf",
-    "embedIcon": "https://dsgnhb.de/dl/avatar%20designhub2.jpg"
   }
 }

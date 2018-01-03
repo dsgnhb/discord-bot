@@ -12,7 +12,7 @@ class Message extends Event {
   async run(message) {
     if (message.author.bot) return
 
-    const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings
+    const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.settings.get('default')
     message.settings = settings
 
     // User's PermLevel

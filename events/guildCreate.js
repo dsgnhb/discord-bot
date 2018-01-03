@@ -5,7 +5,7 @@ class GuildCreate extends Event {
     super(client)
   }
   async run(guild) {
-    this.client.settings.set(guild.id, this.client.config.defaultSettings)
+    this.client.settings.set(guild.id, this.client.settings.get('default'))
   }
 }
 module.exports = GuildCreate
