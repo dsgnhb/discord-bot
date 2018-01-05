@@ -15,6 +15,7 @@ class MessageReactionAdd extends Event {
 
     if (!message.guild) return
     if (message.author.bot) return
+    if (message.author.id === user.id) return
     // if (!message.guild.members.get(user.id).roles.find('name', 'owner')) return
 
     const channel = message.guild.channels.find('name', 'starboard')
