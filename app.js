@@ -29,9 +29,13 @@ class designhubBot extends Client {
     // Bot Owner gets 10
     if (client.config.ownerID.includes(message.author.id)) return 10
     // DM Channels
-    if (message.channel.type === 'dm') return 0
-    // Guild Owner gets 10
-    if (message.author.id === message.guild.ownerID) return 9
+    if (!message.guild || !message.member) return 0
+
+    if (message.guild.id !== client.config.mainGuildID) return 0
+
+    if (message.author.id === message.guild.ownerID)
+      // Guild Owner gets 10
+      return 9
     // Loop through config
     const ranks = require('./configs/permlevel.json')
     for (let rank in ranks) {
@@ -41,7 +45,7 @@ class designhubBot extends Client {
       }
     }
     // else
-    if (!message.guild || !message.member) return 0
+    return 0
   }
 
   log(type, msg, title) {
