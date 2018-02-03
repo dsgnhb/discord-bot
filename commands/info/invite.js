@@ -14,7 +14,7 @@ class Invite extends Command {
   }
 
   async run(message, args) {
-    message.channel.send('https://dsgnhb.de/discord')
+    message.channel.send('https://designhub.fun/discord')
   }
 }
 

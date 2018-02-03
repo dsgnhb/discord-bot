@@ -21,7 +21,7 @@ class Posts extends TopDesignCommand {
         let entry = request[i]
         posts += '**#' + entry.id + '** | ' + entry.username + '  -  **' + entry.likes + '** ' + this.f.voteOrVotes(entry.likes) + '\n'
       }
-      message.channel.send('**TopDesign** | Alle aktiven Posts findest du hier: https://dsgnhb.de/topdesign \n\n' + posts + '\nNutze `!vote #id` um für einen Post zu voten.')
+      message.channel.send('**TopDesign** | Alle aktiven Posts findest du hier: https://designhub.fun/topdesign \n\n' + posts + '\nNutze `!vote #id` um für einen Post zu voten.')
     } catch (error) {
       console.log(error)
       message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')

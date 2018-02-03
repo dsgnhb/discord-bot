@@ -77,9 +77,9 @@ let prompts = [
 
 const defaultSettings = `{
     "prefix": "!",
-    "embedFooter": "dsgnhb.de",
+    "embedFooter": "designhub.fun",
     "embedColor": "0x2eabbf",
-    "embedIcon": "https://dsgnhb.de/dl/avatar%20designhub2.jpg"
+    "embedIcon": "https://designhub.fun/dl/avatar%20designhub2.jpg"
   }`
 
 let exampleConfig = fs.readFileSync('./configs/config.example.json', 'utf8')

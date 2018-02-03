@@ -13,7 +13,7 @@ class Ready extends Event {
     // We check for any guilds added while the bot was offline, if any were, they get a default configuration.
     this.client.guilds.filter(g => !this.client.settings.has(g.id)).forEach(g => this.client.settings.set(g.id, this.client.settings.get('default')))
 
-    this.client.user.setPresence({ game: { name: 'dsgnhb.de', type: 0 } })
+    this.client.user.setPresence({ game: { name: 'designhub.fun', type: 0 } })
 
     require('../functions/twitter.js')(this.client)
     require('../functions/dashboard.js')(this.client)

@@ -24,7 +24,7 @@ class Level extends LevelsCommand {
       message.channel.send(
         new RichEmbed()
           .setAuthor('Levels | ' + user.user.username, user.user.avatarURL)
-          .setURL('https://dsgnhb.de/levels/')
+          .setURL('https://designhub.fun/levels/')
           .setColor(settings.embedColor)
           .addField('Rank', `**${data.rank}**/${message.guild.memberCount}`, true)
           .addField('Level', `**${data.level}** (${data.totalXP} XP)`, true)
