@@ -19,18 +19,20 @@ class Changelog extends Command {
   async run(message, args) {
     const settings = message.settings
 
-    const changelog = await require('../../changelog.json')
     const packageJSON = await require('../../package.json')
 
-    await message.channel.send(
-      new RichEmbed()
-        .setAuthor(`Changelog v${packageJSON.version}`)
-        .setDescription(changelog[packageJSON.version].join('\n'))
-        .setURL(packageJSON.repository.url.split('+')[1].slice(0, -4))
-        .setColor(settings.embedColor)
-        .setTimestamp()
-        .setFooter(settings.embedFooter, settings.embedIcon)
-    )
+    var git = require('git-last-commit')
+    git.getLastCommit(function(err, commit) {
+      message.channel.send(
+        new RichEmbed()
+          .setAuthor(`Changelog v${packageJSON.version}`)
+          .setDescription(commit.subject)
+          .setURL(packageJSON.repository.url.split('+')[1].slice(0, -4))
+          .setColor(settings.embedColor)
+          .setTimestamp()
+          .setFooter(settings.embedFooter, settings.embedIcon)
+      )
+    })
   }
 }
 

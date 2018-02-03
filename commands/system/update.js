@@ -35,33 +35,20 @@ class Update extends Command {
 
     if (stdout.toString().includes('Already up-to-date.')) return message.channel.send('Alles aktuell!')
 
-    let changelog = await require('../../changelog.json')
-    let packageJSON = await require('../../package.json')
+    const packageJSON = await require('../../package.json')
 
-    console.log(changelog)
-    console.log(packageJSON)
-
-    let changelogVersion = changelog[packageJSON.version]
-
-    let i = 0
-    while (!changelogVersion) {
-      delete require.cache[require.resolve('../../changelog.json')]
-      changelog = await require('../../changelog.json')
-      console.log(changelog)
-      changelogVersion = changelog[packageJSON.version]
-      i++
-      if (i === 20) changelogVersion = 'Unbekannter Fehler'
-    }
-
-    await message.channel.send(
-      new RichEmbed()
-        .setAuthor(`Neue Version: Changelog v${packageJSON.version}`)
-        .setDescription(changelogVersion.join('\n'))
-        .setURL(packageJSON.repository.url.split('+')[1].slice(0, -4))
-        .setColor(settings.embedColor)
-        .setTimestamp()
-        .setFooter(settings.embedFooter, settings.embedIcon)
-    )
+    var git = require('git-last-commit')
+    git.getLastCommit(function(err, commit) {
+      message.channel.send(
+        new RichEmbed()
+          .setAuthor(`Neue Version: Changelog v${packageJSON.version}`)
+          .setDescription(commit.subject)
+          .setURL(packageJSON.repository.url.split('+')[1].slice(0, -4))
+          .setColor(settings.embedColor)
+          .setTimestamp()
+          .setFooter(settings.embedFooter, settings.embedIcon)
+      )
+    })
 
     message.channel.send('Update wird heruntergeladen...')
     this.client.wait(2000)
