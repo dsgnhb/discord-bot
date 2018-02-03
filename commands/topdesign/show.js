@@ -15,7 +15,7 @@ class Show extends TopDesignCommand {
 
   async run(message, args) {
     const postID = this.f.getPostID(args)
-    if (!postID) return message.channel.send('**TopDesign** | Nutze `!show #[Nr des Posts]` um einen Post zu löschen.')
+    if (!postID) return message.channel.send('**TopDesign** | Nutze `!show #[Nr des Posts]` um einen Post zu betrachten.')
     try {
       const request = await this.f.getPost(postID)
       if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
