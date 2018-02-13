@@ -20,7 +20,7 @@ class Message extends Event {
     message.author.permLevel = level
 
     // Monitors
-    this.client.monitors.forEach(function(monitor, name, map) {
+    this.client.monitors.forEach(function (monitor, name, map) {
       if (!message.guild && !monitor.conf.dm) return
       if (message.guild && !monitor.conf.guild) return
       if (level > monitor.conf.maxPermLevel) return
