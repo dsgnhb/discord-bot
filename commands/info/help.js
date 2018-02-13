@@ -17,7 +17,7 @@ class Help extends Command {
     const settings = message.settings
     const level = message.author.permLevel
     if (!args[0]) {
-      const myCommands = message.guild ? this.client.commands.filter(cmd => cmd.conf.permLevel <= level) : client.commands.filter(cmd => cmd.conf.permLevel <= level && cmd.conf.guildOnly !== true)
+      const myCommands = message.guild ? this.client.commands.filter(cmd => cmd.conf.permLevel <= level && (cmd.conf.dm === true || cmd.conf.guild === true)) : client.commands.filter(cmd => cmd.conf.permLevel <= level && cmd.conf.guild !== true)
       const commandNames = myCommands.keyArray()
       let currentCategory = ''
       let msg = {

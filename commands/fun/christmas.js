@@ -7,8 +7,8 @@ class Christmas extends Command {
       aliases: ['open', 'gommewin', 'advent'],
       description: 'WEIHNAHCTENENENENNEEE',
       usage: 'christmas',
-      dm: true,
-      guild: true,
+      dm: false,
+      guild: false,
       permLevel: 0
     })
   }

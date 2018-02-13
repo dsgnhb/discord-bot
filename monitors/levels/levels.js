@@ -4,7 +4,8 @@ class Levels extends LevelsMonitor {
   constructor(client) {
     super(client, {
       name: 'Levels',
-      description: 'XPPPP.'
+      description: 'XPPPP.',
+      category: 'Levels'
     })
   }
 

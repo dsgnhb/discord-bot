@@ -7,6 +7,7 @@ class Topdesign extends TopDesignCommand {
       category: 'Top Design',
       description: 'Äh? Was is "Top Design"?',
       usage: 'topdesign',
+      aliases: ['topdesigns'],
       permLevel: 0
     })
   }

@@ -2,7 +2,8 @@ package-lock.json
 /node_modules/
 /data/
 /configs/config.json
-/.idea/
+.idea/*
+.vscode/*
 
 build/config.gypi
 configs/christmas.json

@@ -18,14 +18,14 @@ class Shop extends LevelsCommand {
       chest: {
         name: 'eine Chest',
         price: 20,
-        run: function(_this, message) {
+        run: function (_this, message) {
           _this.f.addChests(message.member, 1)
         }
       },
       coins: {
         name: '10 Coins',
         price: 20,
-        run: function(_this, message) {
+        run: function (_this, message) {
           _this.f.addCoins(message.member, 10)
         }
       }

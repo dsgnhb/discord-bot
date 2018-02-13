@@ -11,7 +11,7 @@ class Ops extends Monitor {
   }
 
   async run(message, args) {
-    if (!message.channel.id === '308681144914673675') return
+    if (!message.channel.name === 'ops') return
     const opsMessages = ['ops', 'opinions', 'meinungen', 'meinung', 'wip', 'work in progress']
     if (!new RegExp(opsMessages.join('|')).test(message.content.toLowerCase())) return
     message.react('👍')
