@@ -2,9 +2,9 @@ class Monitor {
   constructor(client, options = { name: '', description: 'Keine Beschreibung.', category: 'Basics', dm: true, guild: true, maxPermLevel: '10' }) {
     this.client = client
     this.conf = { 
-      dm: options.dm,
-      guild: options.guild,
-      maxPermLevel: options.maxPermLevel
+      dm: options.dm || false,
+      guild: options.guild || false,
+      maxPermLevel: options.maxPermLevel || '0'
     }
     this.help = {
       name: options.name,
