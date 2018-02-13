@@ -1,4 +1,4 @@
-const Monitor = require('../../base/monitors/Monitor.js')
+const Monitor = require('../../base/monitors/LevelsMonitor.js')
 
 class React extends Monitor {
   constructor(client) {
@@ -10,8 +10,6 @@ class React extends Monitor {
   }
 
   async run(message, args) {
-    console.log("REACT:" + message.content)
-    //'beschweren kann man sich da normalerweise eher weniger',
     const reactions = {
       Marianne: {
         input: ['schokolade', 'dome'],
@@ -39,17 +37,26 @@ class React extends Monitor {
         cost: 10
       }
     }
-    let possibleKeys = Object.keys(reactions).filter(k => reactions[k].input.some(word => message.content.toLowerCase().includes(word.toLowerCase())))
-    if (possibleKeys.length > 0) {
-      let name = possibleKeys[0]
-      const randomOutput = reactions[name].output[Math.floor(Math.random() * reactions[name].output.length)]
 
-      const guild = message.guild
-      if (guild.available) guild.members.get(this.client.user.id).setNickname(name)
-      await message.channel.send(randomOutput)
-      this.client.log('log', `${name} reacted on ${message.author.username}'s (${message.author.id}) message with answer "${randomOutput}"`, 'React')
-      if (guild.available) guild.members.get(this.client.user.id).setNickname('designhub')
+    let possibleKeys = Object.keys(reactions).filter(k => reactions[k].input.some(word => message.content.toLowerCase().includes(word.toLowerCase())))
+
+    if (!possibleKeys.length > 0) return
+    const name = possibleKeys[0]
+    const character = reactions[name]
+
+    let donatorRole = message.guild.roles.find("name", "donator");
+    if (message.guild && !(message.author.permLevel > 9 || (donatorRole && message.member.roles.has(donatorRole.id))) && character.cost > 0) {
+      const removeCoins = await this.f.removeCoins(message.member, character.cost)
+      if (!removeCoins) return message.reply('Du hast leider nicht genug Coins!')
     }
+
+    const randomStatement = character.output.random()
+    if (message.guild.available) message.guild.members.get(this.client.user.id).setNickname(name)
+    await message.channel.send(randomStatement)
+    if (message.guild.available) message.guild.members.get(this.client.user.id).setNickname('designhub')
+
+    this.client.log('log', `${name} reacted on ${message.author.username}'s (${message.author.id}) message with answer "${randomStatement}"`, 'React')
+
   }
 }
 
