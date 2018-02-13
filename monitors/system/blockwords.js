@@ -11,6 +11,7 @@ class BlockWords extends Monitor {
   }
 
   async run(message, args) {
+    console.log("BLOCK:" + message.content)
 
     // Allowed Invites
     const allowedLinks = ['https://discordapp.com/invite/PGv5TR3', 'https://discord.gg/PGv5TR3']

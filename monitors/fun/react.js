@@ -10,6 +10,7 @@ class React extends Monitor {
   }
 
   async run(message, args) {
+    console.log("REACT:" + message.content)
     //'beschweren kann man sich da normalerweise eher weniger',
     const reactions = {
       Marianne: {
