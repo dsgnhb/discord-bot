@@ -11,7 +11,6 @@ class TopDesign extends TopDesignMonitor {
   }
 
   async run(message, args) {
-    console.log("TOPDESIGN:" + message.content)
     if (!message.attachments.first()) return
     if (message.isMentioned(message.guild.channels.find('name', 'topdesign')) || message.content.includes('#topdesign')) {
       this.client.log('log', `${message.author.username} (${message.author.id}) ran #topdesign`, 'MONITOR')

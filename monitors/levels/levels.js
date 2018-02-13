@@ -10,7 +10,6 @@ class Levels extends LevelsMonitor {
   }
 
   async run(message, args) {
-    console.log("LEVELS:" + message.content)
     if (this.client.cooldown.has(message.author.id)) return
 
     if (message.content.startsWith(message.settings.prefix)) return

@@ -15,7 +15,8 @@ class React extends Monitor {
     const reactions = {
       Marianne: {
         input: ['schokolade', 'dome'],
-        output: ['Was denn HIER los?!!', 'Was das denn HIER??!', 'Was machst du DENN??!']
+        output: ['Was denn HIER los?!!', 'Was das denn HIER??!', 'Was machst du DENN??!'],
+        cost: 0
       },
       Andreas: {
         input: ['ich hab kein obst gefunden', 'halt stop', 'jetzt hälst du die schnauze', 'es ist obst im haus', 'das bleibt alles so', 'ob du hier bist'],
@@ -29,11 +30,13 @@ class React extends Monitor {
           'Ne, jetzt hälst Du mal die Schnauze!',
           'Hochnäsige Zicke!',
           'Bei uns wird 2x in der Woche frisch gewischt'
-        ]
+        ],
+        cost: 0
       },
       GommeHD: {
         input: ['/gommemode'],
-        output: ['_***trololol!***_']
+        output: ['_***trololol!***_'],
+        cost: 10
       }
     }
     let possibleKeys = Object.keys(reactions).filter(k => reactions[k].input.some(word => message.content.toLowerCase().includes(word.toLowerCase())))
