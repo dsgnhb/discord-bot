@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "node util/installer.js",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "node app.js",
+    "start": "nodemon node app.js",
     "prettier": "prettier --write '*/**/*.{js,json,jsx}'"
   },
   "prettier": {
@@ -45,6 +45,7 @@
     "uws": "^0.14.5"
   },
   "devDependencies": {
+    "nodemon": "^1.14.12",
     "prettier": "^1.7.4"
   }
 }
