@@ -18,7 +18,7 @@ class Vote extends TopDesignCommand {
     if (!postID) throw 'Nutze `!vote #[Nr des Posts]` um für einen Post zu voten. \nhttps://youtu.be/trJqJfpdReE'
     try {
       const request = await this.f.votePost(postID, message.author.id)
-      if (!request) throw `**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`
+      if (!request) throw `**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden oder ist nicht aus dem aktuellem Monat.`
       if (request.action === 'remove')
         return message.channel.send(`Dein Vote wurde entfernt! Der Post von **${request.posted_by}** hat jetzt **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`)
       if (request.action === 'add')
