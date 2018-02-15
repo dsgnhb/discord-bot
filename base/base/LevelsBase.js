@@ -30,7 +30,7 @@ class LevelsBase extends Base {
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
-        function(error, response, body) {
+        function (error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
           if (body.error) reject(body.error)
@@ -60,7 +60,7 @@ class LevelsBase extends Base {
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
-        function(error, response, body) {
+        function (error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
           if (body.error) return resolve(false)
@@ -78,7 +78,7 @@ class LevelsBase extends Base {
     const items = [
       {
         name: 'einen Lukas',
-        run: function(message) {
+        run: function (message) {
           message.channel.send(
             '*Lukas* : hey. you. wanna sub to my youtube channel? its free. 🕶 \n🔥 __***COME ON SUB MY FCKING YOUTUBE CHANNEL***__ 🔥 \nhttp://lukaas.de/youtube',
             new Attachment('./assets/imgs/lukas.jpg', 'lukas.jpg')
@@ -87,13 +87,13 @@ class LevelsBase extends Base {
       },
       {
         name: 'NICHTS',
-        run: function(message) {
+        run: function (message) {
           message.channel.send(new Attachment('./assets/gifs/loading.gif', 'loading.gif'))
         }
       },
       {
         name: 'eine Gommplosion',
-        run: function(message) {
+        run: function (message) {
           message.channel.send(
             '<:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210><:gomme:313418733861470210>'
           )
@@ -102,27 +102,27 @@ class LevelsBase extends Base {
       },
       {
         name: 'ein Einhorn',
-        run: function(message) {
+        run: function (message) {
           message.channel.send('Meddl, ich bin ein Einhorn! 🦄')
         }
       },
       {
         name: 'einen XP-Boost',
-        run: function(message) {
+        run: function (message) {
           message.channel.send("**So much XP!** Für deine Treue erhälst du **101 XP** auf Lukas' Nacken! 💰")
           _this.addXP(message.member, 101)
         }
       },
       {
         name: 'eine Kiste',
-        run: function(message) {
+        run: function (message) {
           message.channel.send('**Wow!** Das hat sich ja richtig gelohnt! Hier hast du noch **ne Kiste**... 👍 💎')
           _this.addChests(message.member, 2)
         }
       },
       {
         name: 'ein paar Coins',
-        run: function(message) {
+        run: function (message) {
           const coins = _this.randomNum(10, 40)
           message.channel.send(`**Yeey!** Viel Spaß mit **${coins} Coins**! 👍 💎`)
           _this.addCoins(message.member)
@@ -130,7 +130,7 @@ class LevelsBase extends Base {
       },
       {
         name: 'einen Schlüsselanhänger',
-        run: function(message) {
+        run: function (message) {
           message.channel.send({
             embed: {
               color: 3447003,
@@ -157,27 +157,6 @@ class LevelsBase extends Base {
             '~ **CreepPlays** (SGD3D Entwickler)'
 
           message.member.send(msg)
-        }
-      },
-      {
-        name: 'einen Design-Gutschein',
-        run: function(message) {
-          message.channel.send("Mehr gibt's per DM! 😉")
-          message.guild.channels.get('318849797664538637').send(message.author.username + ' (' + message.author.id + ') hat einen Design-Gutschein gewonnen!')
-          let shops = [
-            {
-              name: 'RadeArtz',
-              discord: 'RadeArtz | мσтιση ∂єѕιgη#9091',
-              url: 'shop.radeartz.de',
-              rabatt: '5%'
-            }
-          ]
-          let list = ''
-          for (let i = 0; i < shops.length; i++) {
-            let item = shops[i]
-            list += '- **' + item.name + '** *(' + item.url + ')* - ' + item.rabatt
-          }
-          message.author.send('**Yey!** Deinen Gutschein kannst du hier einlösen: 🎁 \n\n' + list + ' \n\nUm ihn einzulösen, kontaktiere den Designer einfach per DM! 🖌')
         }
       }
     ]
@@ -278,7 +257,7 @@ class LevelsBase extends Base {
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
-        function(error, response, body) {
+        function (error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
 
@@ -305,7 +284,7 @@ class LevelsBase extends Base {
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
-        function(error, response, body) {
+        function (error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
           if (body.error) reject(body.error)
@@ -330,7 +309,7 @@ class LevelsBase extends Base {
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
-        function(error, response, body) {
+        function (error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
 
@@ -351,7 +330,7 @@ class LevelsBase extends Base {
           json: true,
           headers: { Token: this.client.config.tokens.api }
         },
-        function(error, response, body) {
+        function (error, response, body) {
           if (error) reject(error)
           if (!body) reject('No Body!')
           if (body.error) reject(error)
