@@ -11,24 +11,25 @@ class Status extends TopDesignCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const postID = this.f.getPostID(args)
     console.log(postID)
-    if (!postID) return message.channel.send('**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.')
+    if (!postID) throw ('**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.')
     try {
       const request = await this.f.statusPost(postID)
-      if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
+      if (!request) throw (`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
       if (request.action === 'deactivate')
-        return message.channel.send(
+        return (
           `**TopDesign** | Der Post von **${request.posted_by}** mit der Nummer **#${postID}** wurde erfolgreich deaktiviert. Er hatte **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`
         )
       if (request.action === 'activate')
-        return message.channel.send(
+        return (
           `**TopDesign** | Der Post von **${request.posted_by}** mit der Nummer **#${postID}** wurde erfolgreich aktiviert. Er hatte **${request.likes} ${this.f.voteOrVotes(request.likes)}**.`
         )
     } catch (error) {
       console.log(error)
-      message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+      throw ('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
     }
   }
 }

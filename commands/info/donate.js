@@ -12,8 +12,8 @@ class Donate extends Command {
         })
     }
 
-    async run(message, args) {
-        message.channel.send("Wenn du designhub magst und uns unterstützen möchtest, um das Projekt aktiv zuhalten, freuen wir uns über deine Hilfe!" +
+    async run(message) {
+        return ("Wenn du designhub magst und uns unterstützen möchtest, um das Projekt aktiv zuhalten, freuen wir uns über deine Hilfe!" +
             "\nAls Dankeschön erhälst du coole Belohnungen. Außerdem erwähnen wir dich auf unserer Website und bieten dir 'nen extra Rang auf unserem Discord an." +
             "\n≫ https://designhub.fun/donate ")
     }

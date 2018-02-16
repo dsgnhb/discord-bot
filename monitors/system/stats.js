@@ -10,7 +10,7 @@ class Stats extends Monitor {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const settings = message.settings
     if (message.content.startsWith(settings.prefix)) return
     const now = new Date()

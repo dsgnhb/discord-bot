@@ -29,31 +29,31 @@ class Message extends Event {
 
     // Ignore messages without prefix
     if (message.content.indexOf(settings.prefix) !== 0) return
+
     // Getting Message Arguments
     /*
     GuideBot Version
-    */
     const args = message.content
       .slice(settings.prefix.length)
       .trim()
       .split(/ +/g)
-    /*
-    Flo Version
+    */
+    // Flo Version
     const args = message.content
       .slice(settings.prefix.length)
       .trim()
       .match(/[^\s"']+|"([^"]*)"|'([^']*)'/g)
-    */
+    // Remove Double- & Single Quotes
+    for (let i = 0; i < args.length; i++) {
+      args[i] = args[i].replace(/['"]+/g, '')
+    }
+    message.args = args
+
     const command = args.shift().toLowerCase()
     const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command))
     if (!cmd) return
     if (!message.guild && !cmd.conf.dm) return message.reply("Dieser Command kann nur auf'm Discord genutzt werden!")
     if (message.guild && !cmd.conf.guild) return
-
-    message.flags = []
-    while (args[0] && args[0][0] === '-') {
-      message.flags.push(args.shift().slice(1))
-    }
 
     if (level < cmd.conf.permLevel) return
     if (cmd.help.price > 0 && level < 9) {
@@ -63,11 +63,17 @@ class Message extends Event {
     const channel = message.guild ? message.channel.name : message.channel.type
     const guild = message.guild ? message.guild.name : ''
     this.client.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name} in ${channel} ${guild} - ${args.join(',')}`, 'CMD')
-    cmd.run(message, args).catch(error => {
+
+    try {
+      let res = await cmd.run(message)
+      if (res.length > 2000 || res === undefined || res.length < 1) return
+      message.channel.send(res)
+    } catch (error) {
       if (error.length > 2000 || error === undefined || error.length < 1) return
-      this.client.log('log', error, `CMD | ${cmd.help.name}`)
+      //this.client.log('log', error, `CMD | ${cmd.help.name}`)
       message.reply(error)
-    })
+    }
+
   }
 }
 

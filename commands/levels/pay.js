@@ -13,7 +13,8 @@ class Pay extends LevelsCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     let user = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
     const amount = Number(args[1])
     if (!user || !amount) throw 'Nutze `!pay <@user> <amount>` um endlich mal deine Schulden zu bezahlen.'

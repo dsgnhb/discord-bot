@@ -12,14 +12,15 @@ class Eval extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const code = args.join(' ')
     try {
       const evaled = eval(code)
       const clean = await this.client.clean(this.client, evaled)
-      message.channel.send(`\`\`\`js\n${clean}\n\`\`\``)
+      return (`\`\`\`js\n${clean}\n\`\`\``)
     } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${await this.client.clean(this.client, err)}\n\`\`\``)
+      throw (`\`ERROR\` \`\`\`xl\n${await this.client.clean(this.client, err)}\n\`\`\``)
     }
   }
 }

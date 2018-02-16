@@ -8,20 +8,21 @@ class Avatar extends Command {
       category: 'System',
       description: 'Neues Avatar',
       usage: 'avatar <url>',
-      dm: false,
+      dm: true,
       guild: true,
       permLevel: 10
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     let avatar = args[0] || ''
-    if (!avatar.startsWith('https://')) return message.channel.send('Joa. Des is aber kein Link!')
+    if (!avatar.startsWith('https://')) throw ('Joa. Des is aber kein Link!')
     try {
       await this.client.user.setAvatar(avatar)
-      message.channel.send('Uuuh! Neues Avatar! 😍')
+      return ('Uuuh! Neues Avatar! 😍')
     } catch (error) {
-      message.channel.send('irgendwas is hier gerade explodiert.')
+      throw ('irgendwas is hier gerade explodiert.')
     }
   }
 }

@@ -13,7 +13,8 @@ class Help extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const settings = message.settings
     const level = message.author.permLevel
     if (!args[0]) {
@@ -47,7 +48,7 @@ class Help extends Command {
         }
         msg.embed.fields[i].value += `**${settings.prefix}${c.help.name}** - ${c.help.description}\n`
       })
-      message.channel.send(msg)
+      return (msg)
     } else {
       let command = args[0]
       if (this.client.commands.has(command)) {
@@ -61,7 +62,7 @@ class Help extends Command {
           .addField('Coins', command.help.price, true)
           .setTimestamp()
           .setFooter(settings.embedFooter, settings.embedIcon)
-        message.channel.send(embed)
+        return (embed)
       }
     }
   }

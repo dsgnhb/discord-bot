@@ -13,7 +13,7 @@ class Channelinfo extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const settings = message.settings
     const channel = message.channel
     const embed = new RichEmbed()
@@ -23,7 +23,7 @@ class Channelinfo extends Command {
       .addField('Position', `${channel.position}`, true)
       .setTimestamp()
       .setFooter(settings.embedFooter, settings.embedIcon)
-    message.channel.send({ embed }).catch(e => console.error(e))
+    return ({ embed }).catch(e => console.error(e))
   }
 }
 

@@ -16,7 +16,8 @@ class Code extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     let code
 
     if (args.length < 1) {
@@ -46,7 +47,7 @@ class Code extends Command {
 
     let beautifiedCode = beautify(code, { indent_size: 2, brace_style: 'none' })
     beautifiedCode = this.reduceIndentation(beautifiedCode)
-    message.channel.send(`**${message.author.username}**\n${'```js'}\n${beautifiedCode}\n${'```'}`)
+    return (`**${message.author.username}**\n${'```js'}\n${beautifiedCode}\n${'```'}`)
     message.delete()
   }
   reduceIndentation(string) {

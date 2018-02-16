@@ -6,7 +6,7 @@ class Execute extends Command {
   constructor(client) {
     super(client, {
       name: 'execute',
-      aliases: ['exec'],
+      aliases: ['exe'],
       category: 'System',
       description: 'SSH',
       usage: 'execute <code>',
@@ -15,10 +15,11 @@ class Execute extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     exec(`${args.join(' ')}`, (error, stdout) => {
       const response = error || stdout
-      message.channel.send(`**${message.content}**\n\`\`\`${response}\`\`\``, { split: true }).catch(console.error)
+      return (`**${message.content}**\n\`\`\`${response}\`\`\``, { split: true }).catch(console.error)
     })
   }
 }

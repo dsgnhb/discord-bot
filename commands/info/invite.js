@@ -13,8 +13,8 @@ class Invite extends Command {
     })
   }
 
-  async run(message, args) {
-    message.channel.send('https://designhub.fun/discord')
+  async run(message) {
+    return ('https://designhub.fun/discord')
   }
 }
 

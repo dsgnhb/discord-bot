@@ -12,15 +12,15 @@ class Voted extends TopDesignCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     try {
       const request = await this.f.getVoted(message.author.id, this.f.timeshort(new Date()))
-      if (!request) return message.channel.send('**TopDesign** | Du hast diesen Monat für noch keinen Post gevoted.')
+      if (!request) throw ('**TopDesign** | Du hast diesen Monat für noch keinen Post gevoted.')
       let output = ''
-      message.channel.send(`**TopDesign** | Du hast diesen Monat für ${request.map(r => r.id).join(', ')} gevoted.`)
+      return (`**TopDesign** | Du hast diesen Monat für ${request.map(r => r.id).join(', ')} gevoted.`)
     } catch (error) {
       console.log(error)
-      message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+      throw ('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
     }
   }
 }

@@ -13,7 +13,8 @@ class Clear extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const user = message.mentions.users.first()
     let amount = Number(args[0])
     if (!amount) return message.reply('Must specify an amount to delete!')
@@ -31,7 +32,7 @@ class Clear extends Command {
       }
       await message.channel.bulkDelete(messages)
       amount--
-      const msg = await message.channel.send('`Deleted ' + amount + ' messages.`')
+      const msg = awaitreturn('`Deleted ' + amount + ' messages.`')
       await this.client.wait(2000)
       msg.delete()
     } catch (e) {

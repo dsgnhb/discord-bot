@@ -11,16 +11,18 @@ class Delete extends TopDesignCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
+    const args = message.args
     const postID = this.f.getPostID(args)
-    if (!postID) return message.channel.send('**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.')
+    if (!postID) throw ('**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.')
     try {
       const request = await this.f.deletePost(postID)
-      if (!request) return message.channel.send(`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
-      message.channel.send('**TopDesign** | Der Post mit der Nummer **#' + postID + '** wurde erfolgreich gelöscht.')
+      if (!request) throw (`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
+      return ('**TopDesign** | Der Post mit der Nummer **#' + postID + '** wurde erfolgreich gelöscht.')
     } catch (error) {
       console.log(error)
-      message.channel.send('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+      return ('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
     }
   }
 }

@@ -14,7 +14,7 @@ class Messages extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     sendMemberChart(message, this.client);
   }
 }

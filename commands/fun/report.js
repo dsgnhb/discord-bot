@@ -11,7 +11,7 @@ class Report extends FunCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const errorcode = Math.floor(Math.random() * 100000 + 1)
     message.channel.send('Vielen Dank! Dein Report wurde entgegengenommen. \nDie Gomme-Mods werden den Vorfall überprüfen! <:gomme:313418733861470210>')
     await this.client.wait(10000)
@@ -23,7 +23,7 @@ class Report extends FunCommand {
       'Oh! Wir schauen hier gerade das neuste Video von Gomme. \nGuck doch mit: ' + (await this.gommeVideo()) + '!'
     ]
     var msg = messages[Math.floor(Math.random() * messages.length)]
-    message.channel.send(msg + ' \nUnbekannter Error: x' + +errorcode)
+    return (msg + ' \nUnbekannter Error: x' + +errorcode)
   }
 }
 

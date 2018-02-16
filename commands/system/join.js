@@ -15,7 +15,8 @@ class Join extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const skillGroups = new Collection([
       [
         'developer',
@@ -147,14 +148,14 @@ class Join extends Command {
       ]
     ])
 
-    const SectionSortedArray = skillGroups.reduce(function(r, a) {
+    const SectionSortedArray = skillGroups.reduce(function (r, a) {
       r[a.section] = r[a.section] || []
       r[a.section].push(a)
       return r
     }, Object.create(null))
 
     if (args.length === 0)
-      return message.channel.send(
+      return (
         new RichEmbed()
           .setAuthor(`Skills`)
           .setDescription('`!join skill1 skill2`')

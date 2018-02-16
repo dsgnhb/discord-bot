@@ -9,7 +9,7 @@ class React extends Monitor {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const reactions = {
       Marianne: {
         input: ['schokolade', 'dome'],

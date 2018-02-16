@@ -10,7 +10,7 @@ class Ops extends Monitor {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     if (!message.channel.name === 'ops') return
     const opsMessages = ['ops', 'opinions', 'meinungen', 'meinung', 'wip', 'work in progress']
     if (!new RegExp(opsMessages.join('|')).test(message.content.toLowerCase())) return

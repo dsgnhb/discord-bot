@@ -10,7 +10,7 @@ class Chest extends LevelsCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     try {
       message.channel.send('Dann such ich mal... 🤔')
 
@@ -27,13 +27,15 @@ class Chest extends LevelsCommand {
       const item = this.f.getRandomChest()
 
       await this.client.wait(1500)
-      await message.channel.send(`**WHOOH!!** Du hast *${item.name}* gewonnen! 🎉 🎉 \n`)
-
       item.run(message)
       this.client.log('Log', `${message.author.username} (${message.author.id}) won "${item.name}"`)
+
+      return (`**WHOOH!!** Du hast *${item.name}* gewonnen! 🎉 🎉 \n`)
+
+
     } catch (error) {
       console.log(error)
-      message.channel.send('**Levels** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+      throw ('**Levels** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
     }
   }
 }

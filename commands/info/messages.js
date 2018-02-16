@@ -14,7 +14,7 @@ class Messages extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     let stats = this.client.stats.array()
     let totalMessages = 0
     for (let i = 0; i < stats.length; i++) {
@@ -23,9 +23,9 @@ class Messages extends Command {
     let average = Math.round(totalMessages / stats.length)
 
     if (average < 1000) {
-      message.channel.send(`Da geht noch was: **${average} Nachrichten pro Tag**`)
+      return (`Da geht noch was: **${average} Nachrichten pro Tag**`)
     } else {
-      message.channel.send(`Ganz schön viel Spam: **${average} Nachrichten pro Tag**`)
+      return (`Ganz schön viel Spam: **${average} Nachrichten pro Tag**`)
     }
   }
 }

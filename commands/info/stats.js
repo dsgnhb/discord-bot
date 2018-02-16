@@ -16,11 +16,11 @@ class Stats extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const settings = message.settings
     const duration = moment.duration(this.client.uptime).format(' D [days], H [hrs], m [mins], s [secs]')
 
-    message.channel.send(
+    return (
       new RichEmbed()
         .setAuthor(this.client.user.username, this.client.user.avatarURL)
         .setColor(settings.embedColor)

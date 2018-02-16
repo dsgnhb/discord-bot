@@ -15,13 +15,13 @@ class Level extends LevelsCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     try {
       const settings = message.settings
       let user = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
       const data = await this.f.getData(user)
-      if (!data) return message.channel.send("Dich gibt's hier ned. Noch ned.")
-      message.channel.send(
+      if (!data) throw ("Dich gibt's hier ned. Noch ned.")
+      return (
         new RichEmbed()
           .setAuthor('Levels | ' + user.user.username, user.user.avatarURL)
           .setURL('https://designhub.fun/levels/')

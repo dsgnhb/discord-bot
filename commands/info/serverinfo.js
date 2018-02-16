@@ -14,7 +14,7 @@ class Serverinfo extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const settings = message.settings
     const embed = new RichEmbed()
       .setAuthor(message.guild.name, message.guild.iconURL)
@@ -30,7 +30,7 @@ class Serverinfo extends Command {
       .addField('Roles', message.guild.roles.size, true)
       .setTimestamp()
       .setFooter(settings.embedFooter, settings.embedIcon)
-    message.channel.send({ embed }).catch(e => console.error(e))
+    return ({ embed }).catch(e => console.error(e))
   }
 }
 

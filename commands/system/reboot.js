@@ -12,7 +12,7 @@ class Reboot extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     try {
       await message.channel.send("Gut' Nacht, Leude!")
       this.client.commands.forEach(async cmd => {

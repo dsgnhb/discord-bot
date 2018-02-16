@@ -13,7 +13,7 @@ class Christmas extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(messages) {
     if (message.guild) throw 'Öffne in der **Adventszeit** jeden Tag **ein neues Türchen**, in dem du den **Bot per DM** mit `!open` anschreibst! 🤶🎄'
 
     const date = new Date()
@@ -41,7 +41,7 @@ class Christmas extends Command {
       this.client.christmas.set(message.author.id, data)
     }
 
-    message.channel.send(`**HoHoHo!** 🤶🎄\nHier das Türchen für den **${day}. Dezember**! ⭐\n\n${gift.title} \nhttps://youtu.be/${gift.vidID}`)
+    return (`**HoHoHo!** 🤶🎄\nHier das Türchen für den **${day}. Dezember**! ⭐\n\n${gift.title} \nhttps://youtu.be/${gift.vidID}`)
   }
 }
 

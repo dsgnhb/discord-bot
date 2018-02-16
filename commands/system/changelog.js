@@ -16,14 +16,14 @@ class Changelog extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const settings = message.settings
 
     const packageJSON = await require('../../package.json')
 
     var git = require('git-last-commit')
-    git.getLastCommit(function(err, commit) {
-      message.channel.send(
+    git.getLastCommit(function (err, commit) {
+      return (
         new RichEmbed()
           .setAuthor(`Changelog v${packageJSON.version}`)
           .setDescription(commit.subject)

@@ -9,14 +9,14 @@ class AvatarURL extends Command {
       description: 'Neues Avatar',
       usage: 'avatarurl @user',
       dm: false,
-      guild: true,
+      guild: false,
       permLevel: 0
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     let user = message.mentions.users.first() || message.author
-    message.channel.send(`${user}'s Avatar: \n${user.displayAvatarURL}`)
+    return (`${user}'s Avatar: \n${user.displayAvatarURL}`)
   }
 }
 

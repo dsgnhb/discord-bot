@@ -19,7 +19,8 @@ class Update extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const settings = message.settings
 
     message.channel.send('Suche nach neuem Update...')
@@ -37,18 +38,6 @@ class Update extends Command {
 
     const packageJSON = await require('../../package.json')
 
-    var git = require('git-last-commit')
-    git.getLastCommit(function(err, commit) {
-      message.channel.send(
-        new RichEmbed()
-          .setAuthor(`Neue Version: Changelog v${packageJSON.version}`)
-          .setDescription(commit.subject)
-          .setURL(packageJSON.repository.url.split('+')[1].slice(0, -4))
-          .setColor(settings.embedColor)
-          .setTimestamp()
-          .setFooter(settings.embedFooter, settings.embedIcon)
-      )
-    })
 
     message.channel.send('Update wird heruntergeladen...')
     this.client.wait(2000)

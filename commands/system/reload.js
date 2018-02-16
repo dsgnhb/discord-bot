@@ -11,7 +11,8 @@ class Reload extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     if (!args || args.size < 1) return message.reply('Must provide a command to reload..')
     const commands = this.client.commands.get(args[0])
 

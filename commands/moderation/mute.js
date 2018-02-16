@@ -14,12 +14,13 @@ class Mute extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const muteRoleName = 'Muted'
     let toMute = message.guild.member(message.mentions.users.first())
     let toMuteMember = message.guild.members.get(toMute.id) || message.guild.members.get(args[0])
-    if (!toMute) return message.channel.send('Wen soll ich muten? Bin ja schon ganz aufgeregt ;)')
-    if (toMute.id === message.author.id) return message.channel.send('Das bist doch du xd')
+    if (!toMute) throw ('Wen soll ich muten? Bin ja schon ganz aufgeregt ;)')
+    if (toMute.id === message.author.id) throw ('Das bist doch du xd')
     let muteRole = await message.guild.roles.find(r => r.name === muteRoleName)
     if (!muteRole) {
       try {
@@ -48,9 +49,9 @@ class Mute extends Command {
       await toMute.addRole(muteRole)
       message.reply(`WapBap! ${toMute} wurde für ${ms(time, { long: true })} gemutet!`)
     }
-    setTimeout(function() {
+    setTimeout(function () {
       toMute.removeRole(muteRole)
-      message.channel.send(`Endlich! ${toMute} wurde entmutet!`)
+      return (`Endlich! ${toMute} wurde entmutet!`)
     }, time)
   }
 }

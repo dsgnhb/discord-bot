@@ -13,7 +13,7 @@ module.exports = (message, client) => {
   for (let j = 0; j < keys.length; j++) {
     list.push({ date: new Date(keys[j].replace(pattern, '$3-$2-$1')), members: users[j] })
   }
-  list.sort(function(a, b) {
+  list.sort(function (a, b) {
     return a.date.valueOf() < b.date.valueOf() ? -1 : a.date.valueOf() === b.date.valueOf() ? 0 : 1
   })
   for (let k = 0; k < list.length; k++) {
@@ -79,7 +79,7 @@ module.exports = (message, client) => {
       return chartNode.writeImageToFile('image/png', './assets/imgs/memberchart.png')
     })
     .then(() => {
-      return message.channel.send('Hier ein Diagramm:', new Attachment('./assets/imgs/memberchart.png', 'memberchart.png'))
+      return ('Hier ein Diagramm:', new Attachment('./assets/imgs/memberchart.png', 'memberchart.png'))
     })
     .then(message => {
       fs.unlinkSync('./assets/imgs/memberchart.png')

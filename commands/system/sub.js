@@ -13,15 +13,15 @@ class Sub extends Command {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
     const role = message.guild.roles.find('name', 'subscriber')
-    if (!role) return message.channel.send('DREGGS SERVER! HIER GIBST NEDMAL NE SUBSCRIBER ROLE!')
+    if (!role) throw ('DREGGS SERVER! HIER GIBST NEDMAL NE SUBSCRIBER ROLE!')
     if (message.member.roles.has(role.id)) {
       await message.member.removeRole(role, '!sub')
-      message.channel.send('**Schade..** Du erhälst nun **keine Neuigkeiten** mehr. 😞')
+      return ('**Schade..** Du erhälst nun **keine Neuigkeiten** mehr. 😞')
     } else {
       await message.member.addRole(role, '!sub')
-      message.channel.send('**Whoooo!** Mit der **Subscriber-Role** bleibst du absofort immer **up-to-date**! 📣')
+      return ('**Whoooo!** Mit der **Subscriber-Role** bleibst du absofort immer **up-to-date**! 📣')
     }
   }
 }

@@ -13,7 +13,8 @@ class Shop extends LevelsCommand {
     })
   }
 
-  async run(message, args) {
+  async run(message) {
+    const args = message.args
     const shop = {
       chest: {
         name: 'eine Chest',
@@ -40,7 +41,7 @@ class Shop extends LevelsCommand {
       if (!removeCoins) throw 'Du hast leider nicht genug Coins!'
 
       item.run(this, message)
-      message.channel.send(`WHOOH! Du hast dir **${item.name}** für **${item.price} Coins** gekauft!`)
+      return (`WHOOH! Du hast dir **${item.name}** für **${item.price} Coins** gekauft!`)
     }
   }
 }
