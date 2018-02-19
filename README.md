@@ -49,5 +49,12 @@ To add the bot to your guild, you have to get an oauth link for it.
 You can use this site to help you generate a full OAuth Link, which includes a calculator for the permissions:
 [https://finitereality.github.io/permissions-calculator/?v=0](https://finitereality.github.io/permissions-calculator/?v=0)
 
+
+## Contributing
+
+This project uses [gitmoji](https://gitmoji.carloscuesta.me/) for all commit messages:
+
+Gitmoji is an initiative to standardize and explain the use of emojis on GitHub commit messages. Using emojis on commit messages provides an easy way of identifying the purpose or intention of a commit.
+
 ***
 Authors: flo (https://flooo.me), lukas (https://lukaas.de), fin (https://angu.li), alex (https://github.com/CreepPlaysDE)
