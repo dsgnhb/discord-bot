@@ -7,7 +7,7 @@ class Delete extends TopDesignCommand {
       category: 'Top Design',
       description: 'Löscht halt Posts. (nein.doch.oah.)',
       usage: 'delete #<postid>',
-      permLevel: 9
+      permLevel: 8
     })
   }
 
@@ -15,14 +15,14 @@ class Delete extends TopDesignCommand {
     const args = message.args
     const args = message.args
     const postID = this.f.getPostID(args)
-    if (!postID) throw ('**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.')
+    if (!postID) throw '**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.'
     try {
       const request = await this.f.deletePost(postID)
-      if (!request) throw (`**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`)
-      return ('**TopDesign** | Der Post mit der Nummer **#' + postID + '** wurde erfolgreich gelöscht.')
+      if (!request) throw `**TopDesign** | Der Post mit der Nummer **#${postID}** konnte nicht gefunden werden.`
+      return '**TopDesign** | Der Post mit der Nummer **#' + postID + '** wurde erfolgreich gelöscht.'
     } catch (error) {
       console.log(error)
-      return ('**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕')
+      return '**TopDesign** | Uiih. hier scheint etwas nicht zu funktionieren, wie es sollte.. 😕'
     }
   }
 }

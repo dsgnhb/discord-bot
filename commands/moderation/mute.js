@@ -10,7 +10,7 @@ class Mute extends Command {
       description: 'Ätsch! Da kannst du nichtmehr schreiben.',
       usage: 'mute <@user>',
       dm: false,
-      permLevel: 9
+      permLevel: 8
     })
   }
 
@@ -19,8 +19,8 @@ class Mute extends Command {
     const muteRoleName = 'Muted'
     let toMute = message.guild.member(message.mentions.users.first())
     let toMuteMember = message.guild.members.get(toMute.id) || message.guild.members.get(args[0])
-    if (!toMute) throw ('Wen soll ich muten? Bin ja schon ganz aufgeregt ;)')
-    if (toMute.id === message.author.id) throw ('Das bist doch du xd')
+    if (!toMute) throw 'Wen soll ich muten? Bin ja schon ganz aufgeregt ;)'
+    if (toMute.id === message.author.id) throw 'Das bist doch du xd'
     let muteRole = await message.guild.roles.find(r => r.name === muteRoleName)
     if (!muteRole) {
       try {
@@ -49,9 +49,9 @@ class Mute extends Command {
       await toMute.addRole(muteRole)
       message.reply(`WapBap! ${toMute} wurde für ${ms(time, { long: true })} gemutet!`)
     }
-    setTimeout(function () {
+    setTimeout(function() {
       toMute.removeRole(muteRole)
-      return (`Endlich! ${toMute} wurde entmutet!`)
+      return `Endlich! ${toMute} wurde entmutet!`
     }, time)
   }
 }

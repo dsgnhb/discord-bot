@@ -9,7 +9,7 @@ class Clear extends Command {
       usage: 'clear <amount> (<@user>)',
       dm: true,
       guild: true,
-      permLevel: 9
+      permLevel: 8
     })
   }
 
