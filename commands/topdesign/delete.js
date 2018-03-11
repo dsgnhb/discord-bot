@@ -13,7 +13,6 @@ class Delete extends TopDesignCommand {
 
   async run(message) {
     const args = message.args
-    const args = message.args
     const postID = this.f.getPostID(args)
     if (!postID) throw '**TopDesign** | Nutze `!delete #[Nr des Posts]` um einen Post zu löschen.'
     try {
