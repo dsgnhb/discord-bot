@@ -14,7 +14,7 @@ class Permlevel extends Command {
   }
 
   async run(message) {
-    message.reply(message.author.permLevel)
+    throw message.author.permLevel
   }
 }
 

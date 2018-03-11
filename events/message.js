@@ -20,7 +20,7 @@ class Message extends Event {
     message.author.permLevel = level
 
     // Monitors
-    this.client.monitors.forEach(function (monitor, name, map) {
+    this.client.monitors.forEach(function(monitor, name, map) {
       if (!message.guild && !monitor.conf.dm) return
       if (message.guild && !monitor.conf.guild) return
       if (level > monitor.conf.maxPermLevel) return
@@ -66,14 +66,16 @@ class Message extends Event {
 
     try {
       let res = await cmd.run(message)
-      if (res.length > 2000 || res === undefined || res.length < 1) return
+      if (res === undefined || (res.length > 2000 || res.length < 1)) return
       message.channel.send(res)
     } catch (error) {
-      if (error.length > 2000 || error === undefined || error.length < 1) return
+      console.log(error)
+      if (error === undefined || (error.length > 2000 || error.length < 1)) return
+      error = error.toString()
       //this.client.log('log', error, `CMD | ${cmd.help.name}`)
       message.reply(error)
+      return
     }
-
   }
 }
 
