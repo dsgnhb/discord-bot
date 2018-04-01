@@ -2,7 +2,7 @@ const Twit = require('twit')
 const { RichEmbed } = require('discord.js')
 
 module.exports = client => {
-  const twitter = new Twit(client.config.tokens.twitter)´
+  const twitter = new Twit(client.config.tokens.twitter)
 
   const ShortTech = twitter.stream('statuses/filter', { follow: '826091131062595586' })
 
@@ -28,7 +28,6 @@ module.exports = client => {
   ShortTech.on('disconnect', disconnectMessage => client.log('Log', `Disconnected from Twitter API: ${disconnectMessage}`, 'Twitter'))
   ShortTech.on('reconnect', () => client.log('Log', 'Reconnecting to Twitter API', 'Twitter'))
   ShortTech.on('warning', warning => client.log('Log', `Warning from Twitter API: ${warning}`, 'Twitter'))
-
 
   const mydayondsgnhb = twitter.stream('statuses/filter', { track: '#mydayondsgnhb' })
 
